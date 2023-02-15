@@ -1,0 +1,42 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package tools;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author abder
+ */
+public class MaConnection {
+       private java.sql.Connection cnx;
+        String url = "jdbc:mysql://localhost:3306/pidev";
+        String user = "root";
+        String pwd = "";
+        public static MaConnection ct;
+
+    private MaConnection() {
+        try {
+            cnx = DriverManager.getConnection(url,user,pwd);
+            System.out.println("Cnx etablie ");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    public static MaConnection getInstance(){
+        if(ct ==null)
+            ct= new MaConnection();
+        return ct;
+    }
+
+    public java.sql.Connection getCnx() {
+        return cnx;
+    }
+
+   
+        
+}
