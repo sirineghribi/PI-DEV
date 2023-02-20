@@ -6,6 +6,7 @@
 package services;
 
 import entity.Formation;
+import entity.Utilisateur;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -35,9 +36,9 @@ public class FormationeServices implements InterfaceService<Formation> {
                     + "values (?,?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
             
-            ste.setInt(1, f.getId_c());
+            ste.setInt(1, f.getUtilisateur().getId());
             ste.setInt(2, f.getNbrheur());
-            ste.setString(3,f.getType());
+            ste.setString(3,f.getType().toString());
             ste.setDate(4, f.getDate());
             ste.executeUpdate();
             System.out.println("Formation ajoutée");
@@ -51,12 +52,12 @@ public class FormationeServices implements InterfaceService<Formation> {
     public List<Formation> getAll() {
         List<Formation> Formations = new ArrayList<>();
         try {
-            String sql = "select * from Formation";
+            String sql = "select * from Formation inner join utilisateur on utilisateur.id=formation.id_c";
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
-
-                Formation f = new Formation(s.getInt("id_f"), s.getInt("id_c"),s.getString("type"), s.getDate("date"),s.getInt("nbr_heure")); 
+                Utilisateur u=new Utilisateur(s.getInt("utilisateur.id"), s.getString("utilisateur.nom"),s.getString("utilisateur.prenom") ,s.getString("utilisateur.genre") , s.getString("utilisateur.email"), s.getString("utilisateur.mdp"), s.getDate("utilisateur.date_n"));
+                Formation f = new Formation(s.getInt("formation.id_f"),u,Formation.stringToType(s.getString("formation.type")), s.getDate("formation.date"),s.getInt("formation.nbr_heure")); 
                 //int id_f, int id_c, String type, Date date, int nbr_heure)
                 Formations.add(f);
 
@@ -69,8 +70,25 @@ public class FormationeServices implements InterfaceService<Formation> {
 
     @Override
     public List<Formation> findById(int id_f) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        List<Formation> Formations = new ArrayList<>();
+        try {
+            String sql = "select * from Formation inner join utilisateur on utilisateur.id=formation.id_c where formation.id_f=?";
+            PreparedStatement ste=cnx.prepareStatement(sql);
+            ste.setInt(1,id_f);
+            ResultSet s = ste.executeQuery();
+            while (s.next()) {
+                Utilisateur u=new Utilisateur(s.getInt("utilisateur.id"), s.getString("utilisateur.nom"),s.getString("utilisateur.prenom") ,s.getString("utilisateur.genre") , s.getString("utilisateur.email"), s.getString("utilisateur.mdp"), s.getDate("utilisateur.date_n"));
+                Formation f = new Formation(s.getInt("formation.id_f"),u,Formation.stringToType(s.getString("formation.type")), s.getDate("formation.date"),s.getInt("formation.nbr_heure")); 
+               
+                Formations.add(f);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return Formations;
+        }
+    
 
 
 
@@ -96,9 +114,9 @@ String sql = "delete from Formation where id_f=?";
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
              ste.setInt(5, t.getId_f());
-            ste.setInt(1, t.getId_c());
+            ste.setInt(1, t.getUtilisateur().getId());
             ste.setInt(4, t.getNbrheur());
-            ste.setString(2, t.getType());
+            ste.setString(2, t.getType().toString());
             ste.setDate(3, t.getDate());
             ste.executeUpdate();
         } catch (SQLException ex) {

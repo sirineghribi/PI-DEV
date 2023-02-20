@@ -6,6 +6,7 @@
 package services;
 
 import entity.Maintenance;
+import entity.Vehicule;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,6 +14,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import tools.MaConnection;
 
 /**
@@ -34,9 +36,9 @@ public class MaintenanceServices implements InterfaceService<Maintenance> {
                     + "values (?,?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
           
-            ste.setInt(1, m.getId_v());
+            ste.setInt(1, m.getId_v().get_id_vehicule());
             ste.setFloat(2, m.getDuree());
-            ste.setString(3, m.getStatus());
+            ste.setBoolean(3, m.getStatus());
             ste.setFloat(4, m.getCout());
             ste.executeUpdate();
             System.out.println("Maintenance ajoutée");
@@ -50,12 +52,12 @@ public class MaintenanceServices implements InterfaceService<Maintenance> {
     public List<Maintenance> getAll() {
         List<Maintenance> Maintenances = new ArrayList<>();
         try {
-            String sql = "select * from Maintenance";
+            String sql = "select * from Maintenance inner join vehicule on maintenance.id_v=vehicule.id_vehicule";
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
-
-                Maintenance m = new Maintenance(s.getInt("id_m"), s.getInt("id_v"),s.getString("Status"), s.getFloat("duree"),s.getFloat("cout"));
+                Vehicule v = new Vehicule(s.getInt("vehicule.id_vehicule"),s.getString("vehicule.cat_vehicule") , s.getFloat("vehicule.poid_sup"), s.getInt("vehicule.vitesse"),s.getInt("vehicule.nbr_pas"),s.getBoolean("vehicule.status")) ;
+                Maintenance m = new Maintenance(s.getInt("maintenance.id_m"),v,s.getBoolean("maintenance.Status"), s.getFloat("maintenance.duree"),s.getFloat("maintenance.cout"));
                
                 Maintenances.add(m);
 
@@ -67,10 +69,44 @@ public class MaintenanceServices implements InterfaceService<Maintenance> {
     }
 
     @Override
-    public List<Maintenance> findById(int id_f) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public List<Maintenance> findById(int id_m) {
+        List<Maintenance> Maintenances = new ArrayList<>();
+        try {
+            String sql = "select * from Maintenance inner join vehicule on maintenance.id_v=vehicule.id_vehicule where maintenance.id_m=?";
+            PreparedStatement ste=cnx.prepareStatement(sql);
+            ste.setInt(1,id_m);
+            ResultSet s = ste.executeQuery();
+            while (s.next()) {
+                Vehicule v = new Vehicule(s.getInt("vehicule.id_vehicule"),s.getString("vehicule.cat_vehicule") , s.getFloat("vehicule.poid_sup"), s.getInt("vehicule.vitesse"),s.getInt("vehicule.nbr_pas"),s.getBoolean("vehicule.status")) ;
+                Maintenance m = new Maintenance(s.getInt("maintenance.id_m"),v,s.getBoolean("maintenance.Status"), s.getFloat("maintenance.duree"),s.getFloat("maintenance.cout"));
+               
+                Maintenances.add(m);
 
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return Maintenances;
+        }
+    public List<Maintenance> findByStatus(boolean b) {
+        List<Maintenance> Maintenances = new ArrayList<>();
+        try {
+            String sql = "select * from Maintenance inner join vehicule on maintenance.id_v=vehicule.id_vehicule where maintenance.status=?";
+            PreparedStatement ste=cnx.prepareStatement(sql);
+            ste.setBoolean(1,b);
+            ResultSet s = ste.executeQuery();
+            while (s.next()) {
+                Vehicule v = new Vehicule(s.getInt("vehicule.id_vehicule"),s.getString("vehicule.cat_vehicule") , s.getFloat("vehicule.poid_sup"), s.getInt("vehicule.vitesse"),s.getInt("vehicule.nbr_pas"),s.getBoolean("vehicule.status")) ;
+                Maintenance m = new Maintenance(s.getInt("maintenance.id_m"),v,s.getBoolean("maintenance.Status"), s.getFloat("maintenance.duree"),s.getFloat("maintenance.cout"));
+               
+                Maintenances.add(m);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return Maintenances;
+        }
 
 
   
@@ -93,9 +129,9 @@ public class MaintenanceServices implements InterfaceService<Maintenance> {
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
              ste.setInt(5, t.getId_m());
-            ste.setInt(1, t.getId_v());
+            ste.setInt(1, t.getId_v().get_id_vehicule());
             ste.setFloat(4, t.getDuree());
-            ste.setString(2, t.getStatus());
+            ste.setBoolean(2, t.getStatus());
             ste.setFloat(3, t.getCout());
             ste.executeUpdate();
         } catch (SQLException ex) {
@@ -105,7 +141,22 @@ public class MaintenanceServices implements InterfaceService<Maintenance> {
 
     @Override
     public List<Maintenance> trier() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getAll().stream().sorted().collect(Collectors.toList());
     }
 
+    public boolean Mexists(int id){
+    
+        return !findById(id).isEmpty();
+    
+    }
+    
+    public Maintenance getM(int id){
+    if (Mexists (id))
+        return findById(id).get(0);
+    else {
+        System.out.println("Does not exist");
+        return null;
+    }
+    }
+    
 }
