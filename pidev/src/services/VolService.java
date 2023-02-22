@@ -75,22 +75,23 @@ public class VolService implements InterfaceService<Vol>{
     public List<Vol> getAll() {
         List <Vol> vols=new ArrayList<>();
         try {
-            String sql = " select v.*,mt.* from vol v inner join vehicule mt on v.id_mt=mt.id_mt ";
+            String sql = " select v.*,mt.* from vol v inner join vehicule mt on v.id_mt=mt.id_vehicule ";
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
-                Vehicule ve= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"), s.getInt("nbr_pas"), s.getBoolean("status"));
+                Vehicule ve= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"));
                 Vol v = new Vol(s.getInt("id_v"),s.getInt("nbr_place"),s.getString("destination"), s.getString("etat"),s.getFloat("prix"),s.getDate("date"),ve);
                 vols.add(v);
 
             }
+            System.out.println("done");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         
         return vols; 
     }
-
+   
     @Override
     public void supprimer(Vol t) {
         String sql = "delete from vol where id_v=?";
@@ -109,12 +110,12 @@ public class VolService implements InterfaceService<Vol>{
         List <Vol> vols=new ArrayList<>();
      
         try {
-            String sql = "select v.*,mt.* from vol v inner join vehicule mt on v.id_mt=mt.id_mt";
+            String sql = "select v.*,mt.* from vol v inner join vehicule mt on v.id_mt=mt.id_vehicule where id_v=?";
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1,id);
             ResultSet s = ste.executeQuery();
             while (s.next()) {  
-               Vehicule ve= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"), s.getInt("nbr_pas"), s.getBoolean("status"));
+               Vehicule ve= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"));
                Vol v = new Vol(s.getInt("id_v"),s.getInt("nbr_place"),s.getString("destination"), s.getString("etat"),s.getFloat("prix"),s.getDate("date"),ve);
                vols.add(v);
             }
@@ -139,6 +140,7 @@ public class VolService implements InterfaceService<Vol>{
             ste.setString(5, t.getEtat());
             ste.setInt(6,t.getId_v());
             ste.executeUpdate();
+            System.out.println("modifié");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -152,6 +154,7 @@ public class VolService implements InterfaceService<Vol>{
             ste.setString(1,etat);
             ste.setInt(2,t.getId_v());
             ste.executeUpdate();
+            System.out.println("etat modifié");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }  
@@ -160,12 +163,17 @@ public class VolService implements InterfaceService<Vol>{
     public void modifier_nb_place(Vol t )
     {
       String sql = "update vol set nbr_place=? where id_v=?";
-         
+         VolService vs=new VolService();
         try {
+            System.out.println(vs.findById(t.getId_v()).get(0).getNbr_place());
+            if (vs.findById(t.getId_v()).get(0).getNbr_place()>0)
+            {
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setInt(1,t.getNbr_place()-1);
+            ste.setInt(1,(vs.findById(t.getId_v()).get(0).getNbr_place())-1);
             ste.setInt(2,t.getId_v());
             ste.executeUpdate();
+            System.out.println("nb--");}
+            else System.out.println("nb=0");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }  
@@ -176,11 +184,11 @@ public class VolService implements InterfaceService<Vol>{
        
         List <Vol> vols=new ArrayList<>();
         try {
-            String sql = "select v.*,mt.* from vol v inner join vehicule mt on v.id_mt=mt.id_mt order by v.date asc ";
+            String sql = "select v.*,mt.* from vol v inner join vehicule mt on v.id_mt=mt.id_vehicule order by v.date asc ";
             PreparedStatement ste = cnx.prepareStatement(sql);
             ResultSet s = ste.executeQuery();
             while (s.next()) {
-               Vehicule ve= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"), s.getInt("nbr_pas"), s.getBoolean("status"));
+                Vehicule ve= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"));
                 Vol v = new Vol(s.getInt("id_v"),s.getInt("nbr_place"),s.getString("destination"), s.getString("etat"),s.getFloat("prix"),s.getDate("date"),ve);
                 vols.add(v);
             }
@@ -190,6 +198,21 @@ public class VolService implements InterfaceService<Vol>{
         return vols;
     }
     
-    
+    public List<Integer> id_vehicule_list()
+    {
+        List <Integer> result=new ArrayList<>();
+        try {
+            String sql = "select id_vehicule from vehicule ";
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ResultSet s = ste.executeQuery();
+            while (s.next()) {
+                result.add(s.getInt("id_vehicule"));
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return result;
+    }
    
 }

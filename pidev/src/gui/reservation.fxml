@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="310.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" fx:controller="gui.ReservationController">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <ListView fx:id="list_reservation" layoutX="41.0" layoutY="84.0" prefHeight="200.0" prefWidth="520.0" />
+      <Label layoutX="221.0" layoutY="43.0" text="Mes reservations " textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

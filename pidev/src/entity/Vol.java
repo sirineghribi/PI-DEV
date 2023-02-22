@@ -6,7 +6,9 @@
 package entity;
 
 import java.sql.Date;
-import java.util.Objects;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 
 /**
  *
@@ -30,10 +32,19 @@ public class Vol {
         this.prix = prix;
         this.date = date;
         this.mt = mt;
+        
     }
 
-    public Vol(int nbr_place, String destination, String etat, float prix, Date date, Vehicule mt) {
-        this.nbr_place = nbr_place;
+    public Vol(int id_v, String destination, String etat, float prix, Date date, Vehicule mt) {
+        this.id_v = id_v;
+        this.destination = destination;
+        this.etat = etat;
+        this.prix = prix;
+        this.date = date;
+        this.mt = mt;
+    }
+    
+    public Vol(String destination, String etat, float prix, Date date, Vehicule mt) {
         this.destination = destination;
         this.etat = etat;
         this.prix = prix;

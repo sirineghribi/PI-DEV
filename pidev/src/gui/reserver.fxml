@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="255.0" prefWidth="434.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReserverController">
+   <children>
+      <ImageView fitHeight="283.0" fitWidth="464.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="reserver" layoutX="301.0" layoutY="195.0" mnemonicParsing="false" text="Reserver" />
+      <TextField fx:id="cin_txt" layoutX="226.0" layoutY="60.0" />
+      <TextField fx:id="num_txt" layoutX="226.0" layoutY="116.0" />
+      <Label layoutX="72.0" layoutY="64.0" text="cin" textFill="WHITE" />
+      <Label layoutX="72.0" layoutY="120.0" text="numero de telephone" textFill="WHITE" />
+      <CheckBox fx:id="condition" layoutX="72.0" layoutY="190.0" mnemonicParsing="false" text="J'accepte les conditions " textFill="WHITE" />
+      <Label layoutX="44.0" layoutY="26.0" text="Reserver " textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

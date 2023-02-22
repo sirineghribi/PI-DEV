@@ -8,6 +8,7 @@ package services;
 import entity.Carte_fidelite;
 import entity.Reservation;
 import entity.Utilisateur;
+import entity.Vehicule;
 import entity.Vol;
 import java.sql.Connection;
 import java.sql.Date;
@@ -47,15 +48,15 @@ public class ReservationService implements InterfaceService<Reservation> {
             ste.setInt(2, t.getVol().getId_v());
             ste.setInt(3, t.getCin());
             ste.setInt(4, t.getNum_phone());
-            ste.setString(5, "En attente");
-            ste.setInt(6,1);
+            ste.setString(5, "En attente");    // en attente par default avant paiement 
+            ste.setInt(6,1);                   //pour reserver condition_accepté(1)
             ste.setDate(7, Date.valueOf("2023-12-12"));
-            ste.setFloat(8,a);
+            ste.setFloat(8,a);                 // montant payé
             ste.executeUpdate();
             System.out.println("Reservation ajouté");
             
             // ajout carte fidelité ***************************************
-            int nb=this.findById(t.getUtilisateur().getId()).size();
+          /*  int nb=this.findById(t.getUtilisateur().getId()).size();
             if (nb>1)
             {
                 Carte_fidelite c=new Carte_fidelite(100,t.getUtilisateur().getId());
@@ -72,7 +73,7 @@ public class ReservationService implements InterfaceService<Reservation> {
             System.out.println(ex.getMessage());
         }
             
-            }
+            }*/
           //***************************************************************************************************** 
             } else System.out.println("Veuillez accepté les conditions !"); 
             
@@ -82,43 +83,26 @@ public class ReservationService implements InterfaceService<Reservation> {
         }
          
     }
-/*
-    @Override
-    public List<Reservation> getAll() {
-        List <Reservation> reservations=new ArrayList<>();
-        try {
-            String sql = "select * from reservation";
-            Statement ste = cnx.createStatement();
-            ResultSet s = ste.executeQuery(sql);
-            while (s.next()) {
-                UtilisateurService us=new UtilisateurService();
-                Utilisateur u=us.findById(s.getInt("id_c")).get(0);
-                VolService vs=new VolService();
-                Vol v=vs.findById(s.getInt("id_v")).get(0); 
-                Reservation r = new Reservation(s.getInt("id_r"),s.getInt("cin"),s.getInt("num_phone"),s.getInt("conditionA"),s.getString("etat"),s.getDate("date_res"),s.getFloat("prix"),v,u);
-                reservations.add(r);
 
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        return reservations; 
-    }*/
     @Override
     public List<Reservation> getAll() {
         List <Reservation> reservations=new ArrayList<>();
         try {
-            String sql = "select U.id,U.nom,U.prenom,U.email,V.*,R.cin,R.num_phone,R.etat,R.prix,R.date_res  from reservation R  inner join"
+            String sql = "select U.id,U.nom,U.prenom,U.email,V.*,R.id_r,R.cin,R.num_phone,R.etat,R.prix,R.date_res  from reservation R  inner join "
                     +"utilisateur U on R.id_c=U.id inner join vol V on R.id_v=V.id_v ";
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
-                UtilisateurService us=new UtilisateurService();
-                Utilisateur u=us.findById(s.getInt("id_c")).get(0);
-                VolService vs=new VolService();
-                Vol v=vs.findById(s.getInt("id_v")).get(0); 
-                Reservation r = new Reservation(s.getInt("id_r"),s.getInt("cin"),s.getInt("num_phone"),s.getInt("conditionA"),s.getString("etat"),s.getDate("date_res"),s.getFloat("prix"),v,u);
+                
+                Utilisateur u=new Utilisateur();
+                u.setId(s.getInt("id"));
+                u.setEmail(s.getString("email"));
+                u.setNom(s.getString("nom"));
+                u.setPrenom(s.getString("prenom")); 
+                VehiculeServices vs= new VehiculeServices();
+                Vehicule ve=vs.findById(s.getInt("id_mt")).get(0);
+                Vol v = new Vol(s.getInt("id_v"),s.getInt("nbr_place"),s.getString("destination"), s.getString("etat"),s.getFloat("prix"),s.getDate("date"),ve);
+                Reservation r = new Reservation(s.getInt("id_r"),s.getInt("cin"),s.getInt("num_phone"),s.getString("etat"),s.getDate("date_res"),s.getFloat("prix"),v,u);
                 reservations.add(r);
 
             }
@@ -158,7 +142,7 @@ public class ReservationService implements InterfaceService<Reservation> {
     public List<Reservation> findById(int id) {                             // id client  (pour client)
          List <Reservation> reservations=new ArrayList<>();
          try {
-            String sql = "select R.id_v,V.id_v,U.id,U.nom,U.prenom,U.email,V.date,V.destination,R.num_phone,R.etat,R.prix,R.date_res  from reservation R  inner join"
+            String sql = "select R.id_v,V.id_v,U.id,U.nom,U.prenom,U.email,V.date,V.destination,R.id_r,R.num_phone,R.etat,R.prix,R.date_res  from reservation R  inner join "
                     +"utilisateur U on R.id_c=U.id inner join vol V on R.id_v=V.id_v where id_c=?";
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1,id);

@@ -51,31 +51,33 @@ public class GestionVol {
              Utilisateur u1 = new Utilisateur("bm","zeineb","femme","zeinebbm@gmail.com","zz",Date.valueOf("2001-06-26") );
              Utilisateur u2 = new Utilisateur("mn","imen","femme","imenmn@gmail.com","ii",Date.valueOf("2002-06-26") );
              Utilisateur u4=new Utilisateur();
-        // ut.ajouter(u1);
+            // ut.ajouter(u1);
         // System.out.println(ut.getAll());
         
         
         //  ***********************************************    Vols & Reservation   ************************************************************** 
         VolService vs= new VolService();
-       /* Vol v1=new  Vol(1,"moon", "planifié", 200,Date.valueOf("2024-01-01") );
-        Vol v2=new  Vol(1,"moon", "planifié", 200,Date.valueOf("2024-06-11") );
-        Vol v3=new  Vol(5,2,"moon", "planifié", 300,Date.valueOf("2023-06-11") );*/
-        //vs.ajouter(v3);
-       // vs.supprimer(v3);
-        //System.out.println(vs.getAll());
-      // System.out.println(vs.findById(1));
-      //vs.modifier(v3);
-        System.out.println(vs.getAll()); 
-        Utilisateur u3 = new Utilisateur(1,"mn","imen","femme","imenmn@gmail.com","ii",Date.valueOf("2002-06-26") );
+        Vehicule p1 = new Vehicule(5,"24", (float) 14, 2,5,true);
+        Vol v1=new  Vol("mars","planifié",200,Date.valueOf("2024-12-12"),p1);
+        Vol v2=new  Vol(12,"mars","planifié",500,Date.valueOf("2024-10-12"),p1);
+        
+        //vs.ajouter(v1);
+        //vs.supprimer(v2);
+        //System.out.println(vs.trier());
+      // System.out.println(vs.findById(10));
+      // vs.modifier(v2);
+        //System.out.println(vs.getAll()); 
+        Utilisateur u3 = new Utilisateur(2,"mn","imen","femme","imenmn@gmail.com","ii",Date.valueOf("2002-06-26") );
         ReservationService rs=new ReservationService();
-       // Reservation r1=new Reservation(4,  143000000, 20000000,1, Date.valueOf("2023-12-12"),v3, u3 );
-       // rs.ajouter(r1);
-        // rs.modifier_etatR(r1,"Confirmé");
+        Reservation r1=new Reservation(14,  143000000, 20000000,1, Date.valueOf("2023-12-12"),v2, u3 );
+       
+      // rs.ajouter(r1);
+       // rs.modifier_etatR(r1,"Confirmé");
         // System.out.println(rs.getAll());
-        //System.out.println(rs.findById(2));
+        //System.out.println(rs.findById(1));
         
        
-        
+       /* 
        //***********************************   Reclamation & avis  *************************************************
        ReclamationService rs1 = new ReclamationService();
        AvisService as =new AvisService();
@@ -125,7 +127,7 @@ public class GestionVol {
         // ************************************    Vehicule & categorie vehicule  *********************************************************
          
         VehiculeServices vhs = new VehiculeServices();
-        Vehicule p1 = new Vehicule(5,"24", (float) 14, 2,5,true);
+        //Vehicule p1 = new Vehicule(5,"24", (float) 14, 2,5,true);
        //vhs.ajouter(p1);
        //vhs.supprimerVehicule(p1);
        //vhs.modifierVehiculeparNom("6", p1);
@@ -137,7 +139,7 @@ public class GestionVol {
        //cv.supprimerVehicule(c1);
         //cv.ajouter(c1);
        //System.out.println(cv.getAll());
-        
+        */
         
     }
     

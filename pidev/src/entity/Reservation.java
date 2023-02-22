@@ -100,6 +100,17 @@ public class Reservation {
         this.utilisateur = utilisateur;
     }
 
+    public Reservation(int id_r, int cin, int num_phone, String etat, Date date_res, float prix, Vol vol, Utilisateur utilisateur) {
+        this.id_r = id_r;
+        this.cin = cin;
+        this.num_phone = num_phone;
+        this.etat = etat;
+        this.date_res = date_res;
+        this.prix = prix;
+        this.vol = vol;
+        this.utilisateur = utilisateur;
+    }
+    
     
    
    
