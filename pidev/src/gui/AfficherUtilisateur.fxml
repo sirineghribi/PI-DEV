@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="globale" prefHeight="289.0" prefWidth="739.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AfficherUtilisateurController">
+   <children>
+      <ImageView fitWidth="783.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../esprit/images/fond.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="userTable" layoutX="101.0" layoutY="71.0" onMouseClicked="#displaySelected" prefHeight="240.0" prefWidth="579.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="50.0" text="ID" visible="false" />
+          <TableColumn fx:id="nomCol" prefWidth="75.0" text="NOM" />
+            <TableColumn fx:id="prenomCol" prefWidth="75.0" text="PRENOM" />
+            <TableColumn fx:id="dateCol" prefWidth="93.59991455078125" text="DATE NAISSANCE" />
+            <TableColumn fx:id="genreCol" prefWidth="73.60009765625" text="SEXE" />
+            <TableColumn fx:id="emailCol" prefWidth="159.99993896484375" text="EMAIL" />
+            <TableColumn fx:id="mdpCol" prefWidth="52.00006103515625" text="MDP" />
+            <TableColumn fx:id="RoleCol" minWidth="0.0" prefWidth="47.2000732421875" text="ROLE" />
+        </columns>
+      </TableView>
+      <Button fx:id="Modifier" layoutX="605.0" layoutY="338.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="26.0" prefWidth="74.0" text="Modifier" />
+      <Button fx:id="Supprimer" layoutX="101.0" layoutY="338.0" mnemonicParsing="false" onAction="#Supprimer" prefHeight="26.0" prefWidth="74.0" text="Supprimer" />
+      <TextField fx:id="idT" layoutX="633.0" layoutY="178.0" visible="false" />
+      <Button fx:id="Ajouter" layoutX="266.0" layoutY="338.0" mnemonicParsing="false" onAction="#Ajt" prefHeight="26.0" prefWidth="74.0" text="Ajouter" />
+      <Button fx:id="carte" layoutX="441.0" layoutY="338.0" mnemonicParsing="false" onAction="#carte" prefHeight="26.0" prefWidth="74.0" text="Carte" />
+   </children>
+</AnchorPane>

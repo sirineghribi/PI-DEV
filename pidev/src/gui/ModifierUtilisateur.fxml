@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" fx:id="glob" prefHeight="400.0" prefWidth="600.0" stylesheets="@/Styles/dahsboard.css"  xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.ModifierUtilisateurController">
+   <children>
+      <ImageView fitWidth="733.0" layoutX="-3.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../esprit/images/fond.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="45.0" layoutY="51.0" text="Nom:" textFill="#f2eeee" />
+      <Label layoutX="38.0" layoutY="168.0" text="Prenom:" textFill="#faf6f6" />
+      <Label layoutX="46.0" layoutY="262.0" text="Sexe:" textFill="#faf2f2" />
+      <Label layoutX="317.0" layoutY="51.0" text="Date Naissance:" textFill="#f7f4f4" />
+      <Label layoutX="343.0" layoutY="168.0" text="Email:" textFill="#f7f5f5" />
+      <Label layoutX="321.0" layoutY="265.0" text="Mot de passe " textFill="#fcf9f9" />
+      <TextField fx:id="nomLB" layoutX="100.0" layoutY="47.0" />
+      <TextField fx:id="prenomLB" layoutX="100.0" layoutY="164.0" />
+      <TextField fx:id="emailLB" layoutX="433.0" layoutY="164.0" />
+      <ComboBox fx:id="combLB" layoutX="99.0" layoutY="258.0" prefWidth="150.0" />
+      <DatePicker fx:id="dateLB" layoutX="438.0" layoutY="47.0" />
+      <TextField layoutX="408.0" layoutY="248.0" visible="false" />
+      <Button fx:id="Modifier" layoutX="499.0" layoutY="332.0" mnemonicParsing="false" onAction="#Modifier" prefHeight="26.0" prefWidth="84.0" text="Modifier" />
+      <PasswordField fx:id="mdpLB" layoutX="433.0" layoutY="261.0" />
+      <Button fx:id="Afficher" layoutX="99.0" layoutY="332.0" mnemonicParsing="false" onAction="#Afficher" prefHeight="26.0" prefWidth="90.0" text="Afficher" />
+   </children>
+</AnchorPane>
