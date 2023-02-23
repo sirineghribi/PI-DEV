@@ -76,14 +76,14 @@ public class Formation {
 
     @Override
     public String toString() {
-        return "Formation{" + "id_f=" + id_f + ", \nc=" + c + ", \ntype" + type + ", \nnbr_heure=" + nbr_heure + '}';
+        return "Formation{" + "id_f=" + id_f + ", \n c=" + c + ", \n type=" + type + ", \n nbr_heure=" + nbr_heure + '}';
     }
     public static typeformation stringToType(String s){
     
-    if (s==typeformation.gforceprep.toString())
+    if (s.equals(typeformation.gforceprep.toString()))
         return typeformation.gforceprep;
     else 
-    if (s==typeformation.muscleprep.toString())
+    if (s.equals(typeformation.muscleprep.toString()))
         return typeformation.muscleprep;
     else 
         return typeformation.skeletonprep;

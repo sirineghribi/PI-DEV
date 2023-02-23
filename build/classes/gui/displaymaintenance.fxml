@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DisplaymaintenanceController">
+   <children>
+      <ImageView fitHeight="540.0" fitWidth="969.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../esprit/images/fond.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tablemaint" layoutY="-1.0" prefHeight="431.0" prefWidth="960.0">
+        <columns>
+          <TableColumn fx:id="idv" prefWidth="75.0" text="ID vehicule" />
+          <TableColumn fx:id="statusmaint" prefWidth="75.0" text="statut" />
+            <TableColumn fx:id="timemaint" prefWidth="75.0" text="duree " />
+            <TableColumn fx:id="coutmaint" prefWidth="72.79998779296875" text="cout " />
+            <TableColumn fx:id="categoryveh" prefWidth="79.20001220703125" text="categorie " />
+        </columns>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Bloom />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.5803921818733215" green="0.30980393290519714" blue="0.6196078658103943" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </TableView>
+   </children>
+</AnchorPane>

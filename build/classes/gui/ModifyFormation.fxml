@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="345.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.ModifyFormationController">
+   <children>
+      <Label layoutX="34.0" layoutY="127.0" text="Date :" />
+      <Label layoutX="34.0" layoutY="172.0" text="Type preparation" />
+      <Label layoutX="34.0" layoutY="219.0" text="Nombre d'heure" />
+      <ComboBox fx:id="preptype" layoutX="185.0" layoutY="168.0" prefWidth="150.0" />
+      <TextField fx:id="nbrhours" layoutX="186.0" layoutY="215.0" />
+      <Button fx:id="modifyformation" layoutX="161.0" layoutY="286.0" mnemonicParsing="false" text="Modifier" />
+      <DatePicker fx:id="datepicker" layoutX="186.0" layoutY="123.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="50.0" layoutY="35.0" text="Modifier Formation" />
+   </children>
+</AnchorPane>

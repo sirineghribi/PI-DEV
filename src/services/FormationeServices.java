@@ -7,6 +7,7 @@ package services;
 
 import entity.Formation;
 import entity.Utilisateur;
+import entity.typeformation;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,9 +57,9 @@ public class FormationeServices implements InterfaceService<Formation> {
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
+                typeformation t= Formation.stringToType(s.getString("formation.type"));
                 Utilisateur u=new Utilisateur(s.getInt("utilisateur.id"), s.getString("utilisateur.nom"),s.getString("utilisateur.prenom") ,s.getString("utilisateur.genre") , s.getString("utilisateur.email"), s.getString("utilisateur.mdp"), s.getDate("utilisateur.date_n"));
-                Formation f = new Formation(s.getInt("formation.id_f"),u,Formation.stringToType(s.getString("formation.type")), s.getDate("formation.date"),s.getInt("formation.nbr_heure")); 
-                //int id_f, int id_c, String type, Date date, int nbr_heure)
+                Formation f = new Formation(s.getInt("formation.id_f"),u,t, s.getDate("formation.date"),s.getInt("formation.nbr_heure")); 
                 Formations.add(f);
 
             }

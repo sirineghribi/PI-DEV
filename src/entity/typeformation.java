@@ -10,5 +10,10 @@ package entity;
  * @author abder
  */
 public enum typeformation {
-    skeletonprep,muscleprep,gforceprep
+    muscleprep,skeletonprep,gforceprep;
+    
 }
+
+
+
+

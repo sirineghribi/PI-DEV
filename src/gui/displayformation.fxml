@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.DisplayformationController">
+   <children>
+      <ImageView fitHeight="546.0" fitWidth="964.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../esprit/images/fond.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tabelformation" prefHeight="412.0" prefWidth="963.0">
+        <columns>
+          <TableColumn fx:id="IDDIS" prefWidth="75.0" text="ID" />
+          <TableColumn fx:id="typedis" prefWidth="120.79998779296875" text="type formation" />
+            <TableColumn fx:id="datedis" prefWidth="62.4000244140625" text="Date" />
+            <TableColumn fx:id="hoursdis" prefWidth="109.5999755859375" text="nombre d'heure" />
+            <TableColumn fx:id="nomdis" prefWidth="109.5999755859375" text="Nom" />
+            <TableColumn fx:id="prenomdis" prefWidth="109.5999755859375" text="Prenom" />
+            <TableColumn fx:id="maildis" prefWidth="109.5999755859375" text="E-mail" />
+        </columns>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Bloom />
+               </bumpInput>
+               <light>
+                  <Light.Distant>
+                     <color>
+                        <Color red="0.5803921818733215" green="0.30980393290519714" blue="0.6196078658103943" />
+                     </color>
+                  </Light.Distant>
+               </light>
+            </Lighting>
+         </effect>
+      </TableView>
+      <ButtonBar layoutX="220.0" layoutY="336.0" prefHeight="40.0" prefWidth="71.0" />
+      <Button fx:id="supprimerdis" layoutX="542.0" layoutY="459.0" mnemonicParsing="false" text="supprimer" />
+    <Button fx:id="modifierdis" layoutX="341.0" layoutY="459.0" mnemonicParsing="false" text="modifier" />
+   </children>
+</AnchorPane>

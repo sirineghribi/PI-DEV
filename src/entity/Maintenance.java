@@ -32,6 +32,12 @@ public class Maintenance  implements Comparable<Maintenance>{
         this.cout = cout;
     }
 
+    
+    
+      public Vehicule getVehicule () {
+        return id_v;
+    }
+    
     public Vehicule getId_v() {
         return id_v;
     }
