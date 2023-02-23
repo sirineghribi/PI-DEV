@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/entity/Maintenance.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/entity/TypeCat.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/gui/afficher_vh.fxml</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/services/MaintenanceServices.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/gui/AjoutVehicule.fxml</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/gui/AjoutCategorie.fxml</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/gui/AjoutCategorieController.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/gui/AfficherCat.fxml</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/tests/Pidev3a27.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/gui/AfficherCatController.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/entity/CategorieVehicule.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/tests/NewFXMain.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/services/CategorieVehiculeServices.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/gui/AjoutVehiculeController.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/entity/Vehicule.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/services/InterfaceService.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/services/VehiculeServices.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/pidev3a27/src/tn/esprit/gui/Afficher_vhController.java</file>
+        </group>
+    </open-files>
+</project-private>

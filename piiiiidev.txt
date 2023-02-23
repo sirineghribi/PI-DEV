@@ -1,0 +1,23 @@
+  // TODO code application logic here
+            Connection cnx;
+            String url ="jdbc:mysql://localhost:3306/pidev";
+            String user="root";
+            String pwd="";
+          try {  
+            cnx = DriverManager.getConnection(url, user, pwd);
+            String sql="insert into personne(nom,prenom,age)"
+                    + "values"
+                    +"('mezri',aziz',22)";
+            Statement ste = cnx.createStatement();
+            ste.executeUpdate(sql);             // pour modifier dans la base on utilise update
+                                                // pour afficher des donner de la base on utilise execute.query
+            System.out.println("cnx etablie");
+        } catch (SQLException ex) {
+              System.out.println(ex.getMessage());
+        }
+       
+    }
+    
+    // TRI ET RECHERCHE AVEC STREAM // 
+    
+}
