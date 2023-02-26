@@ -22,7 +22,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
- import javafx.scene.Parent;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -69,159 +69,171 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
     private Button update_type;
     @FXML
     private Button delete_type;
+    @FXML
+    private Button stat_bt;
 
     /**
      * initialises the controller class.
+     *
      * @param url
      * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         list();
-    }   
-    @FXML
-    public void load_update()
-    {
-        Type_abonnement ta =  list_type.getSelectionModel().selectedItemProperty().get();
-        if(ta!=null)
-        {
-         try
-        {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Update_Type_Abonnement.fxml"));
-            Parent root =loader.load();
-            Update_Type_AbonnementController ac =loader.getController();
-            ac.SetType_Abonnement(ta);
-            Nom_type.getScene().setRoot(root);
-            Scene scene = new Scene(root);
-            Stage SecondaryStage=new Stage();
-            SecondaryStage.setX(0);
-            SecondaryStage.setY(0);
-            SecondaryStage.setTitle("update_Type_Abonnement!");
-            SecondaryStage.setScene(scene);
-            SecondaryStage.show();
-        }
-        catch(Exception ex)
-        {
-            System.out.println("err:"+ex);  
-        }
-        }
-        else 
-          alert("failed to update type_abonnement","please select a type");
+        list();
     }
-    public void list()
-    {
-        ObservableList<Type_abonnement> liste=FXCollections.observableArrayList(new Type_abonnementService().getAll());
+
+    @FXML
+    public void load_update() {
+        Type_abonnement ta = list_type.getSelectionModel().selectedItemProperty().get();
+        if (ta != null) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Update_Type_Abonnement.fxml"));
+                Parent root = loader.load();
+                Update_Type_AbonnementController ac = loader.getController();
+                ac.SetType_Abonnement(ta);
+                Stage s = (Stage) (Nom_type.getScene().getWindow());
+                s.close();
+                Scene scene = new Scene(root, 200, 300);
+                Stage SecondaryStage = new Stage();
+                SecondaryStage.setX(0);
+                SecondaryStage.setY(0);
+                SecondaryStage.setTitle("update_Type_Abonnement!");
+                SecondaryStage.setScene(scene);
+                SecondaryStage.show();
+            } catch (Exception ex) {
+                System.out.println("err:" + ex);
+            }
+        } else {
+            alert("failed to update type_abonnement", "please select a type");
+        }
+    }
+
+    public void list() {
+        ObservableList<Type_abonnement> liste = FXCollections.observableArrayList(new Type_abonnementService().getAll());
         list_type.setItems(liste);
         nom_col.setCellValueFactory(cell -> {
-            StringProperty s=new SimpleStringProperty();
+            StringProperty s = new SimpleStringProperty();
             s.set(cell.getValue().getNom());
             return s;
         });
-        desc_col.setCellValueFactory(cell -> 
-        {
-            StringProperty s=new SimpleStringProperty();
+        desc_col.setCellValueFactory(cell
+                -> {
+            StringProperty s = new SimpleStringProperty();
             s.set(cell.getValue().getDescription());
             return s;
         });
-        prix_col.setCellValueFactory(cell -> 
-        {
-            FloatProperty s=new SimpleFloatProperty();
+        prix_col.setCellValueFactory(cell
+                -> {
+            FloatProperty s = new SimpleFloatProperty();
             s.set(cell.getValue().getPrix());
             return s.asObject();
         });
-        offre_col.setCellValueFactory(cell -> 
-        {
-            StringProperty s=new SimpleStringProperty();
-            s.set(cell.getValue().getOffre()*100+"%");
+        offre_col.setCellValueFactory(cell
+                -> {
+            StringProperty s = new SimpleStringProperty();
+            s.set(cell.getValue().getOffre() * 100 + "%");
             return s;
-        }); 
-        periode_col.setCellValueFactory(cell -> 
-        {
-            StringProperty s=new SimpleStringProperty();
-            float periode=cell.getValue().getPeriode();
-            int y=(int) (periode/365);
-            int m=(int) ((periode%365)/30);
-            int d=(int) ((periode%365)%30);
-            s.set(y+" years,"+m+" months and "+d+" days");        
+        });
+        periode_col.setCellValueFactory(cell
+                -> {
+            StringProperty s = new SimpleStringProperty();
+            float periode = cell.getValue().getPeriode();
+            int y = (int) (periode / 365);
+            int m = (int) ((periode % 365) / 30);
+            int d = (int) ((periode % 365) % 30);
+            s.set(y + " years," + m + " months and " + d + " days");
             return s;
         });
     }
-    
-    public void clear_TextField()
-    {
+
+    public void clear_TextField() {
         Nom_type.clear();
         Desc_type.clear();
         Prix_type.clear();
         Offre_type.clear();
         Periode_type.clear();
     }
-     
-    private void alert(String a,String b)
-    {
+
+    private void alert(String a, String b) {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle(a);
         alert.setHeaderText(null);
         alert.setContentText(b);
         alert.show();
     }
-    private void info(String a,String b)
-    {
+
+    private void info(String a, String b) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(a);
         alert.setHeaderText(null);
         alert.setContentText(b);
         alert.show();
     }
-    private boolean test()
-    {
-        try
-        {
-            float prix=Float.valueOf((Prix_type.getText()));
-            float offre=Float.valueOf((Offre_type.getText()));
-            float periode=Float.valueOf((Periode_type.getText())); 
-            return (periode>0)&&(prix>0)&&(offre>0)&&(offre<100);
-        }
-        catch(Exception ex)
-        {
-           return false;         
+
+    private boolean test() {
+        try {
+            float prix = Float.valueOf((Prix_type.getText()));
+            float offre = Float.valueOf((Offre_type.getText()));
+            float periode = Float.valueOf((Periode_type.getText()));
+            return (periode > 0) && (prix > 0) && (offre > 0) && (offre < 100);
+        } catch (Exception ex) {
+            return false;
         }
     }
+
     @FXML
-    private void add(ActionEvent event) 
-    {
-        if(test())
-        {
-        String nom=Nom_type.getText();
-        String desc=Desc_type.getText();
-        float prix=Float.valueOf((Prix_type.getText()));
-        float offre=Float.valueOf((Offre_type.getText()))/100;
-        float periode=Float.valueOf((Periode_type.getText()));
-        Type_abonnement ta=new Type_abonnement(nom, desc, periode, offre, prix);
-        new Type_abonnementService().ajouter(ta);
-        info("type d'abonnement ajouteé","check the list for any modifications");
-        clear_TextField();
-        list();
-        }
-        else 
-        {
-            alert("Failed to add type_abonnement","Check your inputs");
+    private void add(ActionEvent event) {
+        if (test()) {
+            String nom = Nom_type.getText();
+            String desc = Desc_type.getText();
+            float prix = Float.valueOf((Prix_type.getText()));
+            float offre = Float.valueOf((Offre_type.getText())) / 100;
+            float periode = Float.valueOf((Periode_type.getText()));
+            Type_abonnement ta = new Type_abonnement(nom, desc, periode, offre, prix);
+            new Type_abonnementService().ajouter(ta);
+            info("type d'abonnement ajouteé", "check the list for any modifications");
+            clear_TextField();
+            list();
+        } else {
+            alert("Failed to add type_abonnement", "Check your inputs");
         }
     }
 
     @FXML
     private void delete_type(ActionEvent event) {
-      Type_abonnement ta =  list_type.getSelectionModel().selectedItemProperty().get();
-      if((ta!=null)&&(new AbonnementService().select_byType(new Abonnement(Date.valueOf(LocalDate.MAX), ta, new Utilisateur()))).isEmpty())
-      {
-        new Type_abonnementService().supprimer(ta);
-        list();
-      }
-      else if(ta==null)
-          alert("failed to delete type_abonnement","pelese select a type");
-      else 
-          alert("failed to delete type_abonnement","this type cant be deleted");
-          
+        Type_abonnement ta = list_type.getSelectionModel().selectedItemProperty().get();
+        if ((ta != null) && (new AbonnementService().select_byType(new Abonnement(Date.valueOf(LocalDate.MAX), ta, new Utilisateur()))).isEmpty()) {
+            new Type_abonnementService().supprimer(ta);
+            list();
+        } else if (ta == null) {
+            alert("failed to delete type_abonnement", "pelese select a type");
+        } else {
+            alert("failed to delete type_abonnement", "this type cant be deleted");
+        }
+
     }
+
     /*LocalDate date = LocalDate.parse((User.getDate_n().toString()));
    dateLB.setValue(date);*/
+    @FXML
+    private void statistic(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Statistic_abonnement.fxml"));
+            Parent root = loader.load();
+            Statistic_abonnementController ac = loader.getController();
+            ac.chart();
+            Stage s = (Stage) (Nom_type.getScene().getWindow());
+            s.close();
+            Scene scene = new Scene(root, 740, 410);
+            Stage SecondaryStage = new Stage();
+            SecondaryStage.setX(0);
+            SecondaryStage.setY(0);
+            SecondaryStage.setTitle("Statistic_Abonnement!");
+            SecondaryStage.setScene(scene);
+            SecondaryStage.show();
+        } catch (Exception ex) {
+            System.out.println("err:" + ex);
+        }
+    }
 }

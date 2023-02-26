@@ -15,3 +15,19 @@
 .label{
     -fx-text-fill:white;
 }
+
+.Grid{
+    -fx-border-color:white;
+}
+
+.chart-legend{
+    -fx-background-color: blueviolet;
+}
+.chart-pie-label
+{
+    -fx-fill:white;
+}
+
+.chart-pie-label:hover{
+    -fx-fill:blueviolet;
+}

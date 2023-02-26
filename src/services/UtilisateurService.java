@@ -38,37 +38,22 @@ public class UtilisateurService implements InterfaceService<Utilisateur>{
             ste.setString(1, t.getNom());
             ste.setString(2, t.getPrenom());
             ste.setDate(3, t.getDate_n());
-            ste.setString(4, t.getGenre());
+            ste.setString(4, t.getGenre().toString());
             ste.setString(5, t.getEmail());
             ste.setString(6, t.getMdp());
-            ste.setString(7, "A");
+            ste.setString(7, t.getType().toString());
             ste.executeUpdate();
-            System.out.println(" admin added successfully!");
+            System.out.println(" user added successfully!");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
     }
     
     
-     public void ajouter_c(Utilisateur t) {
+    
        
-         try {
-            String sql = "insert into utilisateur(nom,prenom,date_n,genre,email,mdp,type)"
-                    + "values (?,?,?,?,?,?,?)";
-            PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setString(1, t.getNom());
-            ste.setString(2, t.getPrenom());
-            ste.setDate(3, t.getDate_n());
-            ste.setString(4, t.getGenre());
-            ste.setString(5, t.getEmail());
-            ste.setString(6, t.getMdp());
-            ste.setString(7, "C");
-            ste.executeUpdate();
-            System.out.println(" client added successfully!");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
+    
+     
 
     @Override
     public List<Utilisateur> getAll() {
@@ -77,10 +62,11 @@ public class UtilisateurService implements InterfaceService<Utilisateur>{
             String sql = "select * from utilisateur";
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
+            
             while (s.next()) {
-
+               
                 Utilisateur u = new Utilisateur(s.getInt("id"), s.getString("nom"), s.getString("prenom"),
-                        s.getString("genre"),s.getString("email"),s.getString("mdp"),s.getString("type"),s.getDate("date_n"));
+                        Utilisateur.stringTogenre(s.getString("genre")),s.getString("email"),s.getString("mdp"),Utilisateur.stringTorole(s.getString("type")),s.getDate("date_n"));
                 utilisateur.add(u);
                
               
@@ -114,7 +100,7 @@ public class UtilisateurService implements InterfaceService<Utilisateur>{
              ste.setString(1, t.getNom());
              ste.setString(2, t.getPrenom());
              ste.setDate(3, t.getDate_n());
-             ste.setString(4, t.getGenre());
+             ste.setString(4, t.getGenre().toString());
              ste.setString(5, t.getEmail());
              ste.setString(6, t.getMdp());
               ste.setInt(7, t.getId());
@@ -144,9 +130,9 @@ public class UtilisateurService implements InterfaceService<Utilisateur>{
                  
             ResultSet s = ste.executeQuery();
             while (s.next()) {
-
+               
                 Utilisateur u = new Utilisateur(s.getInt("id"), s.getString("nom"), s.getString("prenom"),
-                        s.getString("genre"),s.getString("email"),s.getString("mdp"),s.getString("type"),s.getDate("date_n"));
+                         Utilisateur.stringTogenre(s.getString("genre")),s.getString("email"),s.getString("mdp"),Utilisateur.stringTorole(s.getString("type")),s.getDate("date_n"));
                 utilisateur.add(u);
                
               
@@ -172,9 +158,9 @@ public class UtilisateurService implements InterfaceService<Utilisateur>{
                  
             ResultSet s = ste.executeQuery();
             while (s.next()) {
-
+               
                 Utilisateur u = new Utilisateur(s.getInt("id"), s.getString("nom"), s.getString("prenom"),
-                        s.getString("genre"),s.getString("email"),s.getString("mdp"),s.getString("type"),s.getDate("date_n"));
+                        Utilisateur.stringTogenre(s.getString("genre")),s.getString("email"),s.getString("mdp"),Utilisateur.stringTorole(s.getString("type")),s.getDate("date_n"));
                 utilisateur.add(u);
                
               

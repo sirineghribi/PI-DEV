@@ -50,7 +50,7 @@ public class Update_Type_AbonnementController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        System.out.println("init");
     }   
       private boolean test()
     {
@@ -68,6 +68,7 @@ public class Update_Type_AbonnementController implements Initializable {
     }
     public void SetType_Abonnement(Type_abonnement t)
     {
+        System.out.println("hi");
         nom_type.setText(t.getNom());
         desc_type.setText(t.getDescription());
         prix_type.setText(""+t.getPrix());
@@ -121,8 +122,9 @@ public class Update_Type_AbonnementController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Add_Type_Abonnement_FXML.fxml"));
             Parent root =loader.load();
             Add_Type_Abonnement_FXMLController ac =loader.getController();
-            nom_type.getScene().setRoot(root);
-            Scene scene = new Scene(root);
+            Stage s=(Stage)(desc_type.getScene().getWindow());
+            s.close();
+            Scene scene = new Scene(root,750,450);
             Stage SecondaryStage=new Stage();
             /*SecondaryStage.setX(0);
             SecondaryStage.setY(0);*/

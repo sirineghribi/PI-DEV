@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -12,20 +13,20 @@
 
 <AnchorPane id="AnchorPane" prefHeight="591.0" prefWidth="964.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Front_AbonnementController">
    <children>
-      <ImageView fitHeight="642.0" fitWidth="1150.0" layoutX="-1.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="679.0" fitWidth="1141.0" layoutX="-1.0" layoutY="-14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../esprit/images/fond.png" />
          </image>
       </ImageView>
-      <Label layoutX="23.0" layoutY="22.0" text="Abonnement actuel:" />
+      <Label layoutX="16.0" layoutY="22.0" text="Abonnement actuel:" />
       <Label fx:id="l1" layoutX="16.0" layoutY="58.0" text="Nom:" />
       <Label fx:id="l2" layoutX="16.0" layoutY="97.0" text="Date d'achat:" />
       <Label fx:id="l3" layoutX="14.0" layoutY="135.0" text="Date d'expiration:" />
       <Label fx:id="l0" layoutX="148.0" layoutY="22.0" text="Aucun Abonnement actuel" />
-      <TextField fx:id="nom_type" disable="true" editable="false" layoutX="114.0" layoutY="54.0" prefHeight="25.0" prefWidth="174.0" />
-      <DatePicker fx:id="date_achat" disable="true" editable="false" layoutX="114.0" layoutY="93.0" />
-      <DatePicker fx:id="date_expiration" disable="true" editable="false" layoutX="114.0" layoutY="131.0" />
-      <GridPane fx:id="grid" gridLinesVisible="true" layoutX="11.0" layoutY="219.0" prefHeight="358.0" prefWidth="943.0">
+      <TextField fx:id="nom_type" disable="true" editable="false" layoutX="132.0" layoutY="54.0" prefHeight="25.0" prefWidth="174.0" />
+      <DatePicker fx:id="date_achat" disable="true" editable="false" layoutX="132.0" layoutY="93.0" />
+      <DatePicker fx:id="date_expiration" disable="true" editable="false" layoutX="132.0" layoutY="131.0" />
+      <GridPane id="Grid_ab" fx:id="grid" alignment="TOP_CENTER" gridLinesVisible="true" layoutX="16.0" layoutY="246.0" prefHeight="358.0" prefWidth="943.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="10.0" />
@@ -34,8 +35,12 @@
           <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <Label layoutX="17.0" layoutY="189.0" text="Les types d'Abonnement:" />
+      <Label layoutX="19.0" layoutY="218.0" text="Les types d'Abonnement:" />
+      <Button fx:id="annulerBT" layoutX="132.0" layoutY="18.0" mnemonicParsing="false" onAction="#delete_abonnement" prefHeight="25.0" prefWidth="174.0" text="annuler abonnement" />
    </children>
 </AnchorPane>

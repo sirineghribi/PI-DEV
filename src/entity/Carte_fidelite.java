@@ -10,26 +10,43 @@ package entity;
  * @author Zeineb Ben Mami
  */
 public class Carte_fidelite {
-    private int numero,nbr_point,id_u;
+
+    private int numero, nbr_point;
+
+    private Utilisateur utilisateur;
+
+    public Carte_fidelite(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public Carte_fidelite(int numero) {
+        this.numero = numero;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
 
     public Carte_fidelite() {
     }
 
-    public Carte_fidelite(int numero, int nbr_point, int id_u) {
+    public Carte_fidelite(int numero, int nbr_point, Utilisateur utilisateur) {
         this.numero = numero;
         this.nbr_point = nbr_point;
-        this.id_u = id_u;
-    }
-    
-    
-     public Carte_fidelite( int nbr_point, int id_u) {
-     
-        this.nbr_point = nbr_point;
-        this.id_u = id_u;
+        this.utilisateur = utilisateur;
+
     }
 
-    
-    
+    public Carte_fidelite(int nbr_point, Utilisateur utilisateur) {
+
+        this.nbr_point = nbr_point;
+        this.utilisateur = utilisateur;
+    }
+
     public int getNumero() {
         return numero;
     }
@@ -44,14 +61,6 @@ public class Carte_fidelite {
 
     public void setNbr_point(int nbr_point) {
         this.nbr_point = nbr_point;
-    }
-
-    public int getId_u() {
-        return id_u;
-    }
-
-    public void setId_u(int id_u) {
-        this.id_u = id_u;
     }
 
     @Override
@@ -78,7 +87,7 @@ public class Carte_fidelite {
         if (this.nbr_point != other.nbr_point) {
             return false;
         }
-        if (this.id_u != other.id_u) {
+        if (this.utilisateur != other.utilisateur) {
             return false;
         }
         return true;
@@ -86,9 +95,7 @@ public class Carte_fidelite {
 
     @Override
     public String toString() {
-        return "Carte_fidelite{" + "numero=" + numero + ", nbr_point=" + nbr_point + ", id_u=" + id_u + '}';
+        return "Carte_fidelite{" + "numero=" + numero + ", nbr_point=" + nbr_point + ", utilisateur=" + utilisateur + '}';
     }
-    
-    
-    
+
 }

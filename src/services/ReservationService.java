@@ -59,14 +59,14 @@ public class ReservationService implements InterfaceService<Reservation> {
             int nb=this.findById(t.getUtilisateur().getId()).size();
             if (nb>1)
             {
-                Carte_fidelite c=new Carte_fidelite(100,t.getUtilisateur().getId());
+                Carte_fidelite c=new Carte_fidelite(100,t.getUtilisateur());
                 try {
             
             String sql1 = "insert into carte_fidelite(nbr_point,id_u)"
                     + "values (?,?)";
             PreparedStatement ste1 = cnx.prepareStatement(sql1);
             ste1.setInt(1, c.getNbr_point());
-            ste1.setInt(2, c.getId_u());
+            ste1.setInt(2, c.getUtilisateur().getId());
             ste1.executeUpdate();
             System.out.println(" card added successfully!");
         } catch (SQLException ex) {

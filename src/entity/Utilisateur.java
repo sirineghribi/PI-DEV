@@ -7,20 +7,26 @@ package entity;
 
 import java.sql.Date;
 import java.util.Objects;
+import javafx.scene.control.TableColumn;
 
 /**
  *
  * @author Zeineb Ben Mami
  */
-public class Utilisateur  {
-    private int id;
-    private String nom,prenom,genre,email,mdp,type;
-    private Date date_n;
 
+
+   public class Utilisateur  {
+    private int id;
+    private String nom,prenom,email,mdp;
+    private Date date_n;
+   
+    Roles type;
+    Genre genre;
+    private String gendre;
     public Utilisateur() {
     }
 
-    public Utilisateur(int id, String nom, String prenom, String genre, String email, String mdp, String type, Date date_n) {
+    public Utilisateur(int id, String nom, String prenom, Genre genre, String email, String mdp, Roles type, Date date_n) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -31,17 +37,17 @@ public class Utilisateur  {
         this.date_n = date_n;
     }
 
-    public Utilisateur(String nom, String prenom, String genre, String email, String mdp, Date date_n) {
+    public Utilisateur(String nom, String prenom, Genre genre, String email, String mdp, Date date_n) {
         this.nom = nom;
         this.prenom = prenom;
         this.genre = genre;
         this.email = email;
         this.mdp = mdp;
-      
+             
         this.date_n = date_n;
     }
     
-     public Utilisateur(int id, String nom, String prenom, String genre, String email, String mdp, Date date_n) {
+     public Utilisateur(int id, String nom, String prenom, Genre genre, String email, String mdp, Date date_n) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
@@ -51,6 +57,49 @@ public class Utilisateur  {
       
         this.date_n = date_n;
     }
+
+    public Utilisateur(int id, String nom, String prenom) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+    public Utilisateur(String nom, String prenom, Genre genre, String email, String mdp, Date date_n, Roles type) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.genre = genre;
+        this.email = email;
+        this.mdp = mdp;
+        this.date_n = date_n;
+        this.type = type;
+    }
+
+    public Utilisateur(TableColumn<Utilisateur, String> idCol, TableColumn<Utilisateur, String> nomCol, TableColumn<Utilisateur, String> prenomCol, TableColumn<Utilisateur, String> genreCol, TableColumn<Utilisateur, String> emailCol, TableColumn<Utilisateur, String> mdpCol, TableColumn<Utilisateur, String> RoleCol, TableColumn<Utilisateur, String> dateCol) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.genre = genre;
+        this.email = email;
+        this.mdp = mdp;
+        this.type = type;
+        this.date_n = date_n;
+    }
+
+    public Utilisateur(int id) {
+        this.id=id;
+    }
+
+  
+
+    
+
+   
+
+   
+
+    
+     
+     
 
     public int getId() {
         return id;
@@ -76,11 +125,11 @@ public class Utilisateur  {
         this.prenom = prenom;
     }
 
-    public String getGenre() {
+    public Genre getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(Genre genre) {
         this.genre = genre;
     }
 
@@ -100,11 +149,11 @@ public class Utilisateur  {
         this.mdp = mdp;
     }
 
-    public String getType() {
+    public Roles getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Roles type) {
         this.type = type;
     }
 
@@ -167,6 +216,18 @@ public class Utilisateur  {
     }
     
     
+    public static Roles stringTorole (String s){
+        Roles type=Roles.A;
+               if(s == null ? Roles.C.toString() == null : s.equals(Roles.C.toString()))
+                   type=Roles.C;
+               return type;
+    }
     
+    public static Genre stringTogenre (String s){
+        Genre genre =Genre.homme;
+               if(s == null ? Genre.femme.toString() == null : s.equals(Genre.femme.toString()))
+                   genre = Genre.femme;
+               return genre;
+    }
     
 }

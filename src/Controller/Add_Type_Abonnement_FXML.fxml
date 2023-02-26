@@ -32,5 +32,6 @@
       </TableView>
       <Button fx:id="update_type" layoutX="228.0" layoutY="278.0" mnemonicParsing="false" onAction="#load_update" text="update" />
       <Button fx:id="delete_type" layoutX="309.0" layoutY="278.0" mnemonicParsing="false" onAction="#delete_type" text="delete" />
+      <Button fx:id="stat_bt" layoutX="384.0" layoutY="278.0" mnemonicParsing="false" onAction="#statistic" text="statistic" />
    </children>
 </AnchorPane>
