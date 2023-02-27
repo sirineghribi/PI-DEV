@@ -6,9 +6,13 @@
 package Controller;
 
 import entity.Abonnement;
+import entity.Type_abonnement;
+import entity.Utilisateur;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +41,7 @@ import javafx.scene.transform.Scale;
 import javafx.stage.Stage;
 import javax.imageio.ImageIO;
 import services.AbonnementService;
+import services.Type_abonnementService;
 
 /**
  * FXML Controller class
@@ -76,14 +81,17 @@ public class Statistic_abonnementController implements Initializable {
 
     public void chart() {
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
-        new AbonnementService().getAll().forEach((Abonnement a) -> {
+        new Type_abonnementService().getAll().stream().forEach((ta)->
+        {
+            Abonnement a=new Abonnement(Date.valueOf(LocalDate.now()), ta, new Utilisateur());
             int per = new AbonnementService().select_byType(a).size() * 100 / new AbonnementService().getAll().size();
-            String cat = a.getType().getNom() + ":" + per + "%";
+            String cat = ta.getNom() + ":" + per + "%";
             float val = new AbonnementService().select_byType(a).size();
-            pieChartData.add(new PieChart.Data(cat, val));
+            if(val>0)
+                pieChartData.add(new PieChart.Data(cat, val));
         });
         pie_abonnement.setData(pieChartData);
-        pie_abonnement.setLabelLineLength(-60);
+        pie_abonnement.setLabelLineLength(10);
     }
 
     @FXML
@@ -112,15 +120,17 @@ public class Statistic_abonnementController implements Initializable {
         if (job != null) {
             double x = 1.15;
             double y = 1.45;
+            export_bt.setVisible(false);
+            back_bt.setVisible(false);
             Parent node = export_bt.getScene().getRoot();
             node.getTransforms().add(new Scale(x, y));
-            Printer p = job.getPrinter();
-            PageLayout pl = p.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.EQUAL);
-            job.setPrinter(p);
+            PageLayout pl = job.getPrinter().createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.EQUAL);
             job.showPrintDialog((Stage) (export_bt.getScene().getWindow()));
             job.printPage(pl, node);
             job.endJob();
-            node.getTransforms().add(new Scale((1/x),(1/y)));
+            export_bt.setVisible(true);
+            back_bt.setVisible(true);
+            node.getTransforms().add(new Scale((1 / x), (1 / y)));
             chart();
         }
 

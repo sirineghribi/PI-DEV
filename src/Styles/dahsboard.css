@@ -31,3 +31,39 @@
 .chart-pie-label:hover{
     -fx-fill:blueviolet;
 }
+
+.data0.chart-pie
+{
+    -fx-pie-color:#452c63;
+    -fx-border-color:transparent;
+}
+
+.data1.chart-pie
+{
+    -fx-pie-color:#EE82EE;
+    -fx-border-color:transparent;
+}
+
+.data2.chart-pie
+{
+    -fx-pie-color:#D8BFD8;
+    -fx-border-color:transparent;
+}
+
+.data3.chart-pie
+{
+    -fx-pie-color:#800080;
+    -fx-border-color:transparent;
+}
+
+.data4.chart-pie
+{
+    -fx-pie-color:#662d91;
+    -fx-border-color:transparent;
+}
+
+.data5.chart-pie
+{
+    -fx-pie-color:#E6E6FA;
+    -fx-border-color:transparent;
+}

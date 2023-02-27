@@ -8,10 +8,17 @@ package Controller;
 import entity.Abonnement;
 import entity.Type_abonnement;
 import entity.Utilisateur;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -30,6 +37,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.AbonnementService;
 import services.Type_abonnementService;
@@ -71,6 +79,8 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
     private Button delete_type;
     @FXML
     private Button stat_bt;
+    @FXML
+    private Button export_bt;
 
     /**
      * initialises the controller class.
@@ -234,6 +244,36 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
             SecondaryStage.show();
         } catch (Exception ex) {
             System.out.println("err:" + ex);
+        }
+    }
+
+    @FXML
+    private void export(ActionEvent event) {
+        try {
+            FileChooser fc = new FileChooser();
+            fc.setTitle("types d'abonnements");
+            fc.setInitialFileName("type abonnements.csv.");
+            String s = fc.showSaveDialog(list_type.getScene().getWindow()).toString();
+            if (s != null) {
+                File file = new File(s);
+                Writer w = new BufferedWriter(new FileWriter(file));
+                w.write("Nom,Prix,Offre,Periode,nbr_d'abonnement,pourcentage");
+                list_type.getItems().stream().forEach((ta) -> {
+
+                    try {
+                        float max = new AbonnementService().getAll().size();
+                        float nbr = new AbonnementService().select_byType(new Abonnement(Date.valueOf(LocalDate.now()), ta, new Utilisateur())).size();
+                        float per = (nbr * 100) / max;
+                        w.write("\n" + ta.getNom() + "," + ta.getPrix() + "," + ta.getOffre()*100 + "%," + ta.getPeriode() + "," + nbr + "," + per + "%");
+                    } catch (IOException ex) {
+                        System.out.println("err:" + ex.getMessage());
+                    }
+                });
+                w.flush();
+                w.close();
+            }
+        } catch (IOException ex) {
+            System.out.println("err:" + ex.getMessage());
         }
     }
 }
