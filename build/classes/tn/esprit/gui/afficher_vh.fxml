@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="gb" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.gui.Afficher_vhController">
+   <children>
+      <ImageView fitHeight="391.0" fitWidth="600.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../esprit/images/fond.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="375.0" layoutY="270.0" mnemonicParsing="false" onAction="#modifierVehicule" text="Modifier" />
+      <Button layoutX="138.0" layoutY="270.0" mnemonicParsing="false" onAction="#supprimerVehicule" text="Supprimer" />
+      <TableView fx:id="tab" layoutX="18.0" layoutY="24.0" prefHeight="216.0" prefWidth="560.0">
+        <columns>
+          <TableColumn fx:id="id_vehicule" prefWidth="75.0" text="id_vehicule" />
+          <TableColumn fx:id="nom_vh" prefWidth="75.0" text="nom_vh" />
+            <TableColumn fx:id="cat_vehicule" prefWidth="75.0" text="cat_vehicule" />
+            <TableColumn fx:id="poid_sup" prefWidth="75.0" text="poid_sup" />
+            <TableColumn fx:id="vitesse" prefWidth="75.0" text="vitesse" />
+            <TableColumn fx:id="nbr_pas" prefWidth="75.0" text="nbr_pas" />
+            <TableColumn fx:id="status" prefWidth="75.0" text="status" />
+        </columns>
+      </TableView>
+      <Button fx:id="export_bt" layoutX="490.0" layoutY="270.0" mnemonicParsing="false" onAction="#export" text="export" />
+   </children>
+</AnchorPane>
