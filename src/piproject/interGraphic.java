@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 @Override
     public void start(Stage primaryStage) {
         try {
-            String chemin="/gui/AjouterMaintenance.fxml";
+            String chemin="/gui/frontformation.fxml";
             Parent root = FXMLLoader.load(getClass().getResource(chemin));
             Scene scene = new Scene(root,960, 540);
 

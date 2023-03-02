@@ -70,6 +70,11 @@ public class Maintenance  implements Comparable<Maintenance>{
         this.status = status;
     }
 
+    public void setCout(Float cout) {
+        this.cout = cout;
+    }
+    
+
 
     @Override
     public String toString() {

@@ -5,6 +5,14 @@
  */
 package piproject;
 
+import entity.Formation;
+import entity.Utilisateur;
+import entity.typeformation;
+import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import services.FormationeServices;
 
 
@@ -18,10 +26,10 @@ public class Piproject {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //FormationeServices ss=new FormationeServices(); 
+       //FormationeServices ss=new FormationeServices(); 
         //System.out.println(ss.findById(0));
         //System.out.println(ss.getAll());
- // Formation f1= new Formation(1,1,"awdas",Date.valueOf("2044-01-01"),2);
+ Formation f1=new Formation(new Utilisateur(), 0, typeformation.muscleprep,Date.valueOf(LocalDate.now()));
        //ss.ajouter(f1);
         //System.out.println(ss.getAll()
         //);
@@ -39,8 +47,11 @@ public class Piproject {
         //System.out.println(ff.findByStatus(false));
         //ff.supprimer(f);
        // ff.modifier(f);
-   
-     
+        try {
+            FormationeServices.sms(f1);
+        } catch (IOException ex) {
+            Logger.getLogger(Piproject.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
     

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane id="AnchorPane" prefHeight="345.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.ModifyFormationController">
+<AnchorPane id="AnchorPane" prefHeight="345.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" fx:controller="gui.ModifyFormationController">
    <children>
       <Label layoutX="34.0" layoutY="127.0" text="Date :" />
       <Label layoutX="34.0" layoutY="172.0" text="Type preparation" />
