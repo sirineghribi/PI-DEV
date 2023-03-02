@@ -5,23 +5,48 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="361.0" prefWidth="433.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierVolController">
+<AnchorPane id="AnchorPane" prefHeight="272.0" prefWidth="428.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierVolController">
    <children>
-      <Label layoutX="80.0" layoutY="77.0" text="Vehicule :" />
-      <Label layoutX="80.0" layoutY="127.0" text="Date :" />
-      <Label layoutX="78.0" layoutY="181.0" text="Destination :" />
-      <Label layoutX="83.0" layoutY="228.0" text="Prix :" />
-      <ComboBox fx:id="vehicule_choixm" layoutX="186.0" layoutY="73.0" prefWidth="150.0" />
-      <TextField fx:id="destination_txtm" layoutX="186.0" layoutY="177.0" />
-      <TextField fx:id="prix_txtm" layoutX="186.0" layoutY="224.0" />
-      <Button fx:id="modifier_btn" layoutX="186.0" layoutY="279.0" mnemonicParsing="false" text="Modifier" />
-      <DatePicker fx:id="date_choixm" layoutX="186.0" layoutY="123.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label layoutX="50.0" layoutY="35.0" text="Modifier Vol :">
+      <ImageView fitHeight="457.0" fitWidth="816.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <ComboBox fx:id="vehicule_choixm" layoutX="360.0" layoutY="152.0" prefWidth="150.0" />
+      <TextField fx:id="destination_txtm" layoutX="360.0" layoutY="256.0" />
+      <TextField fx:id="prix_txtm" layoutX="360.0" layoutY="303.0" />
+      <Button fx:id="modifier_btn" layoutX="615.0" layoutY="347.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="88.0" text="Modifier" />
+      <DatePicker fx:id="date_choixm" layoutX="360.0" layoutY="202.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="241.0" layoutY="152.0" text="Vehicule :" textFill="WHITE">
          <font>
-            <Font name="System Bold" size="12.0" />
-         </font></Label>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="241.0" layoutY="202.0" text="Date :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="241.0" layoutY="256.0" text="Destination :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="241.0" layoutY="303.0" text="Prix :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="accueil" layoutX="690.0" layoutY="51.0" mnemonicParsing="false" onAction="#accueil" prefHeight="38.0" prefWidth="74.0" text="Accueil" />
+      <Label layoutX="102.0" layoutY="51.0" text="Modifier Vol :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

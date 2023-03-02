@@ -4,12 +4,19 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="723.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VolsController">
+<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="723.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VolsController">
    <children>
-      <TableView fx:id="tablevols" layoutX="7.0" layoutY="148.0" prefHeight="242.0" prefWidth="800.0">
+      <ImageView fitHeight="477.0" fitWidth="819.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tablevols" layoutX="7.0" layoutY="148.0" prefHeight="242.0" prefWidth="800.0" stylesheets="@../Styles/dahsboard.css">
         <columns>
           <TableColumn fx:id="date_c" prefWidth="86.40002727508545" text="date" />
             <TableColumn fx:id="destination_c" prefWidth="84.0" text="Destination" />
@@ -23,11 +30,11 @@
             <TableColumn fx:id="action1" prefWidth="90.39990234375" text="Modifier" />
         </columns>
       </TableView>
-      <Label layoutX="47.0" layoutY="40.0" text="Les vols " textFill="#7d04a9">
+      <Label layoutX="65.0" layoutY="40.0" text="Les vols " textFill="WHITE">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="ajout_onClick" layoutX="666.0" layoutY="76.0" mnemonicParsing="false" onAction="#ajout_onClick" text="ajouter vol" textFill="#282628" />
+      <Button fx:id="ajout_onClick" layoutX="685.0" layoutY="90.0" mnemonicParsing="false" onAction="#ajout_onClick" text="ajouter vol" textFill="#282628" />
    </children>
 </AnchorPane>

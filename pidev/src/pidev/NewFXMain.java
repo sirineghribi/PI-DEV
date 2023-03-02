@@ -27,11 +27,12 @@ public class NewFXMain extends Application {
         try {
             String chemin="/gui/Vols.fxml";
             Parent root = FXMLLoader.load(getClass().getResource(chemin));
-            Scene scene = new Scene(root, 900, 424);
+            Scene scene = new Scene(root, 810, 424);
             
-            primaryStage.setTitle("Affichers vol");
+            primaryStage.setTitle("Les vols");
             primaryStage.setScene(scene);
             primaryStage.show();
+           
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }

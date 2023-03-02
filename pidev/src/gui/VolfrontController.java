@@ -5,20 +5,26 @@
  */
 package gui;
 
+import entity.Utilisateur;
 import entity.Vol;
 import java.net.URL;
+import java.sql.Date;
+import java.util.List;
 import java.util.ResourceBundle;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import services.VolService;
 
@@ -29,30 +35,60 @@ import services.VolService;
  */
 public class VolfrontController implements Initializable {
 
-    @FXML
-    private ListView<Vol> myListView;
+    
     @FXML
     private Button button;
-
+    @FXML
+    private GridPane grd;
+    static Vol vvv;
+    @FXML
+    private Label name;
+    @FXML
+    private Button reservations;
+    @FXML
+    private ScrollPane scroll;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         VolService volservice=new VolService();
-        ObservableList<Vol> liste=FXCollections.observableArrayList(volservice.getAll());
-        myListView.getItems().addAll(volservice.getAll());
-		
-	
+        List<Vol> vols=volservice.getAll();
+       
+         ObservableList<Vol> liste=FXCollections.observableArrayList(volservice.getAll());
+         scroll.setStyle("background-color: #712194;");
+	 int r=0;
+        for (Vol v:vols){
+           if (v.getNbr_place()>0)
+           {
+               Button b=new Button("Destination :"+v.getDestination()+"\t Prix :"+v.getPrix()+"\n Date :"+v.getDate());
+               b.setPrefSize(1000, 1000);
+               b.setStyle("-fx-text-fill: white;");
+                 
+               grd.add(b,0, r);
+               r++;
+             
+               b.setOnAction(event -> {
+               System.out.println(v);
+               vvv=v;
+               name.setText("Vol : Destination "+v.getDestination());
+               
+        });
+           }
+             
+                   
+        }
+         
         button.setOnAction(event -> {
-            Vol selectedItem = myListView.getSelectionModel().getSelectedItem();
-            if (selectedItem != null) {
+            
+            if (vvv != null) {
                 try
                                 {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/reserver.fxml"));
                                     Parent root =loader.load();
+                                    button.getScene().setRoot(root);
                                     ReserverController rc =loader.getController();
-                                    rc.setVol(selectedItem);
+                                    rc.setVol(vvv);
                                     Scene scene = new Scene(root);
                                     Stage SecondaryStage=new Stage();
                                     SecondaryStage.setTitle("Reserver Vol !");
@@ -66,11 +102,42 @@ public class VolfrontController implements Initializable {
                 
                 
             } else {
-                System.out.println("Aucun élément sélectionné.");
+                afficher_alerte ("Aucun element est séléctionné !");
+                System.out.println("Aucun élément sélectionné !s");
             }
         });	
 	
        
     }    
-    
+    private void afficher_alerte (String a)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Une erreur s'est produite lors de la reservation !");
+        alert.setContentText(a);
+        alert.showAndWait();  
+          return;
+    }
+
+    @FXML
+    private void historique(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Reservation.fxml"));
+                                    Parent root =loader.load();
+                                    button.getScene().setRoot(root);
+                                    ReservationController rc =loader.getController();
+                                    Utilisateur u3 = new Utilisateur(3,"Mnejja","Imen","femme","imen.mnejja@esprit.tn","123",Date.valueOf("2002-01-10") );
+                                    rc.setUser(u3);
+                                    Scene scene = new Scene(root);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Reserver Vol !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
 }

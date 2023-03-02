@@ -20,6 +20,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -72,26 +73,38 @@ public class VolsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       ObservableList<Vol> liste=FXCollections.observableArrayList(volservice.getAll());
+       update();
+        ajout_onClick.setStyle("-fx-text-fill: white;"); 
+    }    
+    public void update()
+    {
+        //new Timer().scheduleAtFixedRate(new TimerTask() {   
+    //public void run() {
+         ObservableList<Vol> liste=FXCollections.observableArrayList(volservice.getAll());
         tablevols.setItems(liste);
         setvols();
         tablevols.setItems(liste);
-        
-    }    
 
+    //}
+//}, 2000, 2000);
+    }
     @FXML
     private void ajout_onClick(ActionEvent event) {
-       try {
-            String chemin="/gui/AjouterVol.fxml";
-            Parent root = FXMLLoader.load(getClass().getResource(chemin));
-            Scene scene = new Scene(root, 424, 424);
-            Stage stage=new Stage();
-            stage.setTitle("Ajouter vol");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AjouterVol.fxml"));
+                                    Parent root =loader.load();
+                                    ajout_onClick.getScene().setRoot(root);
+                                    Scene scene = new Scene(root);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Reserver Vol !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
     }
 
 private void setvols()
@@ -152,9 +165,18 @@ private void setvols()
                  } else {
                      btn.setOnAction(event -> {
                                Vol v = getTableView().getItems().get(getIndex());
-                               System.out.println(v);
+                              if (v.getEtat().equals("Confirmé"))
+                              {System.out.println(v);
                                volservice.supprimer(v);
+                               ObservableList<Vol> liste=FXCollections.observableArrayList(volservice.getAll());
+                               tablevols.setItems(liste);
+                                setvols();
+                              }
+                              else afficher_alerte("Vol déja confirmé !");
                             });
+                     btn.setStyle("-fx-text-fill: white;");
+                     
+
                      setGraphic(btn);
                      setText(null);
                  }
@@ -185,7 +207,8 @@ private void setvols()
                                     Parent root =loader.load();
                                     ModifierVolController ac =loader.getController();
                                     ac.setVol(v);
-                                    //ajout_onClick.getScene().setRoot(root);
+                                     update();
+                                    ajout_onClick.getScene().setRoot(root);
                                     Scene scene = new Scene(root);
                                     Stage SecondaryStage=new Stage();
                                     SecondaryStage.setTitle("Modifier Vol !");
@@ -200,6 +223,7 @@ private void setvols()
                                
                                
                                      });
+                     btn.setStyle("-fx-text-fill: white;");
                      setGraphic(btn);
                      setText(null);
                  }
@@ -212,5 +236,13 @@ private void setvols()
         action1.setCellFactory(cellFactory1);
         
 }
-    
+   private void afficher_alerte (String a)
+    {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Une erreur s'est produite lors de la suppression.");
+        alert.setContentText(a);
+        alert.showAndWait();  
+          return;
+    } 
 }

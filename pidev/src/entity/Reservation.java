@@ -7,6 +7,7 @@ package entity;
 
 import java.sql.Date;
 
+
 /**
  *
  * @author lenovo
@@ -190,6 +191,11 @@ public class Reservation {
     public String toString() {
         return "Reservation{" + "id_r=" + id_r + ", cin=" + cin + ", num_phone=" + num_phone + ", conditionA=" + conditionA + ", etat=" + etat + ", date_res=" + date_res + ", prix=" + prix + ", vol=" + vol + ", utilisateur=" + utilisateur + '}';
     }
+
+    
+
+    
+
     
     
     

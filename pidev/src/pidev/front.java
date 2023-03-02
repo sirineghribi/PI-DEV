@@ -27,7 +27,7 @@ public class front extends Application {
         try {
             String chemin="/gui/volfront.fxml";
             Parent root = FXMLLoader.load(getClass().getResource(chemin));
-            Scene scene = new Scene(root, 700, 424);
+            Scene scene = new Scene(root, 755, 424);
             
             primaryStage.setTitle("Affichers vol");
             primaryStage.setScene(scene);

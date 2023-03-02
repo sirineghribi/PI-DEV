@@ -9,23 +9,63 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="255.0" prefWidth="434.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReserverController">
+<AnchorPane id="AnchorPane" prefHeight="422.0" prefWidth="734.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReserverController">
    <children>
-      <ImageView fitHeight="283.0" fitWidth="464.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="485.0" fitWidth="788.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/fond.png" />
          </image>
       </ImageView>
-      <Button fx:id="reserver" layoutX="301.0" layoutY="195.0" mnemonicParsing="false" text="Reserver" />
-      <TextField fx:id="cin_txt" layoutX="226.0" layoutY="60.0" />
-      <TextField fx:id="num_txt" layoutX="226.0" layoutY="116.0" />
-      <Label layoutX="72.0" layoutY="64.0" text="cin" textFill="WHITE" />
-      <Label layoutX="72.0" layoutY="120.0" text="numero de telephone" textFill="WHITE" />
-      <CheckBox fx:id="condition" layoutX="72.0" layoutY="190.0" mnemonicParsing="false" text="J'accepte les conditions " textFill="WHITE" />
+      <Button fx:id="reserver" layoutX="569.0" layoutY="362.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="94.0" text="Reserver" textFill="WHITE" />
+      <TextField fx:id="cin_txt" layoutX="226.0" layoutY="156.0" />
+      <TextField fx:id="num_txt" layoutX="226.0" layoutY="209.0" />
+      <Label layoutX="71.0" layoutY="159.0" text="cin" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <Label layoutX="71.0" layoutY="212.0" text="numero de telephone" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></Label>
+      <CheckBox fx:id="condition" layoutX="88.0" layoutY="371.0" mnemonicParsing="false" text="J'accepte les conditions ." textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font></CheckBox>
       <Label layoutX="44.0" layoutY="26.0" text="Reserver " textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="77.0" text="Destination :" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
+      <Label fx:id="destination" layoutX="175.0" layoutY="77.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="265.0" layoutY="77.0" text="Date :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="date" layoutX="325.0" layoutY="77.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="428.0" layoutY="77.0" text="Montant :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="montant" layoutX="511.0" layoutY="77.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="accueil" layoutX="636.0" layoutY="53.0" mnemonicParsing="false" onAction="#accueil" text="Accueil" textFill="WHITE" />
    </children>
 </AnchorPane>

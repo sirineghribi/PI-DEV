@@ -7,6 +7,7 @@ package gui;
 
 import entity.Vehicule;
 import entity.Vol;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -15,11 +16,16 @@ import java.util.ResourceBundle;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import services.VehiculeServices;
 import services.VolService;
 
@@ -43,6 +49,8 @@ public class ModifierVolController implements Initializable {
     private DatePicker date_choixm;
   
     private Vol vol;
+    @FXML
+    private Button accueil;
 
     public void setVol(Vol vol) {
         this.vol = vol;
@@ -63,10 +71,26 @@ public class ModifierVolController implements Initializable {
             System.out.println(vol.getId_v());
         VolService volservice=new VolService();
        
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText("Une erreur s'est produite lors de l'ajout.");
+        if (destination.isEmpty()||date_choixm.getValue()==null||vehicule_choixm.getValue()==null||prix_txtm.getText()==null)
+        {
+            alert.setContentText("Veuillez remplir tous les champs !");
+            alert.showAndWait();  
+            return;
+        }
+        if (prix < 0.0f)
+        {
+            alert.setContentText("Prix doit etre positif !");
+            alert.showAndWait();        
+            return;
+        }
+        
         Vol vol1 =new Vol(vol.getId_v(),destination,"planifié",prix,datee,vehicule);
          System.out.println(vol1);
         volservice.modifier(vol1);
-                               
+                             
                                      });
                      
                  
@@ -80,8 +104,28 @@ public class ModifierVolController implements Initializable {
       VolService volservice=new VolService();
         List<Integer> l= volservice.id_vehicule_list();
        vehicule_choixm.setItems(observableArrayList(l));  
-        
+         modifier_btn.setStyle("-fx-text-fill: white;"); 
+         accueil.setStyle("-fx-text-fill: white;");
     }    
+
+    @FXML
+    private void accueil(ActionEvent event) {
+         try {
+           /* Stage stageE = (Stage)ajouter_btn.getScene().getWindow();
+            stageE.close();*/
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Vols.fxml"));
+            Parent root =loader.load();
+            modifier_btn.getScene().setRoot(root);
+            Scene scene = new Scene(root);                         
+            Stage SecondaryStage=new Stage();
+            SecondaryStage.setTitle("Les vols");
+            SecondaryStage.setScene(scene);
+            SecondaryStage.show();
+            
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
     
     
    

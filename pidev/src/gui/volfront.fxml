@@ -1,19 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="414.0" prefWidth="731.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VolfrontController">
    <children>
-      <ImageView fitHeight="415.0" fitWidth="757.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="429.0" fitWidth="755.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/fond.png" />
          </image>
       </ImageView>
-      <ListView fx:id="myListView" layoutX="108.0" layoutY="107.0" prefHeight="200.0" prefWidth="513.0" />
-      <Button fx:id="button" layoutX="560.0" layoutY="341.0" mnemonicParsing="false" text="Reserver" />
+      <Button fx:id="button" layoutX="593.0" layoutY="347.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" text="Reserver" textFill="WHITE" />
+      <ScrollPane id="ScrollPane" fx:id="scroll" layoutX="377.0" layoutY="112.0" prefHeight="200.0" prefWidth="331.0" style="-fx-background-color: #990dac;" styleClass="jspTrack" stylesheets="@../Styles/dahsboard.css">
+         <content>
+            <GridPane fx:id="grd" prefHeight="458.0" prefWidth="306.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+            </GridPane>
+         </content>
+      </ScrollPane>
+      <Label fx:id="name" layoutX="55.0" layoutY="55.0" text="Réserver un vol " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="reservations" layoutX="550.0" layoutY="56.0" mnemonicParsing="false" onAction="#historique" text="Historique de reservations" textFill="WHITE" />
    </children>
 </AnchorPane>

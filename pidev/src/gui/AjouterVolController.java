@@ -8,6 +8,7 @@ package gui;
 
 import entity.Vehicule;
 import entity.Vol;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.List;
@@ -15,13 +16,17 @@ import java.util.ResourceBundle;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import services.VehiculeServices;
 import services.VolService;
 
@@ -43,7 +48,11 @@ public class AjouterVolController implements Initializable {
     private Button ajouter_btn;
     @FXML
     private DatePicker date_choix;
-    
+     VolService volservice=new VolService();
+    @FXML
+    private Button accueil;
+    @FXML
+    private Button ajouter_btn1;
 
     /**
      * Initializes the controller class.
@@ -55,7 +64,9 @@ public class AjouterVolController implements Initializable {
        VolService volservice=new VolService();
         List<Integer> l= volservice.id_vehicule_list();
        vehicule_choix.setItems(observableArrayList(l));
-          
+        accueil.setStyle("-fx-text-fill: white;"); 
+        ajouter_btn1.setStyle("-fx-text-fill: white;"); 
+        ajouter_btn.setStyle("-fx-text-fill: white;"); 
     }    
 
     @FXML
@@ -69,35 +80,80 @@ public class AjouterVolController implements Initializable {
         Date date=Date.valueOf(date_choix.getValue());
         
         
+        
+        if (destination.equals("")||date_choix.getValue().equals("")||vehicule_choix.getValue().equals("")||prix_txt.getText().equals(""))
+        {
+            afficher_alerte ("Veuillez remplir tous les champs !");
+        }
+        else if (prix < 0.0f)
+        {
+            afficher_alerte ("Le prix doit etre positif !");
+        }
+        else
+        {
+       
+        Vol vol =new Vol(destination,"planifié",prix,date,vehicule);
+        volservice.ajouter(vol);
+        afficher_info ();
+        vider();      
+        }
+      
+    }
+    private void afficher_alerte (String a)
+    {
         Alert alert = new Alert(AlertType.ERROR);
         alert.setTitle("Erreur");
         alert.setHeaderText("Une erreur s'est produite lors de l'ajout.");
+        alert.setContentText(a);
+        alert.showAndWait();  
+          return;
+    }
+    private void afficher_info ()
+    {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Succée");
+        alert.setHeaderText("Ajout du vol.");
+        alert.setContentText("Ajout avec succée !");
+        alert.showAndWait();  
+          return;
+    }
+    private void vider()
+    {
+        destination_txt.clear();
+        prix_txt.clear();
+        date_choix.setValue(null);
+       vehicule_choix.setValue(null);
+    }
+    private void update ()
+    {   
         
-        if (destination.isEmpty())
-        {
-            alert.setContentText("Veuillez remplir tous les champs !");
-            alert.showAndWait();  
-            return;
+        try {
+           /* Stage stageE = (Stage)ajouter_btn.getScene().getWindow();
+            stageE.close();*/
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Vols.fxml"));
+            Parent root =loader.load();
+            ajouter_btn.getScene().setRoot(root);
+            Scene scene = new Scene(root);
+            Stage SecondaryStage=new Stage();
+            SecondaryStage.setTitle("Les vols");
+            SecondaryStage.setScene(scene);
+            SecondaryStage.show();
+            
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
-      
-        if (prix < 0.0f)
-        {
-            alert.setContentText("Prix doit etre positif !");
-            alert.showAndWait();        
-            return;
-        }
-        
-        
-        VolService volservice=new VolService();
-        Vol vol =new Vol(destination,"planifié",prix,date,vehicule);
-        volservice.ajouter(vol);
-        
-        
         
         
     }
-   
 
-   
-    
+    @FXML
+    private void accueil(ActionEvent event) {
+        update();
+    }
+
+    @FXML
+    private void vider_t(ActionEvent event) {
+        vider();
+    }
+
 }

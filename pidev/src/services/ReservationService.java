@@ -16,8 +16,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 import tools.MaConnection;
 
 /**
@@ -50,30 +52,18 @@ public class ReservationService implements InterfaceService<Reservation> {
             ste.setInt(4, t.getNum_phone());
             ste.setString(5, "En attente");    // en attente par default avant paiement 
             ste.setInt(6,1);                   //pour reserver condition_accepté(1)
-            ste.setDate(7, Date.valueOf("2023-12-12"));
+            ste.setDate(7, Date.valueOf(LocalDate.now()));
             ste.setFloat(8,a);                 // montant payé
             ste.executeUpdate();
             System.out.println("Reservation ajouté");
             
+            
+          
+            v.modifier_etat(t.getVol(), "Confirmé");
+            v.modifier_nb_place(t.getVol());
+            System.out.println("vol modifié");
             // ajout carte fidelité ***************************************
-          /*  int nb=this.findById(t.getUtilisateur().getId()).size();
-            if (nb>1)
-            {
-                Carte_fidelite c=new Carte_fidelite(100,t.getUtilisateur().getId());
-                try {
-            
-            String sql1 = "insert into carte_fidelite(nbr_point,id_u)"
-                    + "values (?,?)";
-            PreparedStatement ste1 = cnx.prepareStatement(sql1);
-            ste1.setInt(1, c.getNbr_point());
-            ste1.setInt(2, c.getId_u());
-            ste1.executeUpdate();
-            System.out.println(" card added successfully!");
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-            
-            }*/
+         
           //***************************************************************************************************** 
             } else System.out.println("Veuillez accepté les conditions !"); 
             
@@ -142,7 +132,7 @@ public class ReservationService implements InterfaceService<Reservation> {
     public List<Reservation> findById(int id) {                             // id client  (pour client)
          List <Reservation> reservations=new ArrayList<>();
          try {
-            String sql = "select R.id_v,V.id_v,U.id,U.nom,U.prenom,U.email,V.date,V.destination,R.id_r,R.num_phone,R.etat,R.prix,R.date_res  from reservation R  inner join "
+            String sql = "select R.id_v,V.id_v,U.id,U.nom,U.prenom,U.email,V.prix,V.date,V.destination,R.id_r,R.num_phone,R.cin,R.etat,R.prix,R.date_res  from reservation R  inner join "
                     +"utilisateur U on R.id_c=U.id inner join vol V on R.id_v=V.id_v where id_c=?";
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1,id);
@@ -153,12 +143,13 @@ public class ReservationService implements InterfaceService<Reservation> {
                 v.setId_v(s.getInt("id_v"));
                 v.setDate(s.getDate("date"));
                 v.setDestination(s.getString("destination"));
+                v.setPrix(s.getInt("V.prix"));
                 Utilisateur u=new Utilisateur();
                 u.setId(s.getInt("id"));
                 u.setEmail(s.getString("email"));
                 u.setNom(s.getString("nom"));
                 u.setPrenom(s.getString("prenom"));   
-                Reservation r = new Reservation(s.getInt("id_r"),s.getInt("num_phone"),s.getString("etat"),s.getDate("date_res"),s.getFloat("prix"),v,u);
+                Reservation r = new Reservation(s.getInt("id_r"),s.getInt("cin"),s.getInt("num_phone"),s.getString("etat"),s.getDate("date_res"),s.getFloat("R.prix"),v,u);
                 reservations.add(r);
             }
         } catch (SQLException ex) {
@@ -168,10 +159,34 @@ public class ReservationService implements InterfaceService<Reservation> {
     }
 
     @Override
-    public List<Reservation> trier() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Reservation> trier() {  
+        return getAll().stream().sorted((r1,r2)->(int)(r1.getDate_res().compareTo(r2.getDate_res()))).collect(Collectors.toList());
     }
 
+    public boolean verif_exist(Reservation t)
+    {
+        boolean result=true;
+        String sql = " SELECT COUNT(*) FROM reservation WHERE id_v=? AND id_c=? ";
+        try {
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setInt(1, t.getVol().getId_v());
+            ste.setInt(2, t.getUtilisateur().getId());
+            ResultSet s = ste.executeQuery();
+            System.out.println("verif_exist");
+             if (s.next() && s.getInt(1) > 0) {
+            return true;
+            } else {
+            return false;
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return result;
+    }
+    
+    
+     
     @Override
     public void supprimer(Reservation t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
