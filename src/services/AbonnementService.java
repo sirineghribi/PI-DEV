@@ -5,12 +5,17 @@
  */
 package services;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 import entity.Abonnement;
 import entity.Reservation;
 import entity.Roles;
 import entity.Utilisateur;
 import entity.Type_abonnement;
 import entity.Vol;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -20,6 +25,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 import tools.MaConnection;
 
@@ -198,10 +205,15 @@ public class AbonnementService implements InterfaceService<Abonnement> {
         if (!this.select_byID_u(a).isEmpty()) {
             this.select_byID_u(a).stream().forEach((ab) -> {
                 LocalDate date = LocalDate.parse((ab.getD().toString()));
-                date=date.plusDays((long) ab.getType().getPeriode());
-                //System.out.println("date expiration:"+date+"is expired:"+date.isBefore(LocalDate.now()));
-                if(date.isBefore(LocalDate.now()))
+                date = date.plusDays((long) ab.getType().getPeriode());
+                if (date.isBefore(LocalDate.now())) {
+                    try {
+                        SMS(ab);
+                    } catch (IOException ex) {
+                        System.out.println("err" + ex.getMessage());
+                    }
                     this.supprimer(ab);
+                }
             });
             return !this.select_byID_u(a).isEmpty();
         } else {
@@ -229,5 +241,44 @@ public class AbonnementService implements InterfaceService<Abonnement> {
             t.setPrix((1 - a.getType().getOffre()) * v.getPrix());
         }
         return t;
+    }
+
+    public void SMS(Abonnement a) throws IOException {
+        /*LocalDate date = LocalDate.parse((a.getD().toString()));
+        date = date.plusDays((long) a.getType().getPeriode());
+        int num = 29428612;
+        String msg = "Hello " + a.getC().getNom() + "!we are sorry to inform you that your subcribtion " + a.getType().getNom() + " has already expired at" + date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear();
+        System.out.println(msg);
+        String s = "curl.exe -X POST \"https://api.twilio.com/2010-04-01/Accounts/ACd76065a353d77ee7eb1bc1b22792a497/Messages.json\"";
+        s += " --data-urlencode \"Body=" + msg + "\"";
+        s += " --data-urlencode \"From=+12766002481\"";
+        s += " --data-urlencode \"To=+216" + num + "\"";
+        s += " -u \"ACd76065a353d77ee7eb1bc1b22792a497:3ac261280dc2001e7312e5cc6662392f\"";
+        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", s);
+        builder.redirectErrorStream(true);
+        Process p = builder.start();
+        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+        String line;
+        while (true) {
+        line = r.readLine();
+        if (line == null) {
+        break;
+        }
+        System.out.println(line);
+        }*/
+        int num=29428611;
+        LocalDate date = LocalDate.parse((a.getD().toString()));
+        date = date.plusDays((long) a.getType().getPeriode());
+        String msg = "Hello " + a.getC().getNom() + "!we are sorry to inform you that your subcribtion " + a.getType().getNom() + " has already expired at" + date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear();
+        String ACCOUNT_SID ="";
+        String AUTH_TOKEN = "";
+        /*String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
+        String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");*/
+        Twilio.init(ACCOUNT_SID,AUTH_TOKEN);
+        Message message = Message.creator(new com.twilio.type.PhoneNumber("+216"+num)
+                                         ,new com.twilio.type.PhoneNumber("+12766002481"), 
+                                          msg).create();
+        message.getSid();
+        
     }
 }

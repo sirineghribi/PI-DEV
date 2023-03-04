@@ -264,7 +264,7 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
                         float max = new AbonnementService().getAll().size();
                         float nbr = new AbonnementService().select_byType(new Abonnement(Date.valueOf(LocalDate.now()), ta, new Utilisateur())).size();
                         float per = (nbr * 100) / max;
-                        w.write("\n" + ta.getNom() + "," + ta.getPrix() + "," + ta.getOffre()*100 + "%," + ta.getPeriode() + "," + nbr + "," + per + "%");
+                        w.write("\n" + ta.getNom() + "   ," + ta.getPrix() + "    ," + ta.getOffre()*100 + "%   ," + ta.getPeriode() + "    ," + nbr + "           ," + per + "%");
                     } catch (IOException ex) {
                         System.out.println("err:" + ex.getMessage());
                     }
