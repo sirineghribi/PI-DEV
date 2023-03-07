@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="252.0" prefWidth="473.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterVolController">
+   <children>
+      <ImageView fitHeight="457.0" fitWidth="816.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="231.0" layoutY="142.0" text="Vehicule :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label layoutX="231.0" layoutY="192.0" text="Date :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label layoutX="231.0" layoutY="246.0" text="Destination :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <Label layoutX="231.0" layoutY="293.0" text="Prix :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font></Label>
+      <ComboBox fx:id="vehicule_choix" layoutX="346.0" layoutY="138.0" prefWidth="150.0" />
+      <TextField fx:id="destination_txt" layoutX="346.0" layoutY="244.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="prix_txt" layoutX="346.0" layoutY="289.0" prefHeight="26.0" prefWidth="150.0" />
+      <Button fx:id="ajouter_btn" layoutX="551.0" layoutY="354.0" mnemonicParsing="false" onAction="#addVol" prefHeight="38.0" prefWidth="74.0" text="Ajouter" />
+      <DatePicker fx:id="date_choix" layoutX="346.0" layoutY="188.0" prefHeight="26.0" prefWidth="150.0" />
+      <Button fx:id="accueil" layoutX="680.0" layoutY="41.0" mnemonicParsing="false" onAction="#accueil" prefHeight="38.0" prefWidth="74.0" text="Accueil" />
+      <Label layoutX="92.0" layoutY="41.0" text="Ajout Vol :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font></Label>
+      <Button fx:id="ajouter_btn1" layoutX="652.0" layoutY="354.0" mnemonicParsing="false" onAction="#vider_t" prefHeight="38.0" prefWidth="74.0" text="Vider" />
+   </children>
+</AnchorPane>

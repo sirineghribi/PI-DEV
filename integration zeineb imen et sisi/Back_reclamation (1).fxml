@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Back_reclamationController">
+   <children>
+      <ImageView fx:id="globale" fitHeight="460.0" fitWidth="816.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="backtabr" layoutX="222.0" layoutY="158.0" opacity="0.83" prefHeight="200.0" prefWidth="329.0">
+        <columns>
+          <TableColumn fx:id="type" prefWidth="75.0" text="Type" />
+            <TableColumn fx:id="desc" prefWidth="75.0" text="Description" />
+            <TableColumn fx:id="id_c" minWidth="20.0" prefWidth="90.6666259765625" text="Utilisateur" />
+            <TableColumn fx:id="etat" prefWidth="92.3333740234375" text="Etat" />
+        </columns>
+         <effect>
+            <ColorAdjust brightness="-0.36" contrast="0.38" hue="0.14" saturation="-0.13" />
+         </effect>
+         <cursor>
+            <Cursor fx:constant="SE_RESIZE" />
+         </cursor>
+      </TableView>
+      <Button fx:id="tr" layoutX="475.0" layoutY="380.0" mnemonicParsing="false" onAction="#traiter_reclamation" prefHeight="26.0" prefWidth="91.0" text="Traiter">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></Button>
+      <Button layoutX="-1.0" layoutY="35.0" mnemonicParsing="false" onAction="#Allerbackavis" prefHeight="34.0" prefWidth="111.0" text="Back_Avis">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font></Button>
+      <Button layoutX="372.0" layoutY="381.0" mnemonicParsing="false" onAction="#trier" text="Tri" />
+      <TextField fx:id="idcherche" layoutX="222.0" layoutY="132.0" onAction="#idcherche" prefHeight="26.0" prefWidth="298.0" />
+      <Button fx:id="recherche" layoutX="517.0" layoutY="131.0" mnemonicParsing="false" onAction="#recherche" prefHeight="25.0" prefWidth="30.0">
+         <graphic>
+            <ImageView fitHeight="18.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/Search-icon.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="vol1" layoutX="100.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
+      <Button fx:id="user" layoutX="-1.0" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
+      <Button fx:id="avis" layoutX="202.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="111.0" text="Reclamation_avis" />
+      <Button layoutX="313.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+      <Button layoutX="414.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+      <Button layoutX="516.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+   </children>
+</AnchorPane>
