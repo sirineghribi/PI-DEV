@@ -10,19 +10,22 @@
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/services/MaintenanceServices.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/entity/Formation.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/ModifyFormationController.java</file>
-            <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/frontformation.fxml</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/services/FormationeServices.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/entity/Vehicule.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/AjouterMaintenanceController.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/entity/Utilisateur.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/ModifierMaintenanceController.java</file>
+            <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/forecast.fxml</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/piproject/interGraphic.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/AjouterFormationController.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/DisplayformationController.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/tools/MaConnection.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/FrontformationController.java</file>
+            <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/entity/WeatherData.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/entity/typeformation.java</file>
             <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/piproject/Piproject.java</file>
+            <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/StatisticsmaintController.java</file>
+            <file>file:/C:/Users/abder/OneDrive/Documents/NetBeansProjects/Piproject/src/gui/ForecastController.java</file>
         </group>
     </open-files>
 </project-private>

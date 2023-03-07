@@ -9,6 +9,7 @@ import entity.Formation;
 import entity.Maintenance;
 import entity.Vehicule;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -25,6 +26,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import services.FormationeServices;
 import services.MaintenanceServices;
@@ -50,6 +52,14 @@ public class DisplaymaintenanceController implements Initializable {
     private TableColumn<Maintenance, String> categoryveh;
     @FXML
     private Button maintajout;
+    @FXML
+    private TextField search;
+    
+    private List<Maintenance> searchcout;
+    @FXML
+    private Button sorting;
+    
+    
 
     /**
      * Initializes the controller class.
@@ -57,35 +67,19 @@ public class DisplaymaintenanceController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         MaintenanceServices mss = new MaintenanceServices();
-
-        ObservableList<Maintenance> liste = FXCollections.observableArrayList(mss.getAll());
-        tablemaint.setItems(liste);
-        idv.setCellValueFactory(cell -> {
-            StringProperty s = new SimpleStringProperty();
-            s.set(String.valueOf(cell.getValue().getVehicule().get_id_vehicule()));
-            return s;
+        searchcout=mss.getAll();
+        search.textProperty().addListener((o)->{
+        
+        if(!search.getText().isEmpty() )
+            
+            searchcout=mss.SearchByCout(Float.valueOf(search.getText()));
+        else searchcout=mss.getAll();
+        if (searchcout.isEmpty())
+            searchcout=mss.getAll();
+        
+        display();
         });
-        statusmaint.setCellValueFactory(cell -> {
-            StringProperty s = new SimpleStringProperty();
-            s.set(String.valueOf(cell.getValue().getStatus()));
-            return s;
-        });
-        timemaint.setCellValueFactory(cell -> {
-            StringProperty s = new SimpleStringProperty();
-            s.set(String.valueOf(cell.getValue().getDuree()));
-            return s;
-        });
-        coutmaint.setCellValueFactory(cell -> {
-            StringProperty s = new SimpleStringProperty();
-            s.set(String.valueOf(cell.getValue().getCout()));
-            return s;
-        });
-        categoryveh.setCellValueFactory(cell -> {
-            StringProperty s = new SimpleStringProperty();
-            s.set(String.valueOf(cell.getValue().getVehicule().get_cat_vehicule()));
-            return s;
-        });
-
+        display();
     }
 
     @FXML
@@ -122,4 +116,52 @@ public class DisplaymaintenanceController implements Initializable {
         alert.setContentText(b);
         alert.show();
     }
+    
+    public void display (){
+    
+    MaintenanceServices mss = new MaintenanceServices();
+
+        ObservableList<Maintenance> liste = FXCollections.observableArrayList(searchcout);
+        tablemaint.setItems(liste);
+        idv.setCellValueFactory(cell -> {
+            StringProperty s = new SimpleStringProperty();
+            s.set(String.valueOf(cell.getValue().getVehicule().get_id_vehicule()));
+            return s;
+        });
+        statusmaint.setCellValueFactory(cell -> {
+            StringProperty s = new SimpleStringProperty();
+            s.set(String.valueOf(cell.getValue().getStatus()));
+            return s;
+        });
+        timemaint.setCellValueFactory(cell -> {
+            StringProperty s = new SimpleStringProperty();
+            s.set(String.valueOf(cell.getValue().getDuree()));
+            return s;
+        });
+        coutmaint.setCellValueFactory(cell -> {
+            StringProperty s = new SimpleStringProperty();
+            s.set(String.valueOf(cell.getValue().getCout()));
+            return s;
+        });
+        categoryveh.setCellValueFactory(cell -> {
+            StringProperty s = new SimpleStringProperty();
+            s.set(String.valueOf(cell.getValue().getVehicule().get_cat_vehicule()));
+            return s;
+        });
+
+    
+    }
+
+    @FXML
+    private void sort(ActionEvent event) {
+        
+        searchcout=new MaintenanceServices().sort();
+        display();
+                
+        
+        
+        
+    }
+    
+    
 }

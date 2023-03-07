@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.Bloom?>
 <?import javafx.scene.effect.Light.Distant?>
 <?import javafx.scene.effect.Lighting?>
@@ -17,7 +18,7 @@
             <Image url="@../esprit/images/fond.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tablemaint" layoutX="187.0" layoutY="24.0" prefHeight="431.0" prefWidth="527.0">
+      <TableView fx:id="tablemaint" layoutX="187.0" layoutY="132.0" prefHeight="323.0" prefWidth="527.0">
         <columns>
           <TableColumn fx:id="idv" prefWidth="126.40007019042969" text="ID vehicule" />
           <TableColumn fx:id="statusmaint" prefWidth="84.7999267578125" text="statut" />
@@ -37,5 +38,7 @@
          </effect>
       </TableView>
       <Button fx:id="maintajout" layoutX="385.0" layoutY="479.0" mnemonicParsing="false" onAction="#addmaintenance" text="modifier maintenance" />
+      <TextField fx:id="search" layoutX="187.0" layoutY="94.0" prefHeight="26.0" prefWidth="464.0" />
+      <Button fx:id="sorting" layoutX="664.0" layoutY="94.0" mnemonicParsing="false" onAction="#sort" prefHeight="26.0" prefWidth="50.0" text="sort" />
    </children>
 </AnchorPane>

@@ -18,7 +18,7 @@
             <Image url="@../esprit/images/fond.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tabelformation" prefHeight="412.0" prefWidth="963.0">
+      <TableView fx:id="tabelformation" layoutX="81.0" layoutY="21.0" prefHeight="412.0" prefWidth="799.0">
         <columns>
           <TableColumn fx:id="IDDIS" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="typedis" prefWidth="120.79998779296875" text="type formation" />
@@ -26,7 +26,7 @@
             <TableColumn fx:id="hoursdis" prefWidth="109.5999755859375" text="nombre d'heure" />
             <TableColumn fx:id="nomdis" prefWidth="109.5999755859375" text="Nom" />
             <TableColumn fx:id="prenomdis" prefWidth="109.5999755859375" text="Prenom" />
-            <TableColumn fx:id="maildis" prefWidth="109.5999755859375" text="E-mail" />
+            <TableColumn fx:id="maildis" prefWidth="210.4000122070313" text="E-mail" />
         </columns>
          <effect>
             <Lighting>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ForecastController">
+   <children>
+      <ImageView fitHeight="549.0" fitWidth="1026.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../esprit/images/fond.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="hum" disable="true" editable="false" layoutX="704.0" layoutY="83.0" />
+      <TextField fx:id="press" disable="true" editable="false" layoutX="704.0" layoutY="154.0" />
+      <TextField fx:id="lat" disable="true" editable="false" layoutX="704.0" layoutY="213.0" />
+      <TextField fx:id="lon" disable="true" editable="false" layoutX="704.0" layoutY="276.0" />
+      <TextField fx:id="desc" disable="true" editable="false" layoutX="704.0" layoutY="343.0" />
+      <Text fill="WHITE" layoutX="77.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="humidity">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="79.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pressure">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="84.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="latitude">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="80.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="84.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="country" disable="true" editable="false" layoutX="419.0" layoutY="28.0" prefHeight="26.0" prefWidth="97.0" />
+      <Text fill="WHITE" layoutX="56.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The vehicle you are bording is maintained, but here is a look at the weather. Do not worry the vehicle can withstand everything ">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="84.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temperature K">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Text>
+      <TextField fx:id="temp" disable="true" editable="false" layoutX="704.0" layoutY="393.0" />
+   </children>
+</AnchorPane>

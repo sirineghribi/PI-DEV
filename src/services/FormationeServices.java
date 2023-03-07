@@ -5,6 +5,8 @@
  */
 package services;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
 import entity.Formation;
 import entity.Utilisateur;
 import entity.typeformation;
@@ -134,28 +136,21 @@ return !findByIduser(u.getId()).isEmpty();
     LocalDate date = LocalDate.parse((f.getDate().toString()));
                 date = date.plusDays((long) f.getNbrheur());
     int num=99520530;
-String msg="One step closer to space, congratualtions. Your traing succefully ended on";
-String s = "curl.exe -X POST  \"https://api.twilio.com/2010-04-01/Accounts/ACaf129c44776b8d63d9cbbb9b22c71fa6/Messages.json\"";
-        s += " --data-urlencode \"Body="+msg+"\"";
-        s += " --data-urlencode \"From=+12763239794\"";
-        s += " --data-urlencode \"To=+216"+num+"\"";
-        s += " -u \"ACaf129c44776b8d63d9cbbb9b22c71fa6:bb70a294846079b6d2831af1a8a23d29\"";
-        ProcessBuilder builder = new ProcessBuilder( "cmd.exe", "/c", s);
-        builder.redirectErrorStream(true);
-        Process p = builder.start();
-        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line;
-        while (true) {
-            line = r.readLine();
-            if (line == null) {
-                break;
-            }
-            System.out.println(line);
+        
+       
+        String msg = "Congratulations you are ready to take off.mission passed Respect +";
+        String ACCOUNT_SID ="ACaf129c44776b8d63d9cbbb9b22c71fa6";
+        String AUTH_TOKEN = "980e3ff08d8b69c2664ba6541f254ca3";
+       
+        Twilio.init(ACCOUNT_SID,AUTH_TOKEN);
+        Message message = Message.creator(new com.twilio.type.PhoneNumber("+216"+num)
+                                         ,new com.twilio.type.PhoneNumber("+12763239794"), 
+                                          msg).create();
+        message.getSid();
         } 
 
     
     
-    }
     
     
     

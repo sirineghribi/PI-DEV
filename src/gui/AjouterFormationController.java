@@ -50,6 +50,7 @@ public class AjouterFormationController implements Initializable {
 
     @FXML
     private void ajouterformation(ActionEvent event) {
+        
         int nbrh=Integer.valueOf(nbrhours.getText());
         Date date=Date.valueOf(datepicker.getValue());
         typeformation T=preptype.getValue();
