@@ -67,3 +67,17 @@
     -fx-pie-color:#E6E6FA;
     -fx-border-color:transparent;
 }
+.text-field {
+    -fx-background-color: white , white ,blueviolet;
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+.text-area{
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+.text-area .content{
+    -fx-background-color: white , white ,blueviolet;  
+    -fx-opacity: 0.9;
+    
+}

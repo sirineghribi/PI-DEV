@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package gui;
 
 import entity.Abonnement;
 import entity.Utilisateur;
@@ -177,5 +177,6 @@ public class Statistic_abonnementController implements Initializable {
         } catch (IOException ex) {
             System.out.println("err2" + ex.getMessage());
         }
+        chart();
     }
 }

@@ -269,9 +269,9 @@ public class AbonnementService implements InterfaceService<Abonnement> {
         int num=29428611;
         LocalDate date = LocalDate.parse((a.getD().toString()));
         date = date.plusDays((long) a.getType().getPeriode());
-        String msg = "Hello " + a.getC().getNom() + "!we are sorry to inform you that your subcribtion " + a.getType().getNom() + " has already expired at" + date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear();
-        String ACCOUNT_SID ="";
-        String AUTH_TOKEN = "";
+        String msg = "Hello " + a.getC().getNom() + " ! we are sorry to inform you that your subcribtion " + a.getType().getNom() + " has already expired at " + date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear();
+        String ACCOUNT_SID ="ACd76065a353d77ee7eb1bc1b22792a497";
+        String AUTH_TOKEN = "174c9d6243eecec3e6008c8587e9af92";
         /*String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
         String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");*/
         Twilio.init(ACCOUNT_SID,AUTH_TOKEN);

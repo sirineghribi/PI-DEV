@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="343.0" prefWidth="750.0" style="-fx-background-color: #4B0076;" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Add_Type_Abonnement_FXMLController">
+   <children>
+      <ImageView fitHeight="450.0" fitWidth="850.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../esprit/images/fond.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="Nom_type" layoutX="26.0" layoutY="91.0" promptText="Nom" />
+      <TextField fx:id="Desc_type" layoutX="26.0" layoutY="141.0" promptText="Description" />
+      <TextField fx:id="Prix_type" layoutX="26.0" layoutY="198.0" promptText=" Prix &gt; 0" />
+      <TextField fx:id="Offre_type" layoutX="26.0" layoutY="246.0" promptText="Offre in %" />
+      <TextField fx:id="Periode_type" layoutX="26.0" layoutY="296.0" promptText="Periode &gt; 0 " />
+      <Button fx:id="add_button" layoutX="75.0" layoutY="348.0" mnemonicParsing="false" onAction="#add" text="Add" />
+      <TableView fx:id="list_type" editable="true" layoutX="221.0" layoutY="91.0" prefHeight="231.0" prefWidth="502.0">
+        <columns>
+          <TableColumn fx:id="nom_col" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="prix_col" prefWidth="75.0" text="Prix" />
+            <TableColumn fx:id="offre_col" prefWidth="75.0" text="Offre" />
+            <TableColumn fx:id="periode_col" prefWidth="89.0" text="Periode" />
+            <TableColumn fx:id="desc_col" prefWidth="187.0" text="Description" />
+        </columns>
+      </TableView>
+      <Button fx:id="update_type" layoutX="228.0" layoutY="336.0" mnemonicParsing="false" onAction="#load_update" text="update" />
+      <Button fx:id="delete_type" layoutX="309.0" layoutY="336.0" mnemonicParsing="false" onAction="#delete_type" text="delete" />
+      <Button fx:id="stat_bt" layoutX="384.0" layoutY="336.0" mnemonicParsing="false" onAction="#statistic" text="statistic" />
+      <Button fx:id="export_bt" layoutX="460.0" layoutY="336.0" mnemonicParsing="false" onAction="#export" text="export" />
+      <TextField fx:id="search_bar" layoutX="221.0" layoutY="41.0" prefHeight="25.0" prefWidth="475.0" />
+      <Button fx:id="search_bt" layoutX="695.0" layoutY="41.0" mnemonicParsing="false" onAction="#search" text="🔍" />
+   </children>
+</AnchorPane>

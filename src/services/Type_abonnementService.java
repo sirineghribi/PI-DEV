@@ -48,23 +48,9 @@ public class Type_abonnementService implements InterfaceService<Type_abonnement>
         }
         return l;
     }
-    public List<Type_abonnement> search_byName(Type_abonnement t)
+    public List<Type_abonnement> search_byName(String s)
     {
-        sql="SELECT * FROM type_abonnement WHERE nom LIKE ?";
-        List<Type_abonnement> l=new ArrayList<>();
-        try {
-            pste=mc.prepareStatement(sql);
-            pste.setString(1,"%"+t.getNom()+"%");
-            ResultSet r=pste.executeQuery();
-            while(r.next())
-            {
-                l.add(new Type_abonnement(r.getInt("id"),r.getString("nom"),r.getString("description"),r.getFloat("periode"), r.getFloat("offre"),r.getFloat("prix")));
-            }
-        } catch (SQLException ex) 
-        {
-           System.out.println("search_byName type_abonnement failed:"+ex.getMessage());
-        }
-        return l; 
+        return  getAll().stream().filter((ta)->ta.getNom().toLowerCase().contains(s.toLowerCase())).collect(Collectors.toList());
     }
     public List<Type_abonnement> select_byDesc(Type_abonnement t)
     {
@@ -84,23 +70,9 @@ public class Type_abonnementService implements InterfaceService<Type_abonnement>
         }
         return l;
     }
-    public List<Type_abonnement> search_byDesc(Type_abonnement t)
+    public List<Type_abonnement> search_byDesc(String s)
     {
-        sql="SELECT * FROM type_abonnement WHERE description LIKE ?";
-        List<Type_abonnement> l=new ArrayList<>();
-        try {
-            pste=mc.prepareStatement(sql);
-            pste.setString(1,"%"+t.getDescription()+"%");
-            ResultSet r=pste.executeQuery();
-            while(r.next())
-            {
-                l.add(new Type_abonnement(r.getInt("id"),r.getString("nom"),r.getString("description"),r.getFloat("periode"), r.getFloat("offre"),r.getFloat("prix")));
-            }
-        } catch (SQLException ex) 
-        {
-           System.out.println("search_byDesc type_abonnement failed:"+ex.getMessage());
-        }
-        return l;
+        return  getAll().stream().filter((ta)->ta.getDescription().toLowerCase().contains(s.toLowerCase())).collect(Collectors.toList());
     }
     public List<Type_abonnement> select_byID(Type_abonnement t)
     {
@@ -218,7 +190,7 @@ public class Type_abonnementService implements InterfaceService<Type_abonnement>
     }
     public List<Type_abonnement> trier_par_Offre()
     {
-        return getAll().stream().sorted((o1, o2) -> (int)(o1.getOffre()-o2.getOffre())
+        return getAll().stream().sorted((o1, o2) -> (int)(o1.getOffre()*100-o2.getOffre()*100)
         ).collect(Collectors.toList());
     }
     public List<Type_abonnement> trier_par_periode()

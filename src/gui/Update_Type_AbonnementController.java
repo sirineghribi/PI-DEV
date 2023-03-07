@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package gui;
 
 import entity.Type_abonnement;
 import java.net.URL;

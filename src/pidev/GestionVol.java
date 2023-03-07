@@ -146,14 +146,14 @@ public class GestionVol {
             CategorieVehicule c1 = new CategorieVehicule(11,"24",5);
             //cv.supprimerVehicule(c1);
             //cv.ajouter(c1);
-            //System.out.println(cv.getAll());*/
-            Type_abonnement type=new Type_abonnementService().getAll().get(0);
-            Abonnement a=new Abonnement(Date.valueOf(LocalDate.now()),type,new Utilisateur(1,"nom","prenom"));
-            new AbonnementService().SMS(a);
-        } catch (IOException ex) {
-            Logger.getLogger(GestionVol.class.getName()).log(Level.SEVERE, null, ex);
+
+}           
+}*/
+            System.out.println(new Type_abonnementService().search_byName("pe"));
+        }   
+        catch(Exception ex)
+        {
+            
         }
-        
     }
-    
 }

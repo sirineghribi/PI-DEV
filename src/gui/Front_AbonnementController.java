@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package gui;
 
 import entity.Abonnement;
 import entity.Carte_fidelite;
@@ -24,8 +24,10 @@ import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
@@ -59,6 +61,28 @@ public class Front_AbonnementController implements Initializable {
     @FXML
     private Button annulerBT;
     private Utilisateur u = new Utilisateur(2, "nom", "prenom", Genre.femme, "email", "mdp", Date.valueOf(LocalDate.now()));
+    @FXML
+    private Label lb1;
+    @FXML
+    private Label lb2;
+    @FXML
+    private Label lb3;
+    @FXML
+    private Label lb4;
+    @FXML
+    private Label lb5;
+    @FXML
+    private TextField nom_info;
+    @FXML
+    private TextField prix_info;
+    @FXML
+    private TextField offre_info;
+    @FXML
+    private TextArea desc_info;
+    @FXML
+    private Button get_bt;
+    @FXML
+    private ComboBox<String> sort_c;
 
     /**
      * initialises the controller class.
@@ -71,6 +95,20 @@ public class Front_AbonnementController implements Initializable {
         Utilisateur t = u;
         t.setId(3);
         setU(t);
+        lb1.setVisible(false);
+        lb2.setVisible(false);
+        lb3.setVisible(false);
+        lb4.setVisible(false);
+        lb5.setVisible(false);
+        nom_info.setVisible(false);
+        prix_info.setVisible(false);
+        offre_info.setVisible(false);
+        desc_info.setVisible(false);
+        get_bt.setVisible(false);
+        sort_c.getItems().add("Offre");
+        sort_c.getItems().add("Periode");
+        sort_c.getItems().add("Prix");
+        sort_c.getItems().add("Unsorted");
     }
 
     public void setU(Utilisateur t) {
@@ -126,8 +164,9 @@ public class Front_AbonnementController implements Initializable {
         }
         aff(new Type_abonnementService().getAll());
     }
-    public void aff(List<Type_abonnement> tas)
-    {
+
+    public void aff(List<Type_abonnement> tas) {
+        grid.getChildren().clear();
         AbonnementService as = new AbonnementService();
         if (as.HasAbonnement(u)) {
             Abonnement a = as.getAbonnement(u);
@@ -146,7 +185,7 @@ public class Front_AbonnementController implements Initializable {
         date_achat.setVisible(as.HasAbonnement(u));
         date_expiration.setVisible(as.HasAbonnement(u));
         int r = 1;
-        grid.add(new Label(" Nom de Type:"), 0, 0);
+        /*grid.add(new Label(" Nom de Type:"), 0, 0);
         grid.add(new Label(" description de Type:"), 0, 1);
         grid.add(new Label(" Periode de type:"), 0, 2);
         grid.add(new Label(" Offre de type:"), 0, 3);
@@ -154,21 +193,69 @@ public class Front_AbonnementController implements Initializable {
         Label l = new Label(" Get/Switch to:");
         grid.add(l, 0, 5);
         for (Type_abonnement ta : tas) {
-            grid.add(new Label(" " + ta.getNom()), r, 0);
-            grid.add(new Label(" " + ta.getDescription()), r, 1);
-            float periode = ta.getPeriode();
-            int y = (int) (periode / 365);
-            int m = (int) ((periode % 365) / 30);
-            int d = (int) ((periode % 365) % 30);
-            String s = y + " years," + m + " months and " + d + " days";
-            grid.add(new Label(" " + s), r, 2);
-            grid.add(new Label("" + (ta.getOffre() * 100) + "%"), r, 3);
-            grid.add(new Label("" + ta.getPrix() + "pt"), r, 4);
-            Button b = new Button(ta.getNom());
-            b.setOnAction((event) -> get_abonnement(event, ta));
-            grid.add(b, r, 5);
+        grid.add(new Label(" " + ta.getNom()), r, 0);
+        grid.add(new Label(" " + ta.getDescription()), r, 1);
+        float periode = ta.getPeriode();
+        int y = (int) (periode / 365);
+        int m = (int) ((periode % 365) / 30);
+        int d = (int) ((periode % 365) % 30);
+        String s = y + " years," + m + " months and " + d + " days";
+        grid.add(new Label(" " + s), r, 2);
+        grid.add(new Label("" + (ta.getOffre() * 100) + "%"), r, 3);
+        grid.add(new Label("" + ta.getPrix() + "pt"), r, 4);
+        Button b = new Button(ta.getNom());
+        b.setOnAction((event) -> get_abonnement(event, ta));
+        grid.add(b, r, 5);
+        r++;
+        }*/
+        for (Type_abonnement ta : tas) {
+            Button b = new Button(ta.getNom() + ": " + ta.getOffre() * 100 + "%" + " for " + ta.getPeriode() + " days");
+            b.setPrefSize(1000, 1000);
+            b.setStyle("-fx-text-fill: white;");
+            b.setOnAction((event) -> display(event, ta));
+            grid.add(b, 0, r);
             r++;
         }
+    }
+
+    public void display(ActionEvent event2, Type_abonnement ta) {
+        lb1.setVisible(true);
+        lb2.setVisible(true);
+        lb3.setVisible(true);
+        lb4.setVisible(true);
+        lb5.setVisible(true);
+        nom_info.setVisible(true);
+        nom_info.setText(ta.getNom());
+        prix_info.setVisible(true);
+        prix_info.setText(ta.getPrix() + "pt");
+        offre_info.setVisible(true);
+        offre_info.setText(ta.getOffre() * 100 + "%");
+        desc_info.setVisible(true);
+        desc_info.setText(ta.getDescription());
+        get_bt.setVisible(true);
+        get_bt.setOnAction((event) -> get_abonnement(event, ta));
+
+    }
+
+    @FXML
+    private void sort(ActionEvent event) {
+        if(null==sort_c.getValue()) 
+            aff(new Type_abonnementService().getAll());
+        else switch (sort_c.getValue()) {
+            case "Offre":
+                aff(new Type_abonnementService().trier_par_Offre());
+                break;
+            case "Periode":
+                aff(new Type_abonnementService().trier_par_periode());
+                break;
+            case "Prix":
+                aff(new Type_abonnementService().trier_par_prix());
+                break;
+            default:
+                aff(new Type_abonnementService().getAll());
+                break;
+        }
+                    
     }
 
 }

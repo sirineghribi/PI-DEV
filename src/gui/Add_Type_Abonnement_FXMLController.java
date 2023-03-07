@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package gui;
 
 import entity.Abonnement;
 import entity.Type_abonnement;
@@ -16,9 +16,8 @@ import java.io.Writer;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.beans.property.FloatProperty;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -37,6 +36,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.InputMethodEvent;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import services.AbonnementService;
@@ -81,6 +82,11 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
     private Button stat_bt;
     @FXML
     private Button export_bt;
+    @FXML
+    private TextField search_bar;
+    private List<Type_abonnement> sr=new Type_abonnementService().getAll();
+    @FXML
+    private Button search_bt;
 
     /**
      * initialises the controller class.
@@ -90,6 +96,13 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        search_bar.textProperty().addListener((observable) -> {
+    if(!new Type_abonnementService().search_byName(search_bar.getText()).isEmpty())
+            sr=new Type_abonnementService().search_byName(search_bar.getText());
+        else 
+            sr=new Type_abonnementService().search_byDesc(search_bar.getText());
+        list();
+});
         list();
     }
 
@@ -120,7 +133,7 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
     }
 
     public void list() {
-        ObservableList<Type_abonnement> liste = FXCollections.observableArrayList(new Type_abonnementService().getAll());
+        ObservableList<Type_abonnement> liste = FXCollections.observableArrayList(sr);
         list_type.setItems(liste);
         nom_col.setCellValueFactory(cell -> {
             StringProperty s = new SimpleStringProperty();
@@ -254,26 +267,39 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
             fc.setTitle("types d'abonnements");
             fc.setInitialFileName("type abonnements.csv.");
             String s = fc.showSaveDialog(list_type.getScene().getWindow()).toString();
+            //choosing file location
             if (s != null) {
                 File file = new File(s);
                 Writer w = new BufferedWriter(new FileWriter(file));
                 w.write("Nom,Prix,Offre,Periode,nbr_d'abonnement,pourcentage");
+                //columns's names
                 list_type.getItems().stream().forEach((ta) -> {
 
                     try {
                         float max = new AbonnementService().getAll().size();
                         float nbr = new AbonnementService().select_byType(new Abonnement(Date.valueOf(LocalDate.now()), ta, new Utilisateur())).size();
                         float per = (nbr * 100) / max;
-                        w.write("\n" + ta.getNom() + "   ," + ta.getPrix() + "    ," + ta.getOffre()*100 + "%   ," + ta.getPeriode() + "    ," + nbr + "           ," + per + "%");
+                        w.write("\n" + ta.getNom() + "   ," + ta.getPrix() + "    ," + ta.getOffre() * 100 + "%   ," + ta.getPeriode() + "    ," + nbr + "           ," + per + "%");
                     } catch (IOException ex) {
                         System.out.println("err:" + ex.getMessage());
                     }
                 });
+                //fill excel file
                 w.flush();
                 w.close();
+                //save and close
             }
         } catch (IOException ex) {
             System.out.println("err:" + ex.getMessage());
         }
+    }
+    
+    @FXML
+    private void search(ActionEvent event) {
+        if(!new Type_abonnementService().search_byName(search_bar.getText()).isEmpty())
+            sr=new Type_abonnementService().search_byName(search_bar.getText());
+        else 
+            sr=new Type_abonnementService().search_byDesc(search_bar.getText());
+        list();
     }
 }
