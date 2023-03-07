@@ -202,8 +202,7 @@ public class AbonnementService implements InterfaceService<Abonnement> {
 
     public Boolean HasAbonnement(Utilisateur u) {
         Abonnement a = new Abonnement(0, Date.valueOf(LocalDate.now()), new Type_abonnement(), u);
-        if (!this.select_byID_u(a).isEmpty()) {
-            this.select_byID_u(a).stream().forEach((ab) -> {
+            this.getAll().stream().forEach((ab) -> {
                 LocalDate date = LocalDate.parse((ab.getD().toString()));
                 date = date.plusDays((long) ab.getType().getPeriode());
                 if (date.isBefore(LocalDate.now())) {
@@ -216,9 +215,6 @@ public class AbonnementService implements InterfaceService<Abonnement> {
                 }
             });
             return !this.select_byID_u(a).isEmpty();
-        } else {
-            return false;
-        }
     }
 
     public Abonnement getAbonnement(Utilisateur u) {
@@ -244,34 +240,12 @@ public class AbonnementService implements InterfaceService<Abonnement> {
     }
 
     public void SMS(Abonnement a) throws IOException {
-        /*LocalDate date = LocalDate.parse((a.getD().toString()));
-        date = date.plusDays((long) a.getType().getPeriode());
-        int num = 29428612;
-        String msg = "Hello " + a.getC().getNom() + "!we are sorry to inform you that your subcribtion " + a.getType().getNom() + " has already expired at" + date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear();
-        System.out.println(msg);
-        String s = "curl.exe -X POST \"https://api.twilio.com/2010-04-01/Accounts/ACd76065a353d77ee7eb1bc1b22792a497/Messages.json\"";
-        s += " --data-urlencode \"Body=" + msg + "\"";
-        s += " --data-urlencode \"From=+12766002481\"";
-        s += " --data-urlencode \"To=+216" + num + "\"";
-        s += " -u \"ACd76065a353d77ee7eb1bc1b22792a497:3ac261280dc2001e7312e5cc6662392f\"";
-        ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", s);
-        builder.redirectErrorStream(true);
-        Process p = builder.start();
-        BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        String line;
-        while (true) {
-        line = r.readLine();
-        if (line == null) {
-        break;
-        }
-        System.out.println(line);
-        }*/
         int num=29428611;
         LocalDate date = LocalDate.parse((a.getD().toString()));
         date = date.plusDays((long) a.getType().getPeriode());
         String msg = "Hello " + a.getC().getNom() + " ! we are sorry to inform you that your subcribtion " + a.getType().getNom() + " has already expired at " + date.getDayOfMonth() + " " + date.getMonth() + " " + date.getYear();
         String ACCOUNT_SID ="ACd76065a353d77ee7eb1bc1b22792a497";
-        String AUTH_TOKEN = "174c9d6243eecec3e6008c8587e9af92";
+        String AUTH_TOKEN = "";
         /*String ACCOUNT_SID = System.getenv("TWILIO_ACCOUNT_SID");
         String AUTH_TOKEN = System.getenv("TWILIO_AUTH_TOKEN");*/
         Twilio.init(ACCOUNT_SID,AUTH_TOKEN);

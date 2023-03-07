@@ -117,23 +117,6 @@ public class Statistic_abonnementController implements Initializable {
 
     @FXML
     private void export(ActionEvent event) {
-        /*PrinterJob job = PrinterJob.createPrinterJob();
-        if (job != null) {
-        double x = 1.15;
-        double y = 1.45;
-        export_bt.setVisible(false);
-        back_bt.setVisible(false);
-        Parent node = export_bt.getScene().getRoot();
-        node.getTransforms().add(new Scale(x, y));
-        PageLayout pl = job.getPrinter().createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.EQUAL);
-        job.showPrintDialog((Stage) (export_bt.getScene().getWindow()));
-        job.printPage(pl, node);
-        job.endJob();
-        export_bt.setVisible(true);
-        back_bt.setVisible(true);
-        node.getTransforms().add(new Scale((1 / x), (1 / y)));
-        chart();
-        }*/
         float x=1.1f;
         float y=1.5f;
         float z=90;
@@ -174,7 +157,8 @@ public class Statistic_abonnementController implements Initializable {
             doc.save(s);
             doc.close();
             file.delete();
-        } catch (IOException ex) {
+        } catch (IOException ex) 
+        {
             System.out.println("err2" + ex.getMessage());
         }
         chart();

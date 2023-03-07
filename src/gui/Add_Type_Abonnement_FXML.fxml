@@ -34,7 +34,6 @@
       <Button fx:id="delete_type" layoutX="309.0" layoutY="336.0" mnemonicParsing="false" onAction="#delete_type" text="delete" />
       <Button fx:id="stat_bt" layoutX="384.0" layoutY="336.0" mnemonicParsing="false" onAction="#statistic" text="statistic" />
       <Button fx:id="export_bt" layoutX="460.0" layoutY="336.0" mnemonicParsing="false" onAction="#export" text="export" />
-      <TextField fx:id="search_bar" layoutX="221.0" layoutY="41.0" prefHeight="25.0" prefWidth="475.0" />
-      <Button fx:id="search_bt" layoutX="695.0" layoutY="41.0" mnemonicParsing="false" onAction="#search" text="🔍" />
+      <TextField fx:id="search_bar" layoutX="221.0" layoutY="41.0" prefHeight="25.0" prefWidth="502.0" />
    </children>
 </AnchorPane>
