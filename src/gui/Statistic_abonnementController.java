@@ -84,12 +84,15 @@ public class Statistic_abonnementController implements Initializable {
         new Type_abonnementService().getAll().stream().forEach((ta)
                 -> {
             Abonnement a = new Abonnement(Date.valueOf(LocalDate.now()), ta, new Utilisateur());
-            int per = new AbonnementService().select_byType(a).size() * 100 / new AbonnementService().getAll().size();
+            if (new AbonnementService().getAll().size()!=0)
+                {
+                int per = new AbonnementService().select_byType(a).size() * 100 / new AbonnementService().getAll().size();
             String cat = ta.getNom() + ":" + per + "%";
             float val = new AbonnementService().select_byType(a).size();
             if (val > 0) {
                 pieChartData.add(new PieChart.Data(cat, val));
             }
+                }
         });
         pie_abonnement.setData(pieChartData);
         pie_abonnement.setLabelLineLength(10);

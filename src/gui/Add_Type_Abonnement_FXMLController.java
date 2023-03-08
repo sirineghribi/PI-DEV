@@ -86,7 +86,13 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
     private TextField search_bar;
     private List<Type_abonnement> sr=new Type_abonnementService().getAll();
     @FXML
-    private Button search_bt;
+    private Button vol;
+    @FXML
+    private Button user;
+    @FXML
+    private Button avis;
+    @FXML
+    private Button type_ab;
 
     /**
      * initialises the controller class.
@@ -117,10 +123,8 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
                 ac.SetType_Abonnement(ta);
                 Stage s = (Stage) (Nom_type.getScene().getWindow());
                 s.close();
-                Scene scene = new Scene(root, 200, 300);
+                Scene scene = new Scene(root);
                 Stage SecondaryStage = new Stage();
-                SecondaryStage.setX(0);
-                SecondaryStage.setY(0);
                 SecondaryStage.setTitle("update_Type_Abonnement!");
                 SecondaryStage.setScene(scene);
                 SecondaryStage.show();
@@ -133,6 +137,7 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
     }
 
     public void list() {
+        list_type.getItems().clear();
         ObservableList<Type_abonnement> liste = FXCollections.observableArrayList(sr);
         list_type.setItems(liste);
         nom_col.setCellValueFactory(cell -> {
@@ -217,6 +222,7 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
             new Type_abonnementService().ajouter(ta);
             info("type d'abonnement ajouteé", "check the list for any modifications");
             clear_TextField();
+            sr=new Type_abonnementService().getAll();
             list();
         } else {
             alert("Failed to add type_abonnement", "Check your inputs");
@@ -228,6 +234,7 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
         Type_abonnement ta = list_type.getSelectionModel().selectedItemProperty().get();
         if ((ta != null) && (new AbonnementService().select_byType(new Abonnement(Date.valueOf(LocalDate.MAX), ta, new Utilisateur()))).isEmpty()) {
             new Type_abonnementService().supprimer(ta);
+            sr=new Type_abonnementService().getAll();
             list();
         } else if (ta == null) {
             alert("failed to delete type_abonnement", "pelese select a type");
@@ -250,8 +257,8 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
             s.close();
             Scene scene = new Scene(root, 740, 410);
             Stage SecondaryStage = new Stage();
-            SecondaryStage.setX(0);
-            SecondaryStage.setY(0);
+            /*SecondaryStage.setX(0);
+            SecondaryStage.setY(0);*/
             SecondaryStage.setTitle("Statistic_Abonnement!");
             SecondaryStage.setScene(scene);
             SecondaryStage.show();
@@ -294,12 +301,72 @@ public class Add_Type_Abonnement_FXMLController implements Initializable {
         }
     }
     
-    @FXML
     private void search(ActionEvent event) {
         if(!new Type_abonnementService().search_byName(search_bar.getText()).isEmpty())
             sr=new Type_abonnementService().search_byName(search_bar.getText());
         else 
             sr=new Type_abonnementService().search_byDesc(search_bar.getText());
         list();
+    }
+
+    @FXML
+    private void open_vol(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Vols.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher Vol !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void openuser(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AfficherUtilisateur.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_avis(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Back_avis.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_type_ab(ActionEvent event) {
     }
 }

@@ -11,34 +11,112 @@ package entity;
  */
 public class Avis {
     private int id_avis ;
-    private String note,description;
-    private int id_c;
+    private NoteA note;
+    private String description;
+    private Utilisateur utilisateur;
+    private Vol vol;
+   
+ 
     public Avis(){}
 
-    public Avis(int id_avis, String note, String description, int id_c) {
+    public Avis(int id_avis) {
         this.id_avis = id_avis;
+    }
+
+    public Avis(NoteA note, Vol vol) {
+        this.note = note;
+        this.vol = vol;
+    }
+
+    public Avis(NoteA note, String description) {
         this.note = note;
         this.description = description;
-        this.id_c = id_c;
     }
 
     
 
-    public void setId_c(int id_c) {
-        this.id_c = id_c;
+    public Vol getVol() {
+        return vol;
     }
 
-    public int getId_c() {
-        return id_c;
+    public void setVol(Vol vol) {
+        this.vol = vol;
     }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public NoteA getNote() {
+        return note;
+    }
+
+    
+    
+    public void setNote(NoteA note) {
+        this.note = note;
+    }
+
+    public Avis(int id_avis, NoteA note, String description, Utilisateur utilisateur, Vol vol) {
+        this.id_avis = id_avis;
+        this.note = note;
+        this.description = description;
+        this.utilisateur = utilisateur;
+        this.vol = vol;
+    }
+
+    @Override
+    public String toString() {
+        return "Avis{" + "id_avis=" + id_avis + ", note=" + note + ", description=" + description + ", utilisateur=" + utilisateur + ", vol=" + vol + '}';
+    }
+
+   
+
+   
+
+   
+
+    
+
+    public Avis(NoteA note, String description, Utilisateur utilisateur, Vol vol) {
+        this.note = note;
+        this.description = description;
+        this.utilisateur = utilisateur;
+        this.vol = vol;
+    }
+
+  
+    public Avis(int id_avis, NoteA note, String description, Utilisateur utilisateur) {
+        this.id_avis = id_avis;
+        this.note = note;
+        this.description = description;
+        this.utilisateur = utilisateur;
+    }
+
+    public Avis(NoteA note, String description, Utilisateur utilisateur) {
+        this.note = note;
+        this.description = description;
+        this.utilisateur = utilisateur;
+    }
+
+    public Avis(int id_avis, String description) {
+        this.id_avis = id_avis;
+        this.description = description;
+    }
+
+  
+
+  
 
     public int getId_avis() {
         return id_avis;
     }
 
-    public String getNote() {
-        return note;
-    }
+   
 
     public String getDescription() {
         return description;
@@ -48,28 +126,24 @@ public class Avis {
         this.id_avis = id_avis;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-    }
+   
 
     public void setDescription(String description) {
         this.description = description;
     }
-
-    @Override
-    public String toString() {
-        return "Avis{" + "id_avis=" + id_avis + ", note=" + note + ", description=" + description + '}';
+public static NoteA enumnote(String s ){
+    if(s.equals(NoteA.Excellent.toString())){
+        return NoteA.Excellent;
     }
-
-    public Avis(String note, String description) {
-        this.note = note;
-        this.description = description;
-    }
-
-    public Avis(int id_avis, String note, String description) {
-        this.id_avis = id_avis;
-        this.note = note;
-        this.description = description;
-    }
+else if(s.equals(NoteA.Bien.toString())){
+return NoteA.Bien;
+    
+}
+    else if(s.equals(NoteA.Moyen.toString())){
+return NoteA.Moyen;
+    
+}
+    else return NoteA.Mauvais;
+} 
     
 }

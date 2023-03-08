@@ -9,13 +9,17 @@ import entity.Carte_fidelite;
 import entity.Reservation;
 import entity.Utilisateur;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import tools.MaConnection;
 
 /**
@@ -56,7 +60,7 @@ public class CarteService implements InterfaceService<Carte_fidelite>{
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
 
-                Carte_fidelite u = new Carte_fidelite(s.getInt("carte_fidelite.numero"), s.getInt("carte_fidelite.nbr_point"), new Utilisateur( s.getInt("utilisateur.id"), s.getString("utilisateur.nom"), s.getString("utilisateur.prenom")));
+                Carte_fidelite u = new Carte_fidelite(s.getInt("carte_fidelite.numero"), s.getInt("carte_fidelite.nbr_point"), new Utilisateur( s.getInt("utilisateur.id"), s.getString("utilisateur.nom"), s.getString("utilisateur.prenom")),s.getDate("carte_fidelite.date_c"));
                 carte.add(u);
                
               
@@ -194,6 +198,13 @@ public class CarteService implements InterfaceService<Carte_fidelite>{
            c1.modifier(c);
                
             }
+    }
+    public List<Carte_fidelite> find_byYear(int year)
+    {
+        return getAll().stream()
+        .filter((cf) -> (LocalDate.parse(cf.getDate_c().toString())).getYear() == year)
+        .collect(Collectors.toList());
+        
     }
   
 }

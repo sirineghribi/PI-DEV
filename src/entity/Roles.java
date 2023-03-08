@@ -7,7 +7,7 @@ package entity;
 
 /**
  *
- * @author zied loukil
+ * @author Zeineb Ben Mami
  */
 public enum Roles {
     A,C;

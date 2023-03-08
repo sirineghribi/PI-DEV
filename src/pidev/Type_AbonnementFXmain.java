@@ -23,7 +23,7 @@ public class Type_AbonnementFXmain extends Application {
             String chemin = "/gui/Add_Type_Abonnement_FXML.fxml";
             String chemin2 = "/gui/Front_Abonnement.fxml";
             String chemin3 = "/gui/Statistic_abonnement.fxml";
-            Parent root = FXMLLoader.load(getClass().getResource(chemin2));
+            Parent root = FXMLLoader.load(getClass().getResource(chemin));
             //Scene scene = new Scene(root,650, 450);
             Scene scene = new Scene(root);
             primaryStage.setTitle("Type_Abonnement!");

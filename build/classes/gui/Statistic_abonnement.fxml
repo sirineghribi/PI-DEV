@@ -10,12 +10,12 @@
    <children>
       <ImageView fitHeight="482.0" fitWidth="760.0" layoutX="-11.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../esprit/images/fond.png" />
+            <Image url="@../image/fond.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutX="14.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0" />
       <PieChart fx:id="pie_abonnement" layoutX="109.0" layoutY="14.0" prefHeight="391.0" prefWidth="532.0" title="statistique d'abonnement" />
-      <Button fx:id="back_bt" layoutX="20.0" layoutY="353.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="64.0" text="back" />
-      <Button fx:id="export_bt" layoutX="650.0" layoutY="353.0" mnemonicParsing="false" onAction="#export" text="Export pdf" />
+      <AnchorPane layoutX="14.0" layoutY="78.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="back_bt" layoutX="20.0" layoutY="353.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="64.0" text="back" textFill="WHITE" />
+      <Button fx:id="export_bt" layoutX="650.0" layoutY="353.0" mnemonicParsing="false" onAction="#export" text="Export pdf" textFill="WHITE" />
    </children>
 </AnchorPane>

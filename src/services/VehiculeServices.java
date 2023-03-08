@@ -66,7 +66,22 @@ public class VehiculeServices implements InterfaceService<Vehicule> {
 
     @Override
     public List<Vehicule> findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List <Vehicule> mt=new ArrayList<>();
+       try {
+             String sql = "select * from vehicule where id_vehicule=?";
+             PreparedStatement ste = cnx.prepareStatement(sql);
+             ste.setInt(1,id);
+             ResultSet s = ste.executeQuery();
+             while (s.next()) {
+                Vehicule v = new Vehicule(s.getInt("id_vehicule"),s.getInt("nbr_pas"));
+                mt.add(v);
+            }
+            
+       }
+       catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+      return mt; 
     }
 
 public void supprimerVehicule(Vehicule v) {

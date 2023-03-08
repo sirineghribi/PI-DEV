@@ -6,6 +6,8 @@
 package entity;
 
 import java.util.Objects;
+import entity.Typerec;
+import entity.Utilisateur;
 
 /**
  *
@@ -13,18 +15,70 @@ import java.util.Objects;
  */
 public class Reclamation {
     private int id_rec;
-    private String type;
+    private Typerec type;
     private String description;
-    private int id_c;
+    private Utilisateur utilisateur;
     private String etat;
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
+    public Reclamation(Typerec type, String description) {
+        this.type = type;
+        this.description = description;
+    }
+
+    public Reclamation(int id_rec, String description) {
+        this.id_rec = id_rec;
+        this.description = description;
+    }
+
+    public Reclamation(String description) {
+        this.description = description;
+    }
+
+    public Reclamation(Typerec type, String description, Utilisateur utilisateur) {
+        this.type = type;
+        this.description = description;
+        this.utilisateur = utilisateur;
+    }
+
+   
+
+    public Typerec getType() {
+        return type;
+    }
+
+    public void setType(Typerec type) {
+        this.type = type;
+    }
+
+    public Utilisateur getUtilisateur() {
+        return utilisateur;
+    }
+
+    public void setUtilisateur(Utilisateur utilisateur) {
+        this.utilisateur = utilisateur;
+    }
+
+    public Reclamation(Typerec type, String description, Utilisateur utilisateur, String etat) {
+        this.type = type;
+        this.description = description;
+        this.utilisateur = utilisateur;
+        this.etat = etat;
+    }
+
+    public Reclamation(int id_rec, Typerec type, String description, Utilisateur utilisateur, String etat) {
+        this.id_rec = id_rec;
+        this.type = type;
+        this.description = description;
+        this.utilisateur = utilisateur;
+        this.etat = etat;
     }
 
     @Override
+    public String toString() {
+        return "Reclamation{" + "id_rec=" + id_rec + ", type=" + type + ", description=" + description + ", utilisateur=" + utilisateur + ", etat=" + etat + '}';
+    }
+
+      @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
@@ -42,44 +96,18 @@ public class Reclamation {
         return true;
     }
 
-   
-
-    public int getId_c() {
-        return id_c;
-    }
-    
-
-    public Reclamation(String type, String description, int id_c,String etat) {
-        this.type = type;
-        this.description = description;
-        this.id_c = id_c;
-        this.etat = etat;
-      
-    }
-
-    public void setId_c(int id_c) {
-        this.id_c = id_c;
-    }
-    
+  
+  
 public Reclamation(){}
 
-    public Reclamation(int id_rec, String type, String description,int id_c, String etat) {
-        this.id_rec = id_rec;
-        this.type = type;
-        this.description = description;
-        this.id_c= id_c;
-        this.etat=etat;
-    }
-
+    
   
 
     public int getId_rec() {
         return id_rec;
     }
 
-    public String getType() {
-        return type;
-    }
+   
 
     public String getDescription() {
         return description;
@@ -93,9 +121,7 @@ public Reclamation(){}
         this.id_rec = id_rec;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
+  
 
     public void setDescription(String description) {
         this.description = description;
@@ -105,11 +131,16 @@ public Reclamation(){}
         this.etat = etat;
     }
 
-    @Override
-    public String toString() {
-        return "Reclamation{" + "id_rec=" + id_rec + ", type=" + type + ", description=" + description + ", id_c=" + id_c + ", etat=" + etat + '}';
+   
+public static Typerec enumtype(String s ){
+    if(s.equals(Typerec.service.toString())){
+        return Typerec.service;
     }
-
+else if(s.equals(Typerec.technique.toString())){
+return Typerec.technique;
+}
+    else return Typerec.autre;
+}
    
     
 

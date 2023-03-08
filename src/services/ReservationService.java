@@ -167,4 +167,13 @@ public class ReservationService implements InterfaceService<Reservation> {
     public void modifier(Reservation t) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    public List<Utilisateur> getUsers()
+    {
+        List<Utilisateur> l=new ArrayList<Utilisateur>();
+        getAll().forEach((r)->{
+            if(!l.contains(r.getUtilisateur()))
+                l.add(r.getUtilisateur());
+        });
+        return l;
+    }
 }

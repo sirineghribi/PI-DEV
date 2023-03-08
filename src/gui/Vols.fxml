@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="723.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VolsController">
+   <children>
+      <ImageView fitHeight="460.0" fitWidth="816.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <TableView fx:id="tablevols" layoutX="8.0" layoutY="129.0" prefHeight="242.0" prefWidth="800.0" stylesheets="@../Styles/dahsboard.css">
+        <columns>
+          <TableColumn fx:id="date_c" prefWidth="86.40002727508545" text="date" />
+            <TableColumn fx:id="destination_c" prefWidth="84.0" text="Destination" />
+            <TableColumn fx:id="prix_c" prefWidth="73.59996032714844" text="Prix" />
+            <TableColumn fx:id="etat_c" prefWidth="57.60003662109375" text="Etat" />
+            <TableColumn fx:id="place_dispo" prefWidth="75.0" text="place_dispo" />
+            <TableColumn fx:id="categorie_v" prefWidth="75.0" text="categorie_v" />
+            <TableColumn fx:id="poids_sup" prefWidth="75.0" text="poids_sup" />
+            <TableColumn fx:id="vitesse" prefWidth="60.79998779296875" text="vitesse" />
+            <TableColumn fx:id="action" prefWidth="96.0" text="Supprimer" />
+            <TableColumn fx:id="action1" prefWidth="95.199951171875" text="Modifier" />
+        </columns>
+      </TableView>
+      <Label layoutX="48.0" layoutY="43.0" text="Les vols " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="ajout_onClick" layoutX="684.0" layoutY="90.0" mnemonicParsing="false" onAction="#ajout_onClick" text="ajouter vol" textFill="#282628" />
+      <TextField fx:id="search" layoutX="475.0" layoutY="90.0" />
+      <Button fx:id="trier" layoutX="720.0" layoutY="383.0" mnemonicParsing="false" onAction="#trier" prefHeight="26.0" prefWidth="58.0" text="Trier" />
+      <Button fx:id="vol" layoutX="101.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
+      <Button fx:id="user" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
+      <Button fx:id="avis" layoutX="203.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="150.0" text="Reclamation_avis" />
+      <Button fx:id="type_ab" layoutX="353.0" mnemonicParsing="false" onAction="#open_type_ab" prefHeight="34.0" prefWidth="150.0" text="Type abonnement" />
+      <Button layoutX="503.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+      <Button layoutX="605.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+   </children>
+</AnchorPane>

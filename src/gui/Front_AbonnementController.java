@@ -10,6 +10,8 @@ import entity.Carte_fidelite;
 import entity.Genre;
 import entity.Type_abonnement;
 import entity.Utilisateur;
+import static gui.ModifierUtilisateurController.user1;
+import static gui.VolfrontController.user;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
@@ -18,9 +20,12 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -31,6 +36,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import services.AbonnementService;
 import services.CarteService;
 import services.Type_abonnementService;
@@ -83,6 +89,14 @@ public class Front_AbonnementController implements Initializable {
     private Button get_bt;
     @FXML
     private ComboBox<String> sort_c;
+    @FXML
+    private Button accueil;
+    @FXML
+    private Button profil;
+    @FXML
+    private Button abonnement;
+    @FXML
+    private Button rec;
 
     /**
      * initialises the controller class.
@@ -256,6 +270,69 @@ public class Front_AbonnementController implements Initializable {
                 break;
         }
                     
+    }
+
+    @FXML
+    private void open_accueil(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Volfront.fxml"));
+                                    Parent root =loader.load();
+                                    accueil.getScene().setRoot(root);
+                                    VolfrontController rc =loader.getController();
+                                    rc.setuser(u);
+                                    
+                                    Scene scene = new Scene(root,893,394);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Reserver Vol !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_profil(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ModifierUtilisateur.fxml"));
+            Parent root = loader.load();
+            accueil.getScene().setRoot(root);
+            ModifierUtilisateurController controller = loader.getController();
+            controller.initUser(u);
+            Scene scene = new Scene(root);
+            Stage SecondaryStage = new Stage();
+            SecondaryStage.setTitle("Reserver Vol !");
+            SecondaryStage.setScene(scene);
+            SecondaryStage.show();
+        } catch (Exception ex) {
+            System.out.println("err:" + ex);
+        }
+    }
+
+    @FXML
+    private void open_abonnement(ActionEvent event) {
+    }
+
+    @FXML
+    private void open_reclamation(ActionEvent event) {
+        
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AjoutReclamation.fxml"));
+            Parent root = loader.load();
+            accueil.getScene().setRoot(root);
+            AjoutReclamationController arc = loader.getController();
+            arc.setuser(u);
+            Scene scene = new Scene(root);
+            Stage SecondaryStage = new Stage();
+            SecondaryStage.setTitle("Reserver Vol !");
+            SecondaryStage.setScene(scene);
+            SecondaryStage.show();
+        } catch (Exception ex) {
+            System.out.println("err:" + ex);
+        }
     }
 
 }

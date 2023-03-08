@@ -6,8 +6,16 @@
 package entity;
 
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
+import services.UtilisateurService;
 
 /**
  *
@@ -15,14 +23,15 @@ import javafx.scene.control.TableColumn;
  */
 
 
-   public class Utilisateur  {
+public class Utilisateur  {
     private int id;
     private String nom,prenom,email,mdp;
     private Date date_n;
-   
+   private int num;
     Roles type;
     Genre genre;
     private String gendre;
+  
     public Utilisateur() {
     }
 
@@ -85,12 +94,71 @@ import javafx.scene.control.TableColumn;
         this.date_n = date_n;
     }
 
+    
+    
+    public Utilisateur(String nom, String prenom, Genre genre, String email, String mdp, Date date_n, Roles type,int num) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.genre = genre;
+        this.email = email;
+        this.mdp = mdp;
+        this.date_n = date_n;
+        this.type = type;
+        this.num=num;
+    }
+
+    
+     public Utilisateur(int id, String nom, String prenom, Genre genre, String email, String mdp, Roles type, Date date_n,int num) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.genre = genre;
+        this.email = email;
+        this.mdp = mdp;
+        this.type = type;
+        this.date_n = date_n;
+        this.num=num;
+    }
+
+    public Utilisateur(int id, String nom, String prenom, String email) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+      
+      
+       
+    }
+
+    public Utilisateur(int id, String nom, String prenom, String email, String mdp, Date date_n, int num, Genre genre) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.mdp = mdp;
+        this.date_n = date_n;
+        this.num = num;
+        this.genre = genre;
+    }
+    
+    
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
+    
+    
     public Utilisateur(int id) {
         this.id=id;
     }
 
   
-
+ public Utilisateur(String email) {
+        this.email=email;
+    }
     
 
    
@@ -229,5 +297,12 @@ import javafx.scene.control.TableColumn;
                    genre = Genre.femme;
                return genre;
     }
+
     
+
+   
+
+   
+    
+   
 }

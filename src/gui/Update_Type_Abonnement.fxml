@@ -6,19 +6,25 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="285.0" prefWidth="184.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Update_Type_AbonnementController">
+<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="723.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Update_Type_AbonnementController">
    <children>
-      <ImageView fitHeight="312.0" fitWidth="582.0" layoutX="-7.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="460.0" fitWidth="816.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../esprit/images/fond.png" />
+            <Image url="@../image/fond.png" />
          </image>
       </ImageView>
-      <TextField fx:id="nom_type" layoutX="14.0" layoutY="14.0" promptText="Nom" />
-      <TextField fx:id="desc_type" layoutX="14.0" layoutY="58.0" promptText="Description" />
-      <TextField fx:id="prix_type" layoutX="14.0" layoutY="103.0" promptText="Prix" />
-      <TextField fx:id="offre_type" layoutX="14.0" layoutY="149.0" promptText="Offre" />
-      <TextField fx:id="periode_type" layoutX="14.0" layoutY="200.0" promptText="Periode" />
-      <Button fx:id="update_type" layoutX="100.0" layoutY="244.0" mnemonicParsing="false" onAction="#update_type" prefHeight="25.0" prefWidth="63.0" text="Update" />
-      <Button fx:id="cancel_type" layoutX="14.0" layoutY="244.0" mnemonicParsing="false" onAction="#cancel_update" prefHeight="25.0" prefWidth="63.0" text="cancel" />
+      <TextField fx:id="nom_type" layoutX="408.0" layoutY="100.0" promptText="Nom" />
+      <TextField fx:id="desc_type" layoutX="408.0" layoutY="144.0" promptText="Description" />
+      <TextField fx:id="prix_type" layoutX="408.0" layoutY="189.0" promptText="Prix" />
+      <TextField fx:id="offre_type" layoutX="408.0" layoutY="235.0" promptText="Offre" />
+      <TextField fx:id="periode_type" layoutX="408.0" layoutY="286.0" promptText="Periode" />
+      <Button fx:id="update_type" layoutX="494.0" layoutY="330.0" mnemonicParsing="false" onAction="#update_type" prefHeight="25.0" prefWidth="63.0" text="Update" />
+      <Button fx:id="cancel_type" layoutX="408.0" layoutY="330.0" mnemonicParsing="false" onAction="#cancel_update" prefHeight="25.0" prefWidth="63.0" text="cancel" />
+      <Button fx:id="vol" layoutX="100.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
+      <Button fx:id="user" layoutX="-1.0" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
+      <Button fx:id="avis" layoutX="202.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="150.0" text="Reclamation_avis" />
+      <Button fx:id="type_ab" layoutX="352.0" mnemonicParsing="false" onAction="#open_type_ab" prefHeight="34.0" prefWidth="150.0" text="Type abonnement" />
+      <Button layoutX="502.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+      <Button layoutX="604.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
    </children>
 </AnchorPane>

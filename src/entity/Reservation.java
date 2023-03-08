@@ -7,6 +7,7 @@ package entity;
 
 import java.sql.Date;
 
+
 /**
  *
  * @author lenovo
@@ -16,7 +17,7 @@ public class Reservation {
     private int id_r,cin,num_phone,conditionA;
     private String etat;
     private Date date_res; 
-    float prix;
+    private float prix;
     private Vol vol ;
     private Utilisateur utilisateur;
 
@@ -90,9 +91,30 @@ public class Reservation {
         
     }
 
-    public Reservation(int aInt, int aInt0, int aInt1, int aInt2, String string, Date date, float aFloat, Utilisateur u) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Reservation(int id_r,  int num_phone, String etat, Date date_res, float prix, Vol vol, Utilisateur utilisateur) {
+        this.id_r = id_r;
+        this.num_phone = num_phone;
+        this.etat = etat;
+        this.date_res = date_res;
+        this.prix = prix;
+        this.vol = vol;
+        this.utilisateur = utilisateur;
     }
+
+    public Reservation(int id_r, int cin, int num_phone, String etat, Date date_res, float prix, Vol vol, Utilisateur utilisateur) {
+        this.id_r = id_r;
+        this.cin = cin;
+        this.num_phone = num_phone;
+        this.etat = etat;
+        this.date_res = date_res;
+        this.prix = prix;
+        this.vol = vol;
+        this.utilisateur = utilisateur;
+    }
+    
+    
+   
+   
     public int getId_r() {
         return id_r;
     }
@@ -169,6 +191,11 @@ public class Reservation {
     public String toString() {
         return "Reservation{" + "id_r=" + id_r + ", cin=" + cin + ", num_phone=" + num_phone + ", conditionA=" + conditionA + ", etat=" + etat + ", date_res=" + date_res + ", prix=" + prix + ", vol=" + vol + ", utilisateur=" + utilisateur + '}';
     }
+
+    
+
+    
+
     
     
     

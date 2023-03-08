@@ -7,8 +7,10 @@ package entity;
 
 /**
  *
- * @author zied loukil
+ * @author Zeineb Ben Mami
  */
 public enum Genre {
+    
     femme,homme;
+    
 }
