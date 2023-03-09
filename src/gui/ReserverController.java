@@ -22,6 +22,8 @@ import entity.Genre;
 import entity.Reservation;
 import entity.Utilisateur;
 import entity.Vol;
+import static gui.ReservationController.user;
+import static gui.VolfrontController.user;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -90,6 +92,10 @@ public class ReserverController implements Initializable {
     private Button accueil1;
     @FXML
     private Button profil;
+    @FXML
+    private Button formation;
+    @FXML
+    private Button vehicule;
     public void setuser(Utilisateur user)
     {
        this.user=user; 
@@ -388,6 +394,46 @@ public class ReserverController implements Initializable {
                                     Scene scene = new Scene(root);
                                     Stage SecondaryStage=new Stage();
                                     SecondaryStage.setTitle("Reserver Vol !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_formation(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Frontformation.fxml"));
+            Parent root = loader.load();
+            accueil1.getScene().setRoot(root);
+            FrontformationController arc = loader.getController();
+            arc.setuser(user);
+            Scene scene = new Scene(root);
+            Stage SecondaryStage = new Stage();
+            SecondaryStage.setTitle("Interplanetary");
+            SecondaryStage.setScene(scene);
+            SecondaryStage.show();
+        } catch (Exception ex) {
+            System.out.println("err:" + ex);
+        }
+    }
+
+    @FXML
+    private void open_vehicule(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/front_vh.fxml"));
+                                    Parent root =loader.load();
+                                    accueil1.getScene().setRoot(root);
+                                    Front_vhController rc =loader.getController();
+                                    rc.setuser(user);
+                                    
+                                    Scene scene = new Scene(root,893,394);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Interplanetary");
                                     SecondaryStage.setScene(scene);
                                     SecondaryStage.show();
                                 }

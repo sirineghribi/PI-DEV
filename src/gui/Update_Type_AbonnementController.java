@@ -50,6 +50,8 @@ public class Update_Type_AbonnementController implements Initializable {
     private Button avis;
     @FXML
     private Button type_ab;
+    @FXML
+    private Button formation;
 
     /**
      * initialises the controller class.
@@ -140,7 +142,7 @@ public class Update_Type_AbonnementController implements Initializable {
 
     @FXML
     private void open_vol(ActionEvent event) {
-        try
+         try
                                 {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Vols.fxml"));
                                     Parent root =loader.load();
@@ -159,8 +161,7 @@ public class Update_Type_AbonnementController implements Initializable {
 
     @FXML
     private void openuser(ActionEvent event) {
-        
-         try
+        try
                                 {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AfficherUtilisateur.fxml"));
                                     Parent root =loader.load();
@@ -179,7 +180,7 @@ public class Update_Type_AbonnementController implements Initializable {
 
     @FXML
     private void open_avis(ActionEvent event) {
-         try
+        try
                                 {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Back_avis.fxml"));
                                     Parent root =loader.load();
@@ -208,6 +209,47 @@ public class Update_Type_AbonnementController implements Initializable {
                                     SecondaryStage.setTitle("Afficher utilisateurs !");
                                     SecondaryStage.setScene(scene);
                                     SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_formation(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/displayformation.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_vehicule(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/afficher_vh.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
                                 }
                                 catch(Exception ex)
                                 {

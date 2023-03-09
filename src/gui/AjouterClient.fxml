@@ -14,7 +14,7 @@
    <children>
       <ImageView fitHeight="428.0" fitWidth="812.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../esprit/images/fond.png" />
+            <Image url="@../image/fond.png" />
          </image>
       </ImageView>
       <Label layoutX="48.0" layoutY="60.0" text="Nom:" textFill="#faf9f9" />
@@ -35,5 +35,6 @@
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" scaleX="0.0" scaleY="0.0" scaleZ="0.0" />
       <Label layoutX="49.0" layoutY="349.0" text="Num Tel" textFill="#faf5f5" />
       <TextField fx:id="txtnum" layoutX="136.0" layoutY="354.0" prefHeight="26.0" prefWidth="130.0" promptText="Telephone " />
+      <Button fx:id="login" layoutX="636.0" layoutY="380.0" mnemonicParsing="false" onAction="#open_login" text="se connecter" />
    </children>
 </AnchorPane>

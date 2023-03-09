@@ -5,18 +5,43 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="345.0" prefWidth="383.0" xmlns:fx="http://javafx.com/fxml/1" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" fx:controller="gui.ModifyFormationController">
+<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="723.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifyFormationController">
    <children>
-      <Label layoutX="34.0" layoutY="127.0" text="Date :" />
-      <Label layoutX="34.0" layoutY="172.0" text="Type preparation" />
-      <Label layoutX="34.0" layoutY="219.0" text="Nombre d'heure" />
-      <ComboBox fx:id="preptype" layoutX="185.0" layoutY="168.0" prefWidth="150.0" />
-      <TextField fx:id="nbrhours" layoutX="186.0" layoutY="215.0" />
-      <Button fx:id="modifyformation" layoutX="161.0" layoutY="286.0" mnemonicParsing="false" text="Modifier" />
-      <DatePicker fx:id="datepicker" layoutX="186.0" layoutY="123.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label layoutX="50.0" layoutY="35.0" text="Modifier Formation" />
+      <ImageView fitHeight="460.0" fitWidth="816.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="245.0" layoutY="175.0" text="Date :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="245.0" layoutY="220.0" text="Type preparation" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <Label layoutX="245.0" layoutY="267.0" text="Nombre d'heure" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></Label>
+      <ComboBox fx:id="preptype" layoutX="396.0" layoutY="216.0" prefWidth="150.0" />
+      <TextField fx:id="nbrhours" layoutX="397.0" layoutY="263.0" />
+      <Button fx:id="modifyformation" layoutX="355.0" layoutY="325.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="80.0" text="Modifier" />
+      <DatePicker fx:id="datepicker" layoutX="397.0" layoutY="171.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="302.0" layoutY="107.0" text="Modifier Formation" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Button fx:id="vol" layoutX="100.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
+      <Button fx:id="user" layoutX="-1.0" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
+      <Button fx:id="avis" layoutX="202.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="150.0" text="Reclamation_avis" />
+      <Button fx:id="type_ab" layoutX="352.0" mnemonicParsing="false" onAction="#open_type_ab" prefHeight="34.0" prefWidth="150.0" text="Type abonnement" />
+      <Button fx:id="formation" layoutX="502.0" mnemonicParsing="false" onAction="#open_formation" prefHeight="34.0" prefWidth="189.0" text="Formations_maintenances" />
+      <Button layoutX="691.0" mnemonicParsing="false" onAction="#open_vehicule" prefHeight="34.0" prefWidth="124.0" text="Vehicules" />
    </children>
 </AnchorPane>

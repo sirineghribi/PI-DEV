@@ -91,10 +91,11 @@ public ResultSet result;
                 try {
                     Stage stageE = (Stage)insc.getScene().getWindow();
                     stageE.close();
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("ModifierUtilisateur.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("interplanetary.fxml"));
                     Parent root = loader.load();
-                    ModifierUtilisateurController controller = loader.getController();
-                    controller.initUser(user);
+                    //ModifierUtilisateurController controller = loader.getController();
+                    InterplanetaryController controller = loader.getController();
+                    controller.setuser(user);
                    
                     Scene scene = new Scene(root, 893,394);
                     Stage stage = (Stage) glob.getScene().getWindow();
@@ -204,6 +205,8 @@ public ResultSet result;
     @FXML
     private void insc(ActionEvent event) {
           try {
+              Stage stageE = (Stage)insc.getScene().getWindow();
+              stageE.close();
             FXMLLoader loader = new   FXMLLoader(getClass().getResource("AjouterClient.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);

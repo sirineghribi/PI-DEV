@@ -69,6 +69,10 @@ public class Front_ReclamationController implements Initializable {
     static Reclamation reclamation;
     @FXML
     private Button abonnement;
+    @FXML
+    private Button formation;
+    @FXML
+    private Button vehicule;
     /**
      * Initializes the controller class.
      */
@@ -276,5 +280,46 @@ tab.setItems(rs.afficher_Reclamation());*/
         } catch (Exception ex) {
             System.out.println("err:" + ex);
         }
+    }
+
+    @FXML
+    private void open_formation(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Frontformation.fxml"));
+            Parent root = loader.load();
+            accueil.getScene().setRoot(root);
+            FrontformationController arc = loader.getController();
+            arc.setuser(user1);
+            Scene scene = new Scene(root);
+            Stage SecondaryStage = new Stage();
+            SecondaryStage.setTitle("Interplanetary");
+            SecondaryStage.setScene(scene);
+            SecondaryStage.show();
+        } catch (Exception ex) {
+            System.out.println("err:" + ex);
+        }
+    }
+
+    @FXML
+    private void open_vehicule(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/front_vh.fxml"));
+                                    Parent root =loader.load();
+                                    accueil.getScene().setRoot(root);
+                                    Front_vhController rc =loader.getController();
+                                    rc.setuser(user1);
+                                    
+                                    Scene scene = new Scene(root,893,394);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Interplanetary");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+        
     }
 }

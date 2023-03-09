@@ -5,14 +5,13 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="526.0" prefWidth="960.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="gui.StatisticsmaintController">
+<AnchorPane id="AnchorPane" prefHeight="402.0" prefWidth="712.0" style="-fx-background-color: purple;" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.StatisticsmaintController">
    <children>
-      <ImageView fitHeight="540.0" fitWidth="960.0" layoutY="-6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="402.0" fitWidth="712.0" layoutX="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../esprit/images/fond.png" />
+            <Image url="@../image/fond.png" />
          </image>
       </ImageView>
-      <PieChart fx:id="bar" layoutX="230.0" layoutY="67.0" />
+      <PieChart fx:id="bar" layoutX="70.0" layoutY="16.0" prefHeight="370.0" prefWidth="530.0" />
    </children>
 </AnchorPane>

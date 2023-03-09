@@ -70,6 +70,8 @@ public class Back_reclamationController implements Initializable {
     private Button avis;
     @FXML
     private Button type_ab;
+    @FXML
+    private Button formation;
     /**
      * Initializes the controller class.
      */
@@ -231,26 +233,29 @@ id_c.setCellValueFactory(cell -> {
     private void trier(ActionEvent event) {
         list=new ReclamationService().trier();
         aff();
+          Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Information Dialog");
+            alert.setHeaderText("la liste est triée DESC!");
+            alert.showAndWait();
     }
 
     @FXML
     private void idcherche(ActionEvent event) {
+        
     }
 
     @FXML
     private void recherche(ActionEvent event) {
-         backtabr.getSelectionModel().clearSelection();
+            backtabr.getSelectionModel().clearSelection();
     for (int i = 0; i < backtabr.getItems().size(); i++) {
-        if (backtabr.getItems().get(i).getType().equals(idcherche.getText())) {
-            // select the row
+        if (backtabr.getItems().get(i).getType().toString().equals(idcherche.getText())) {
             backtabr.getSelectionModel().select(i);
-        }
-    }
+        }}
     }
 
     @FXML
     private void open_vol(ActionEvent event) {
-        try
+         try
                                 {
                                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Vols.fxml"));
                                     Parent root =loader.load();
@@ -269,25 +274,40 @@ id_c.setCellValueFactory(cell -> {
 
     @FXML
     private void openuser(ActionEvent event) {
-         {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AfficherUtilisateur.fxml"));
-                Parent root =loader.load();
-                vol1.getScene().setRoot(root);
-                Scene scene = new Scene(root,816,458);
-                Stage SecondaryStage=new Stage();
-                SecondaryStage.setTitle("Afficher utilisateurs !");
-                SecondaryStage.setScene(scene);
-                SecondaryStage.show();
-            } catch (IOException ex) {
-                Logger.getLogger(Back_reclamationController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AfficherUtilisateur.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
                                 }
-                                
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
     }
 
     @FXML
     private void open_avis(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Back_avis.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
     }
 
     @FXML
@@ -302,6 +322,47 @@ id_c.setCellValueFactory(cell -> {
                                     SecondaryStage.setTitle("Afficher utilisateurs !");
                                     SecondaryStage.setScene(scene);
                                     SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_formation(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/displayformation.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_vehicule(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/afficher_vh.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
                                 }
                                 catch(Exception ex)
                                 {

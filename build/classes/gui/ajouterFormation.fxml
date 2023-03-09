@@ -10,31 +10,47 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterFormationController">
+<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="723.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterFormationController">
    <children>
-      <ImageView fitHeight="540.0" fitWidth="1072.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="460.0" fitWidth="816.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../esprit/images/fond.png" />
+            <Image url="@../image/fond.png" />
          </image>
       </ImageView>
-      <Label layoutX="24.0" layoutY="117.0" text="Date :" textFill="WHITE">
+      <Label layoutX="256.0" layoutY="230.0" text="Date :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <ComboBox fx:id="preptype" layoutX="175.0" layoutY="158.0" prefWidth="150.0" />
-      <TextField fx:id="nbrhours" layoutX="176.0" layoutY="205.0" />
-      <Button fx:id="addformation" layoutX="176.0" layoutY="269.0" mnemonicParsing="false" onAction="#ajouterformation" text="Ajouter" />
-      <DatePicker fx:id="datepicker" layoutX="176.0" layoutY="113.0" prefHeight="26.0" prefWidth="150.0" />
-      <Label layoutX="40.0" layoutY="25.0" text="Ajout Formation" />
-      <Label layoutX="24.0" layoutY="161.0" text="type preparation" textFill="WHITE">
+      <ComboBox fx:id="preptype" layoutX="407.0" layoutY="271.0" prefWidth="150.0" />
+      <TextField fx:id="nbrhours" layoutX="408.0" layoutY="318.0" />
+      <Button fx:id="addformation" layoutX="380.0" layoutY="382.0" mnemonicParsing="false" onAction="#ajouterformation" text="Ajouter" />
+      <DatePicker fx:id="datepicker" layoutX="408.0" layoutY="226.0" prefHeight="26.0" prefWidth="150.0" />
+      <Label layoutX="327.0" layoutY="114.0" text="Ajout Formation" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="256.0" layoutY="274.0" text="type preparation" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="26.0" layoutY="208.0" text="nombre de jours" textFill="WHITE">
+      <Label layoutX="258.0" layoutY="321.0" text="nombre de jours" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <Button fx:id="vol" layoutX="101.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
+      <Button fx:id="user" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
+      <Button fx:id="avis" layoutX="203.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="150.0" text="Reclamation_avis" />
+      <Button fx:id="type_ab" layoutX="353.0" mnemonicParsing="false" onAction="#open_type_ab" prefHeight="34.0" prefWidth="150.0" text="Type abonnement" />
+      <Button fx:id="formation" layoutX="503.0" mnemonicParsing="false" onAction="#open_formation" prefHeight="34.0" prefWidth="189.0" text="Formations_maintenances" />
+      <Button layoutX="692.0" mnemonicParsing="false" onAction="#open_vehicule" prefHeight="34.0" prefWidth="124.0" text="Vehicules" />
+      <Button fx:id="maintenance" layoutX="-1.0" layoutY="35.0" mnemonicParsing="false" onAction="#open_maintenance" prefHeight="34.0" prefWidth="124.0" text="Formations" />
+      <Label layoutX="257.0" layoutY="182.0" text="Client :" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <ComboBox fx:id="client" layoutX="408.0" layoutY="178.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

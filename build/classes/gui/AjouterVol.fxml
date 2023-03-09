@@ -38,11 +38,16 @@
       <TextField fx:id="prix_txt" layoutX="346.0" layoutY="289.0" prefHeight="26.0" prefWidth="150.0" />
       <Button fx:id="ajouter_btn" layoutX="551.0" layoutY="354.0" mnemonicParsing="false" onAction="#addVol" prefHeight="38.0" prefWidth="74.0" text="Ajouter" />
       <DatePicker fx:id="date_choix" layoutX="346.0" layoutY="188.0" prefHeight="26.0" prefWidth="150.0" />
-      <Button fx:id="accueil" layoutX="680.0" layoutY="41.0" mnemonicParsing="false" onAction="#accueil" prefHeight="38.0" prefWidth="74.0" text="Accueil" />
-      <Label layoutX="92.0" layoutY="41.0" text="Ajout Vol :" textFill="WHITE">
+      <Label layoutX="87.0" layoutY="71.0" text="Ajout Vol :" textFill="WHITE">
          <font>
             <Font name="System Bold" size="26.0" />
          </font></Label>
       <Button fx:id="ajouter_btn1" layoutX="652.0" layoutY="354.0" mnemonicParsing="false" onAction="#vider_t" prefHeight="38.0" prefWidth="74.0" text="Vider" />
+      <Button fx:id="vol1" layoutX="101.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
+      <Button fx:id="user" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
+      <Button fx:id="avis" layoutX="203.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="150.0" text="Reclamation_avis" />
+      <Button fx:id="type_ab" layoutX="353.0" mnemonicParsing="false" onAction="#open_type_ab" prefHeight="34.0" prefWidth="150.0" text="Type abonnement" />
+      <Button fx:id="formation" layoutX="502.0" mnemonicParsing="false" onAction="#open_formation" prefHeight="34.0" prefWidth="189.0" text="Formations_maintenances" />
+      <Button layoutX="687.0" mnemonicParsing="false" onAction="#open_vehicule" prefHeight="34.0" prefWidth="124.0" text="Vehicules" />
    </children>
 </AnchorPane>

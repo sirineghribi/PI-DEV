@@ -6,6 +6,7 @@
 package services;
 
 
+import entity.CategorieVehicule;
 import entity.Vehicule;
 import entity.Vol;
 import java.sql.Connection;
@@ -75,12 +76,14 @@ public class VolService implements InterfaceService<Vol>{
     public List<Vol> getAll() {
         List <Vol> vols=new ArrayList<>();
         try {
-            String sql = " select v.*,mt.* from vol v inner join vehicule mt on v.id_mt=mt.id_vehicule ";
+            String sql = " select * from vol v inner join vehicule mt on v.id_mt=mt.id_vehicule ";
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
-                Vehicule ve= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"));
-                Vol v = new Vol(s.getInt("id_v"),s.getInt("nbr_place"),s.getString("destination"), s.getString("etat"),s.getFloat("prix"),s.getDate("date"),ve);
+                CategorieVehicule cv=new CategorieVehiculeServices().findById(s.getInt("mt.cat_vehicule")).get(0);
+                
+                Vehicule ve= new Vehicule(s.getInt("v.id_mt"),s.getString("mt.nom_vh"),cv,s.getFloat("mt.poid_sup"), s.getInt("mt.vitesse"),s.getInt("mt.nbr_pas"),s.getBoolean("mt.status"));
+                Vol v = new Vol(s.getInt("v.id_v"),s.getInt("v.nbr_place"),s.getString("v.destination"), s.getString("v.etat"),s.getFloat("v.prix"),s.getDate("v.date"),ve);
                 vols.add(v);
 
             }
@@ -115,7 +118,9 @@ public class VolService implements InterfaceService<Vol>{
             ste.setInt(1,id);
             ResultSet s = ste.executeQuery();
             while (s.next()) {  
-               Vehicule ve= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"));
+              CategorieVehicule cv=new CategorieVehiculeServices().findById(s.getInt("cat_vehicule")).get(0);
+                
+                Vehicule ve= new Vehicule(s.getInt("id_mt"),s.getString("nom_vh"),cv,s.getFloat("poid_sup"), s.getInt("vitesse"),s.getInt("nbr_pas"),s.getBoolean("status"));
                Vol v = new Vol(s.getInt("id_v"),s.getInt("nbr_place"),s.getString("destination"), s.getString("etat"),s.getFloat("prix"),s.getDate("date"),ve);
                vols.add(v);
             }
@@ -194,10 +199,11 @@ public class VolService implements InterfaceService<Vol>{
             ste.setString(1,t);
             ResultSet s=ste.executeQuery();
             while(s.next())
-            {
-                Vehicule ve= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"));
-                Vol v = new Vol(s.getInt("id_v"),s.getInt("nbr_place"),s.getString("destination"), s.getString("etat"),s.getFloat("prix"),s.getDate("date"),ve);
-                vols.add(v); 
+            {   
+              //  Vehicule ve = new Vehicule(s.getInt("id_mt"), s.getString(""), CategorieVehicule, 0, 0, 0, true)
+              //  Vehicule ve1= new Vehicule(s.getInt("id_mt"), s.getString("cat_vehicule"),s.getFloat("poid_sup"), s.getInt("vitesse"));
+               // Vol v = new Vol(s.getInt("id_v"),s.getInt("nbr_place"),s.getString("destination"), s.getString("etat"),s.getFloat("prix"),s.getDate("date"),ve);
+               // vols.add(v); 
             }
         } catch (SQLException ex) 
         {

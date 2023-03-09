@@ -13,6 +13,7 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import static javafx.collections.FXCollections.observableArrayList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,7 +40,7 @@ public class AjouterVolController implements Initializable {
 
     
     @FXML
-    private ComboBox<Integer> vehicule_choix;
+    private ComboBox<String> vehicule_choix;
     @FXML
     private TextField destination_txt;
     @FXML
@@ -49,10 +50,19 @@ public class AjouterVolController implements Initializable {
     @FXML
     private DatePicker date_choix;
      VolService volservice=new VolService();
-    @FXML
-    private Button accueil;
+    
     @FXML
     private Button ajouter_btn1;
+    @FXML
+    private Button vol1;
+    @FXML
+    private Button user;
+    @FXML
+    private Button avis;
+    @FXML
+    private Button type_ab;
+    @FXML
+    private Button formation;
 
     /**
      * Initializes the controller class.
@@ -62,9 +72,12 @@ public class AjouterVolController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
        VolService volservice=new VolService();
-        List<Integer> l= volservice.id_vehicule_list();
-       vehicule_choix.setItems(observableArrayList(l));
-        accueil.setStyle("-fx-text-fill: white;"); 
+       /* List<Integer> l= volservice.id_vehicule_list();
+       vehicule_choix.setItems(observableArrayList(l));*/
+       VehiculeServices vs =new VehiculeServices();
+      
+       vs.getAll().forEach((t)->vehicule_choix.getItems().add(t.getNom_vh()));
+       
         ajouter_btn1.setStyle("-fx-text-fill: white;"); 
         ajouter_btn.setStyle("-fx-text-fill: white;"); 
     }    
@@ -86,9 +99,11 @@ public class AjouterVolController implements Initializable {
         {
        String destination=destination_txt.getText();
         float prix = Float.valueOf(prix_txt.getText());
-        int v=Integer.valueOf(vehicule_choix.getValue().toString());
+        /*int v=Integer.valueOf(vehicule_choix.getValue().toString());
         VehiculeServices vs=new VehiculeServices();
-        Vehicule vehicule=vs.findById(v).get(0);
+        Vehicule vehicule=vs.findById(v).get(0);*/
+        Vehicule vehicule=new VehiculeServices().getAll().stream().filter(t->t.getNom_vh().equals(vehicule_choix.getValue())).collect(Collectors.toList()).get(0);
+
         Date date=Date.valueOf(date_choix.getValue());
         System.out.println("prix:"+prix);
         Vol vol =new Vol(destination,"planifié",prix,date,vehicule);
@@ -132,7 +147,7 @@ public class AjouterVolController implements Initializable {
             Parent root =loader.load();
                                  
                                 
-            accueil.getScene().setRoot(root);
+            vol1.getScene().setRoot(root);
             Scene scene = new Scene(root);
             Stage SecondaryStage=new Stage();
             SecondaryStage.setTitle("Les Vols !");
@@ -146,14 +161,127 @@ public class AjouterVolController implements Initializable {
         
     }
 
-    @FXML
-    private void accueil(ActionEvent event) {
-        update();
-    }
+    
 
     @FXML
     private void vider_t(ActionEvent event) {
         vider();
     }
 
+     @FXML
+    private void open_vol(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Vols.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher Vol !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void openuser(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AfficherUtilisateur.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_avis(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Back_avis.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_type_ab(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Add_Type_Abonnement_FXML.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_formation(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/displayformation.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_vehicule(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/afficher_vh.fxml"));
+                                    Parent root =loader.load();
+                                    vol1.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
 }

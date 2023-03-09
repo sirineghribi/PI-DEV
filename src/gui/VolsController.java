@@ -31,6 +31,7 @@ import javafx.scene.input.InputMethodEvent;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import services.VolService;
+import javafx.scene.image.Image;
 
 /**
  * FXML Controller class
@@ -78,6 +79,8 @@ public class VolsController implements Initializable {
     private Button avis;
     @FXML
     private Button type_ab;
+    @FXML
+    private Button formation;
    
     
     
@@ -158,7 +161,7 @@ private void setvols()
         });
     categorie_v.setCellValueFactory(cell -> {
             StringProperty s=new SimpleStringProperty();
-            s.set(String.valueOf(cell.getValue().getMt().get_cat_vehicule()));
+            s.set(String.valueOf(cell.getValue().getMt().getNom_vh()));
             return s;
         });
     poids_sup.setCellValueFactory(cell -> {
@@ -342,12 +345,53 @@ private void setvols()
                                     SecondaryStage.setTitle("Afficher utilisateurs !");
                                     SecondaryStage.setScene(scene);
                                     SecondaryStage.show();
+                                    
                                 }
                                 catch(Exception ex)
                                 {
                                     System.out.println("err:"+ex);
                                 }
         
+    }
+
+    @FXML
+    private void open_formation(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/displayformation.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_vehicule(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/afficher_vh.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
     }
 
 }

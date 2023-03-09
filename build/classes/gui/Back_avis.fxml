@@ -43,9 +43,7 @@
       <Button fx:id="vol1" layoutX="101.0" layoutY="1.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
       <Button fx:id="user" layoutY="1.0" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
       <Button fx:id="avis" layoutX="203.0" layoutY="1.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="150.0" text="Reclamation_avis" />
-      <Button fx:id="abonnement" layoutX="353.0" layoutY="1.0" mnemonicParsing="false" onAction="#open_abonnement" prefHeight="34.0" prefWidth="150.0" text="Abonnement" />
-      <Button layoutX="503.0" layoutY="1.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
-      <Button layoutX="605.0" layoutY="1.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+      <Button fx:id="abonnement" layoutX="353.0" layoutY="1.0" mnemonicParsing="false" onAction="#open_type_ab" prefHeight="34.0" prefWidth="150.0" text="Type abonnement" />
       <TextField fx:id="idcherche" layoutX="122.0" layoutY="113.0" onAction="#idcherche" prefHeight="26.0" prefWidth="422.0" />
       <Button fx:id="recherche" layoutX="543.0" layoutY="113.0" mnemonicParsing="false" onAction="#recherche" prefHeight="25.0" prefWidth="30.0">
          <graphic>
@@ -56,5 +54,7 @@
             </ImageView>
          </graphic>
       </Button>
+      <Button fx:id="formation" layoutX="503.0" layoutY="1.0" mnemonicParsing="false" onAction="#open_formation" prefHeight="34.0" prefWidth="189.0" text="Formations_maintenances" />
+      <Button layoutX="693.0" layoutY="1.0" mnemonicParsing="false" onAction="#open_vehicule" prefHeight="34.0" prefWidth="124.0" text="Vehicules" />
    </children>
 </AnchorPane>

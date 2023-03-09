@@ -50,7 +50,9 @@ public class GestionVol {
         
             Utilisateur u3 = new Utilisateur(2,"mn","imen",Genre.femme,"imenmn@gmail.com","ii",Date.valueOf("2002-06-26") );
             ReservationService rs=new ReservationService();
-            System.out.println(rs.getAll());
+           // System.out.println(rs.getAll());
+           VolService vs=new VolService();
+           System.out.println(vs.getAll());
             //  ***********************************************    Vols & Reservation   **************************************************************
          /*   VolService vs= new VolService();
             Vehicule p1 = new Vehicule(5,"24", (float) 14, 2,5,true);

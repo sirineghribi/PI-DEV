@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -7,54 +8,65 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ForecastController">
+<AnchorPane id="AnchorPane" prefHeight="394.0" prefWidth="893.0" style="-fx-background-color: purple;" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ForecastController">
    <children>
-      <ImageView fitHeight="549.0" fitWidth="1026.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="402.0" fitWidth="712.0" layoutX="187.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../esprit/images/fond.png" />
+            <Image url="@../image/fond.png" />
          </image>
       </ImageView>
-      <TextField fx:id="hum" disable="true" editable="false" layoutX="704.0" layoutY="83.0" />
-      <TextField fx:id="press" disable="true" editable="false" layoutX="704.0" layoutY="154.0" />
-      <TextField fx:id="lat" disable="true" editable="false" layoutX="704.0" layoutY="213.0" />
-      <TextField fx:id="lon" disable="true" editable="false" layoutX="704.0" layoutY="276.0" />
-      <TextField fx:id="desc" disable="true" editable="false" layoutX="704.0" layoutY="343.0" />
-      <Text fill="WHITE" layoutX="77.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="humidity">
+      <TextField fx:id="hum" disable="true" editable="false" layoutX="340.0" layoutY="134.0" />
+      <TextField fx:id="press" disable="true" editable="false" layoutX="342.0" layoutY="195.0" />
+      <TextField fx:id="lat" disable="true" editable="false" layoutX="342.0" layoutY="255.0" />
+      <TextField fx:id="lon" disable="true" editable="false" layoutX="665.0" layoutY="255.0" />
+      <TextField fx:id="desc" disable="true" editable="false" layoutX="664.0" layoutY="133.0" />
+      <Text fill="WHITE" layoutX="249.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="humidity">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="79.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pressure">
+      <Text fill="WHITE" layoutX="251.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="pressure">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="84.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="latitude">
+      <Text fill="WHITE" layoutX="253.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="latitude">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="80.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude">
+      <Text fill="WHITE" layoutX="542.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Longitude">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="84.0" layoutY="361.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description">
+      <Text fill="WHITE" layoutX="543.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="country" disable="true" editable="false" layoutX="419.0" layoutY="28.0" prefHeight="26.0" prefWidth="97.0" />
-      <Text fill="WHITE" layoutX="56.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The vehicle you are bording is maintained, but here is a look at the weather. Do not worry the vehicle can withstand everything ">
+      <TextField fx:id="country" disable="true" editable="false" layoutX="237.0" layoutY="68.0" prefHeight="26.0" prefWidth="140.0" />
+      <Text fill="WHITE" layoutX="335.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="The vehicle you are bording is maintained, but here is a look at the weather. Do not worry the vehicle can withstand everything " wrappingWidth="454.4886665344238">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <Text fill="WHITE" layoutX="84.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temperature K">
+      <Text fill="WHITE" layoutX="542.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="temperature K">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Text>
-      <TextField fx:id="temp" disable="true" editable="false" layoutX="704.0" layoutY="393.0" />
+      <TextField fx:id="temp" disable="true" editable="false" layoutX="665.0" layoutY="195.0" />
+      <Button fx:id="accueil" layoutY="250.0" mnemonicParsing="false" onAction="#open_accueil" prefHeight="26.0" prefWidth="187.0" text="Accueil" textFill="WHITE" />
+      <ImageView fitHeight="121.0" fitWidth="128.0" layoutX="34.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/logoforinterplanetary.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="profil" layoutY="221.0" mnemonicParsing="false" onAction="#open_profil" prefHeight="26.0" prefWidth="187.0" text="Profil" textFill="WHITE" />
+      <Button fx:id="abonnement" layoutX="1.0" layoutY="310.0" mnemonicParsing="false" onAction="#open_abonnement" prefHeight="26.0" prefWidth="187.0" text="Abonnement" textFill="WHITE" />
+      <Button fx:id="rec" layoutX="1.0" layoutY="280.0" mnemonicParsing="false" onAction="#open_reclamation" prefHeight="26.0" prefWidth="187.0" text="Reclamation" textFill="WHITE" />
+      <Button fx:id="formation" layoutX="1.0" layoutY="340.0" mnemonicParsing="false" onAction="#open_formation" prefHeight="18.0" prefWidth="187.0" text="Formation" textFill="WHITE" />
+      <Button fx:id="vehicule" layoutY="368.0" mnemonicParsing="false" onAction="#open_vehicule" prefHeight="18.0" prefWidth="187.0" text="Vehicules" textFill="WHITE" />
    </children>
 </AnchorPane>

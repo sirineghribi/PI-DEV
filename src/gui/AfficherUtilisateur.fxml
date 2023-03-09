@@ -38,9 +38,9 @@
       <TextField fx:id="em" layoutX="136.0" layoutY="373.0" prefHeight="26.0" prefWidth="162.0" promptText="Entez l'email a rechercher" />
       <Button fx:id="vol" layoutX="101.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
       <Button fx:id="user" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
-      <Button fx:id="avis" layoutX="203.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="114.0" text="Reclamation_avis" />
-      <Button layoutX="317.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
-      <Button layoutX="418.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
-      <Button layoutX="520.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+      <Button fx:id="avis" layoutX="203.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="150.0" text="Reclamation_avis" />
+      <Button fx:id="type_ab" layoutX="353.0" mnemonicParsing="false" onAction="#open_type_ab" prefHeight="34.0" prefWidth="150.0" text="Type abonnement" />
+      <Button fx:id="formation" layoutX="503.0" mnemonicParsing="false" onAction="#open_formation" prefHeight="34.0" prefWidth="189.0" text="Formations_maintenances" />
+      <Button layoutX="693.0" mnemonicParsing="false" onAction="#open_vehicule" prefHeight="34.0" prefWidth="124.0" text="Vehicules" />
    </children>
 </AnchorPane>

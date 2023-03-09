@@ -71,6 +71,10 @@ public class ModifierUtilisateurController implements Initializable {
     private Button rec_btn;
     @FXML
     private Button abonnement;
+    @FXML
+    private Button formation;
+    @FXML
+    private Button vehicule;
     /**
      * Initializes the controller class.
      */
@@ -93,11 +97,51 @@ public class ModifierUtilisateurController implements Initializable {
     @FXML
     private void Modifier(ActionEvent event) {
        
-        if(nomLB.getText()==null||prenomLB.getText()==null||!valid_email(emailLB.getText())||(dateLB.getValue().compareTo((LocalDate.now())))>0){
+        if(nomLB.getText()==null||prenomLB.getText()==null||emailLB.getText()==null||mdpLB.getText()==null||dateLB.getValue()==null){
          Alert alert = new Alert(Alert.AlertType.ERROR, "INVALID INPUT.");
         alert.showAndWait();
         return;
-        }
+       
+       }
+       
+       
+         if(nomLB.getText().isEmpty()){
+         Alert alert = new Alert(Alert.AlertType.ERROR, " NOM INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
+         
+         
+          if(prenomLB.getText().isEmpty()){
+         Alert alert = new Alert(Alert.AlertType.ERROR, "PRENOM INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
+       
+        if(!valid_email(emailLB.getText())){
+         Alert alert = new Alert(Alert.AlertType.ERROR, "EMAIL INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
+       
+        if((dateLB.getValue().compareTo((LocalDate.now())))>0||dateLB.getValue()==null ){
+         Alert alert = new Alert(Alert.AlertType.ERROR, "DATE DE NAISSANCE INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
+       
+       
+       
+         if(mdpLB.getText().isEmpty()){
+         Alert alert = new Alert(Alert.AlertType.ERROR, " MOT DE PASSE INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
               
          
          String nom = nomLB.getText();
@@ -112,7 +156,7 @@ public class ModifierUtilisateurController implements Initializable {
            Utilisateur u = new Utilisateur(id, nom, Prenom, email, mdp, date, num, genre);
             UtilisateurService ut = new  UtilisateurService();
             ut.modifierU(u);
-            
+            info("Cordonnées modifiées ! ","Modification avec succée");
            
             
             
@@ -120,7 +164,13 @@ public class ModifierUtilisateurController implements Initializable {
     
         
     }
-
+ private void info(String a, String b) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(a);
+        alert.setHeaderText(null);
+        alert.setContentText(b);
+        alert.show();
+    }
     void initUser(Utilisateur User) {
      
     UtilisateurService service = new UtilisateurService();
@@ -218,6 +268,46 @@ public class ModifierUtilisateurController implements Initializable {
         } catch (Exception ex) {
             System.out.println("err:" + ex);
         }
+    }
+
+    @FXML
+    private void open_formation(ActionEvent event) {
+         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Frontformation.fxml"));
+            Parent root = loader.load();
+            accueil.getScene().setRoot(root);
+            FrontformationController arc = loader.getController();
+            arc.setuser(user1);
+            Scene scene = new Scene(root);
+            Stage SecondaryStage = new Stage();
+            SecondaryStage.setTitle("Interplanetary");
+            SecondaryStage.setScene(scene);
+            SecondaryStage.show();
+        } catch (Exception ex) {
+            System.out.println("err:" + ex);
+        }
+    }
+
+    @FXML
+    private void open_vehicule(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/front_vh.fxml"));
+                                    Parent root =loader.load();
+                                    accueil.getScene().setRoot(root);
+                                    Front_vhController rc =loader.getController();
+                                    rc.setuser(user1);
+                                    
+                                    Scene scene = new Scene(root,893,394);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Interplanetary");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
     }
 
  

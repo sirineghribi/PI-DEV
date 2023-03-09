@@ -53,13 +53,69 @@ public class DisplayformationController implements Initializable {
     private Button supprimerdis;
     @FXML
     private Button modifierdis;
+    @FXML
+    private Button vol;
+    @FXML
+    private Button user;
+    @FXML
+    private Button avis;
+    @FXML
+    private Button type_ab;
+    @FXML
+    private Button formation;
+    @FXML
+    private Button ajouter_btn;
+    @FXML
+    private Button maintenanace;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        FormationeServices fss = new FormationeServices();
+        
+           update();
+    
+supprimerdis.setOnAction(event -> {
+                             Formation so = tabelformation.getSelectionModel().getSelectedItem();  
+                               System.out.println(so);
+                               FormationeServices sf = new FormationeServices();
+                               sf.supprimer(so);
+                               update();
+                            });
+modifierdis.setOnAction((ActionEvent event) -> {
+
+Formation so = tabelformation.getSelectionModel().getSelectedItem();
+
+                                try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ModifyFormation.fxml"));
+                                    Parent root =loader.load();
+                                    ModifyFormationController ha =loader.getController();
+                                    ha.setFo(so);
+                                    ajouter_btn.getScene().setRoot(root);
+                                    Scene scene = new Scene(root);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Modifier Formation !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                                                   update();
+
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+
+
+
+                                     });
+
+        
+}
+private void update()
+{
+    FormationeServices fss = new FormationeServices();
         ObservableList<Formation> liste=FXCollections.observableArrayList(fss.getAll());
         tabelformation.setItems(liste);
         maildis.setCellValueFactory(cell -> {
@@ -98,28 +154,17 @@ public class DisplayformationController implements Initializable {
             s.set(String.valueOf(cell.getValue().getId_f()));
             return s;
         });
-           
-    
-supprimerdis.setOnAction(event -> {
-                             Formation so = tabelformation.getSelectionModel().getSelectedItem();  
-                               System.out.println(so);
-                               FormationeServices sf = new FormationeServices();
-                               sf.supprimer(so);
-                            });
-modifierdis.setOnAction((ActionEvent event) -> {
-
-Formation so = tabelformation.getSelectionModel().getSelectedItem();
-
-                                try
+}
+    @FXML
+    private void open_vol(ActionEvent event) {
+         try
                                 {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ModifyFormation.fxml"));
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Vols.fxml"));
                                     Parent root =loader.load();
-                                    ModifyFormationController ha =loader.getController();
-                                    ha.setFo(so);
-                                    //ajout_onClick.getScene().setRoot(root);
-                                    Scene scene = new Scene(root);
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
                                     Stage SecondaryStage=new Stage();
-                                    SecondaryStage.setTitle("Modifier Formation !");
+                                    SecondaryStage.setTitle("Afficher Vol !");
                                     SecondaryStage.setScene(scene);
                                     SecondaryStage.show();
                                 }
@@ -127,13 +172,131 @@ Formation so = tabelformation.getSelectionModel().getSelectedItem();
                                 {
                                     System.out.println("err:"+ex);
                                 }
+    }
 
+    @FXML
+    private void openuser(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/AfficherUtilisateur.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
 
+    @FXML
+    private void open_avis(ActionEvent event) {
+         try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Back_avis.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
 
-                                     });
+    @FXML
+    private void open_type_ab(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/Add_Type_Abonnement_FXML.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
 
+    @FXML
+    private void open_formation(ActionEvent event) {
+         
+    }
+
+    @FXML
+    private void ajouter_onclick(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/ajouterFormation.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
+
+    @FXML
+    private void open_maintenanace(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/displaymaintenance.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
         
-}
+    }
+
+    @FXML
+    private void open_vehicule(ActionEvent event) {
+        try
+                                {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/gui/afficher_vh.fxml"));
+                                    Parent root =loader.load();
+                                    vol.getScene().setRoot(root);
+                                    Scene scene = new Scene(root,816,458);
+                                    Stage SecondaryStage=new Stage();
+                                    SecondaryStage.setTitle("Afficher utilisateurs !");
+                                    SecondaryStage.setScene(scene);
+                                    SecondaryStage.show();
+                                    
+                                }
+                                catch(Exception ex)
+                                {
+                                    System.out.println("err:"+ex);
+                                }
+    }
     }    
     
 

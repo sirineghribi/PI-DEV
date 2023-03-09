@@ -79,11 +79,57 @@ public class AjouterController implements Initializable {
      
     @FXML
     private void Ajouter(ActionEvent event) {
-        if(txtnom.getText()==null||txtprenom.getText()==null||!valid_email(txtemail.getText())||(date_n.getValue().compareTo((LocalDate.now())))>0){
+        
+        if(txtnom.getText()==null||txtprenom.getText()==null||txtnum.getText()==null||txtemail.getText()==null||txtmdp.getText()==null||date_n.getValue()==null){
          Alert alert = new Alert(Alert.AlertType.ERROR, "INVALID INPUT.");
         alert.showAndWait();
         return;
-        }
+       
+       }
+       
+       
+         if(txtnom.getText().isEmpty()){
+         Alert alert = new Alert(Alert.AlertType.ERROR, " NOM INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
+         
+         
+          if(txtprenom.getText().isEmpty()){
+         Alert alert = new Alert(Alert.AlertType.ERROR, "PRENOM INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
+       
+        if(!valid_email(txtemail.getText())){
+         Alert alert = new Alert(Alert.AlertType.ERROR, "EMAIL INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
+       
+        if((date_n.getValue().compareTo((LocalDate.now())))>0||date_n.getValue()==null ){
+         Alert alert = new Alert(Alert.AlertType.ERROR, "DATE DE NAISSANCE INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
+       
+        if(txtnum.getText().isEmpty()){
+         Alert alert = new Alert(Alert.AlertType.ERROR, " NUMERO DE TELEPHONE INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
+       
+         if(txtmdp.getText().isEmpty()){
+         Alert alert = new Alert(Alert.AlertType.ERROR, " MOT DE PASSE INVALIDE.");
+        alert.showAndWait();
+        return;
+       
+       }
         try {
             String nom = txtnom.getText();
             String Prenom =txtprenom.getText();
@@ -98,10 +144,11 @@ public class AjouterController implements Initializable {
           Utilisateur u = new Utilisateur(nom, Prenom, genre, email, mdp, date, Roles.A, num);
             UtilisateurService ut = new  UtilisateurService();
             ut.ajouter(u);
-            
+            info("Ajout effectuée ", "Utilisateur ajouté avec succé !");
             
             FXMLLoader loader = new   FXMLLoader(getClass().getResource("AfficherUtilisateur.fxml"));
             Parent root = loader.load();
+            ajouter.getScene().setRoot(root);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setTitle("INFORMATIONS USER");
@@ -137,6 +184,13 @@ public class AjouterController implements Initializable {
         }
     }
 
-    
+     private void info(String a, String b) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(a);
+        alert.setHeaderText(null);
+        alert.setContentText(b);
+        alert.show();
+    }
+
     
 }

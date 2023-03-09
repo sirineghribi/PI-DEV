@@ -9,30 +9,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="540.0" prefWidth="960.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierMaintenanceController">
+<AnchorPane id="AnchorPane" prefHeight="427.0" prefWidth="723.0" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ModifierMaintenanceController">
    <children>
-      <ImageView fitHeight="543.0" fitWidth="971.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="460.0" fitWidth="816.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../esprit/images/fond.png" />
+            <Image url="@../image/fond.png" />
          </image>
       </ImageView>
-      <Label layoutX="48.0" layoutY="29.0" text="Ajouter Maintenance " />
-      <TextField fx:id="duree" layoutX="497.0" layoutY="154.0" />
-      <TextField fx:id="cout" layoutX="497.0" layoutY="245.0" />
-      <Label layoutX="249.0" layoutY="158.0" text="Duree " textFill="WHITE">
+      <Label layoutX="295.0" layoutY="88.0" text="Modifier Maintenance " textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font></Label>
+      <TextField fx:id="duree" layoutX="354.0" layoutY="141.0" />
+      <TextField fx:id="cout" layoutX="354.0" layoutY="206.0" />
+      <Label layoutX="243.0" layoutY="144.0" text="Duree " textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label layoutX="253.0" layoutY="249.0" text="cout " textFill="WHITE">
+      <Label layoutX="248.0" layoutY="209.0" text="cout " textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <Label layoutX="251.0" layoutY="333.0" text="status" textFill="WHITE">
+      <Label layoutX="245.0" layoutY="283.0" text="status" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Label>
-      <CheckBox fx:id="prete" layoutX="546.0" layoutY="334.0" mnemonicParsing="false" text="Prete" />
-      <Button fx:id="addmaintenance" layoutX="376.0" layoutY="472.0" mnemonicParsing="false" onAction="#modifermaintenance" text="modifier" />
-      <Button fx:id="affichermai" layoutX="557.0" layoutY="472.0" mnemonicParsing="false" onAction="#affichermai" text="annuler" />
+      <CheckBox fx:id="prete" layoutX="378.0" layoutY="284.0" mnemonicParsing="false" text="Prete" />
+      <Button fx:id="addmaintenance" layoutX="293.0" layoutY="321.0" mnemonicParsing="false" onAction="#modifermaintenance" text="modifier" />
+      <Button fx:id="affichermai" layoutX="392.0" layoutY="330.0" mnemonicParsing="false" onAction="#affichermai" text="annuler" />
+      <Button fx:id="vol" layoutX="100.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
+      <Button fx:id="user" layoutX="-1.0" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
+      <Button fx:id="avis" layoutX="202.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="150.0" text="Reclamation_avis" />
+      <Button fx:id="type_ab" layoutX="352.0" mnemonicParsing="false" onAction="#open_type_ab" prefHeight="34.0" prefWidth="150.0" text="Type abonnement" />
+      <Button fx:id="formation" layoutX="502.0" mnemonicParsing="false" onAction="#open_formation" prefHeight="34.0" prefWidth="189.0" text="Formations_maintenances" />
+      <Button layoutX="691.0" mnemonicParsing="false" onAction="#open_vehicule" prefHeight="34.0" prefWidth="124.0" text="Vehicules" />
    </children>
 </AnchorPane>

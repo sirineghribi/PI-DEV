@@ -34,12 +34,17 @@
       </Label>
       <TextField fx:id="txtem" layoutX="463.0" layoutY="137.0" prefHeight="26.0" prefWidth="187.0" />
       <PasswordField fx:id="txtmp" layoutX="464.0" layoutY="211.0" prefHeight="26.0" prefWidth="187.0" />
-      <Label layoutX="25.0" layoutY="105.0" prefHeight="62.0" prefWidth="187.0" text="Vous n'etes pas incrit?" textFill="#fcfafa">
+      <Label layoutX="25.0" layoutY="180.0" prefHeight="62.0" prefWidth="187.0" text="Vous n'etes pas inscrit?" textFill="#fcfafa">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Button fx:id="insc" layoutX="79.0" layoutY="201.0" mnemonicParsing="false" onAction="#insc" text="S'inscrire" textFill="#faf9f9" />
+      <Button fx:id="insc" layoutX="79.0" layoutY="240.0" mnemonicParsing="false" onAction="#insc" text="S'inscrire" textFill="#faf9f9" />
       <Button fx:id="mdpoub" layoutX="463.0" layoutY="245.0" mnemonicParsing="false" onAction="#mdpOub" prefHeight="26.0" prefWidth="187.0" text="Mot de passe oublier?" textFill="#faf5fa" />
+      <ImageView fitHeight="121.0" fitWidth="128.0" layoutX="50.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/logoforinterplanetary.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

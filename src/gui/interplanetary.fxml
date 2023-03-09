@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="394.0" prefWidth="893.0" style="-fx-background-color: purple;" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.InterplanetaryController">
+   <children>
+      <ImageView fitHeight="402.0" fitWidth="712.0" layoutX="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/front1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="accueil" layoutX="1.0" layoutY="249.0" mnemonicParsing="false" onAction="#open_accueil" prefHeight="26.0" prefWidth="187.0" text="Accueil" textFill="WHITE" />
+      <ImageView fitHeight="121.0" fitWidth="128.0" layoutX="35.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/logoforinterplanetary.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="profil" layoutX="1.0" layoutY="220.0" mnemonicParsing="false" onAction="#open_profil" prefHeight="26.0" prefWidth="187.0" text="Profil" textFill="WHITE" />
+      <Button fx:id="abonnement" layoutX="2.0" layoutY="309.0" mnemonicParsing="false" onAction="#open_abonnement" prefHeight="26.0" prefWidth="187.0" text="Abonnement" textFill="WHITE" />
+      <Button fx:id="rec" layoutX="2.0" layoutY="279.0" mnemonicParsing="false" onAction="#open_reclamation" prefHeight="26.0" prefWidth="187.0" text="Reclamation" textFill="WHITE" />
+      <Button fx:id="formation" layoutX="2.0" layoutY="339.0" mnemonicParsing="false" onAction="#open_formation" prefHeight="18.0" prefWidth="187.0" text="Formation" textFill="WHITE" />
+      <Button fx:id="vehicule" layoutX="1.0" layoutY="367.0" mnemonicParsing="false" onAction="#open_vehicule" prefHeight="18.0" prefWidth="187.0" text="Vehicules" textFill="WHITE" />
+   </children>
+</AnchorPane>

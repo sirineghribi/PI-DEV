@@ -12,8 +12,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.ObservableList;
 import entity.CategorieVehicule;
 import tools.MaConnection;
+import entity.TypeCat;
+
 
 /**
  *
@@ -33,15 +36,15 @@ public class CategorieVehiculeServices implements InterfaceService <CategorieVeh
           //  INSERT INTO articles( article_name, article_content, category_id, img, url )
             //        VALUES( ?, ?, ( SELECT category_id FROM categories WHERE categories.category_id = ? ), ?, ?) 
            
-            String sql = "insert into CategorieVehicule(id_cat, nom_cat, id_vh) "
-                     + "values (?,?, (select id_vehicule from Vehicule where Vehicule.id_vehicule = ?))";
+            String sql = "insert into CategorieVehicule(nom_cat, lieu) "
+                     + "values (?,?)";
             
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setInt(1, cv.get_id_cat());
-            ste.setString(2, cv.get_nom_cat());
-            ste.setInt(3, cv.get_id_vh());
+           
+            ste.setString(1, cv.get_nom_cat().toString());
+            ste.setString(2, cv.getLieu());
             ste.executeUpdate();
-            System.out.println("Categorie ajoutÃ©e");
+            System.out.println("Categorie ajoutée");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -49,45 +52,62 @@ public class CategorieVehiculeServices implements InterfaceService <CategorieVeh
     
     @Override
     public List<CategorieVehicule> getAll() {
-        List<CategorieVehicule> vehicules = new ArrayList<>();
+        List<CategorieVehicule> CatVehicule = new ArrayList<>();
         try {
-            String sql = "select * from CategorieVehicule";
+            String sql = "select * from CategorieVehicule ";
             Statement ste = cnx.createStatement();
             ResultSet s = ste.executeQuery(sql);
             while (s.next()) {
-                CategorieVehicule cv = new CategorieVehicule(s.getInt(1), s.getString("nom_cat"), s.getInt(3));
-                vehicules.add(cv);
+                
+                CategorieVehicule cv = new CategorieVehicule(s.getInt(1),CategorieVehicule.enumtypecat(s.getString("nom_cat")), s.getString(3));
+                CatVehicule.add(cv);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return vehicules;
+        return CatVehicule;
     }
 
     @Override
     public List<CategorieVehicule> findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<CategorieVehicule> CatVehicule = new ArrayList<>();
+        try {
+            String sql = "select * from CategorieVehicule where id_cat=? ";
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setInt(1,id);
+            ResultSet s = ste.executeQuery();
+            while (s.next()) {
+                
+                CategorieVehicule cv = new CategorieVehicule(s.getInt(1),CategorieVehicule.enumtypecat(s.getString("nom_cat")), s.getString(3));
+                CatVehicule.add(cv);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return CatVehicule;
     }
 
-public void supprimerVehicule(CategorieVehicule cv) {
-        String sql = "delete from CategorieVehicule where nom_cat=?";
+public void supprimerCat(CategorieVehicule cv) {
+        String sql = "delete from CategorieVehicule where id_cat=?";
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setString(1, cv.get_nom_cat());
+            ste.setInt(1, cv.get_id_cat());
             ste.executeUpdate();
+            System.out.println("Categorie supprimée");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
     }
 
-    public void modifierCatVehiculeparNom(String nom_cat, CategorieVehicule cv) {
-        String sql = "update CategorieVehicule set nom_cat=? where id_vh=?";
+    public void modifierCat(String lieu, CategorieVehicule cv) {
+        String sql = "update CategorieVehicule set lieu=? where id_cat=?";
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
-            ste.setString(1, nom_cat);
-            ste.setString(2,cv.get_nom_cat());
+            ste.setString(1, lieu);
+            ste.setInt(2, cv.get_id_cat());
             ste.executeUpdate();
+            System.out.println("categorie vehicule modifié");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -108,4 +128,6 @@ public void supprimerVehicule(CategorieVehicule cv) {
     public List<CategorieVehicule> trier() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 }

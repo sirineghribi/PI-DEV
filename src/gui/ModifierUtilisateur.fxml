@@ -47,7 +47,8 @@
       <TextField fx:id="numLB" layoutX="291.0" layoutY="338.0" prefHeight="26.0" prefWidth="150.0" />
       <Button fx:id="accueil" layoutY="233.0" mnemonicParsing="false" onAction="#open_accueil" prefHeight="26.0" prefWidth="187.0" text="Accueil" textFill="WHITE" />
       <Button fx:id="abonnement" layoutY="292.0" mnemonicParsing="false" onAction="#open_abonnement" prefHeight="26.0" prefWidth="187.0" text="Abonnement" textFill="WHITE" />
-      <Button layoutY="322.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="187.0" text="Button" textFill="WHITE" />
       <Button fx:id="rec_btn" layoutY="262.0" mnemonicParsing="false" onAction="#open_reclamation" prefHeight="26.0" prefWidth="187.0" text="Reclamation" textFill="WHITE" />
+      <Button fx:id="formation" layoutY="321.0" mnemonicParsing="false" onAction="#open_formation" prefHeight="18.0" prefWidth="187.0" text="Formation" textFill="WHITE" />
+      <Button fx:id="vehicule" layoutX="-1.0" layoutY="349.0" mnemonicParsing="false" onAction="#open_vehicule" prefHeight="18.0" prefWidth="187.0" text="Vehicules" textFill="WHITE" />
    </children>
 </AnchorPane>
