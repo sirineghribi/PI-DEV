@@ -21,6 +21,13 @@ public class Vehicule {
     public Vehicule(){
         
     }
+
+    public Vehicule(int id_vehicule, String cat_vehicule, float poid_sup, int vitesse) {
+        this.id_vehicule = id_vehicule;
+        this.cat_vehicule = cat_vehicule;
+        this.poid_sup = poid_sup;
+        this.vitesse = vitesse;
+    }
     
     public Vehicule(int id, String cat, float poid, int vitesse, int passager, boolean status){
         this.id_vehicule=id; this.cat_vehicule=cat; this.poid_sup=poid; this.vitesse=vitesse;
@@ -31,7 +38,7 @@ public class Vehicule {
         this.id_vehicule = id_vehicule;
         this.nbr_pas = nbr_pas;
     }
-   
+    
     
     public int get_id_vehicule(){
         return id_vehicule;

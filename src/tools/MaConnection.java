@@ -5,24 +5,25 @@
  */
 package tools;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
  *
- * @author abder
+ * @author lenovo
  */
 public class MaConnection {
-       private java.sql.Connection cnx;
+     private Connection cnx;
         String url = "jdbc:mysql://localhost:3306/pidev";
         String user = "root";
         String pwd = "";
         public static MaConnection ct;
-
-    private MaConnection() {
+        
+         private MaConnection() {
         try {
             cnx = DriverManager.getConnection(url,user,pwd);
-            System.out.println("Cnx etablie ");
+            System.out.println("Connected successfully !");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
@@ -33,10 +34,7 @@ public class MaConnection {
         return ct;
     }
 
-    public java.sql.Connection getCnx() {
+    public Connection getCnx() {
         return cnx;
     }
-
-   
-        
 }

@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author abder
+ * @author lenovo
  */
 public interface InterfaceService <T> {
     

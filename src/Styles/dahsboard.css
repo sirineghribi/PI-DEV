@@ -1,13 +1,38 @@
 .button{
-    -fx-background-color:#6F5CC2;    
+    -fx-background-color:#712194;    
     -fx-border-width:0px 0px 0px 0px ;
     -fx-border-color: #ffffff;
+    -fx-text-fill: white;
 }
 .button:hover{
-   -fx-background-color:  #52438F;
+   -fx-background-color:  #990dac;
    -fx-border-width:0px 0px 0px 0px ;
 
 }
 .button:pressed{
-    -fx-background-color: #7156DD;
+    -fx-background-color: #990dac;
+}
+.ScrollPane{
+    background-color: #712194;
+}
+
+.ScrollPane .jspTrack {
+    background-color: #712194;
+}
+.table-view {
+    -fx-background-color: #712194;
+    
+}
+.table-cell {
+    -fx-background-color: #712194;
+    -fx-text-fill: white;
+
+}
+.table-row-cell:filled:selected .table-cell {
+    -fx-background-color: #990dac;
+    -fx-text-fill: white;
+}
+.table-header-row .table-column-header {
+    -fx-background-color: #990dac;
+    -fx-text-fill: white;
 }

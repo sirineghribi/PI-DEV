@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="343.0" prefWidth="750.0" style="-fx-background-color: #4B0076;" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Add_Type_Abonnement_FXMLController">
+   <children>
+      <ImageView fitHeight="460.0" fitWidth="816.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="Nom_type" layoutX="59.0" layoutY="125.0" promptText="Nom" />
+      <TextField fx:id="Desc_type" layoutX="59.0" layoutY="175.0" promptText="Description" />
+      <TextField fx:id="Prix_type" layoutX="59.0" layoutY="232.0" promptText=" Prix &gt; 0" />
+      <TextField fx:id="Offre_type" layoutX="59.0" layoutY="280.0" promptText="Offre in %" />
+      <TextField fx:id="Periode_type" layoutX="59.0" layoutY="330.0" promptText="Periode &gt; 0 " />
+      <Button fx:id="add_button" layoutX="99.0" layoutY="382.0" mnemonicParsing="false" onAction="#add" prefHeight="26.0" prefWidth="65.0" text="Ajouter" textFill="WHITE" />
+      <TableView fx:id="list_type" editable="true" layoutX="254.0" layoutY="125.0" prefHeight="231.0" prefWidth="502.0">
+        <columns>
+          <TableColumn fx:id="nom_col" prefWidth="75.0" text="Nom" />
+          <TableColumn fx:id="prix_col" prefWidth="75.0" text="Prix" />
+            <TableColumn fx:id="offre_col" prefWidth="75.0" text="Offre" />
+            <TableColumn fx:id="periode_col" prefWidth="89.0" text="Periode" />
+            <TableColumn fx:id="desc_col" prefWidth="187.0" text="Description" />
+        </columns>
+      </TableView>
+      <Button fx:id="update_type" layoutX="252.0" layoutY="370.0" mnemonicParsing="false" onAction="#load_update" prefHeight="26.0" prefWidth="71.0" text="Modifier" textFill="WHITE" />
+      <Button fx:id="delete_type" layoutX="343.0" layoutY="370.0" mnemonicParsing="false" onAction="#delete_type" text="Supprimer" textFill="WHITE" />
+      <Button fx:id="stat_bt" layoutX="433.0" layoutY="370.0" mnemonicParsing="false" onAction="#statistic" text="statistique" textFill="WHITE" />
+      <Button fx:id="export_bt" layoutX="524.0" layoutY="370.0" mnemonicParsing="false" onAction="#export" prefHeight="26.0" prefWidth="71.0" text="exporter" textFill="WHITE" />
+      <TextField fx:id="search_bar" layoutX="254.0" layoutY="75.0" prefHeight="25.0" prefWidth="502.0" />
+      <Button fx:id="vol" layoutX="101.0" mnemonicParsing="false" onAction="#open_vol" prefHeight="34.0" prefWidth="102.0" text="Vols" />
+      <Button fx:id="user" mnemonicParsing="false" onAction="#openuser" prefHeight="34.0" prefWidth="102.0" text="Utilisateurs" />
+      <Button fx:id="avis" layoutX="203.0" mnemonicParsing="false" onAction="#open_avis" prefHeight="34.0" prefWidth="150.0" text="Reclamation_avis" />
+      <Button fx:id="type_ab" layoutX="353.0" mnemonicParsing="false" onAction="#open_type_ab" prefHeight="34.0" prefWidth="150.0" text="Type abonnement" />
+      <Button layoutX="503.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+      <Button layoutX="605.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="102.0" text="Button" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="394.0" prefWidth="893.0" style="-fx-background-color: purple;" stylesheets="@/Styles/dahsboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ReservationController">
+   <children>
+      <ImageView fitHeight="402.0" fitWidth="712.0" layoutX="187.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/fond.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="390.0" layoutY="67.0" text="Historique de vos reservations" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tableview" layoutX="263.0" layoutY="139.0" prefHeight="200.0" prefWidth="560.0" stylesheets="@../Styles/dahsboard.css">
+        <columns>
+          <TableColumn fx:id="date" prefWidth="111.0" text="Date reservation" />
+          <TableColumn fx:id="montant" prefWidth="111.0" text="Montant" />
+            <TableColumn fx:id="destination" prefWidth="111.0" text="Destination" />
+            <TableColumn fx:id="date_vol" minWidth="4.0" prefWidth="111.0" text="Date vol" />
+            <TableColumn fx:id="etat" minWidth="0.0" prefWidth="111.0" text="Etat" />
+        </columns>
+      </TableView>
+      <Button fx:id="accueil1" layoutX="-2.0" layoutY="249.0" mnemonicParsing="false" onAction="#open_accueil" prefHeight="26.0" prefWidth="187.0" text="Accueil" textFill="WHITE" />
+      <ImageView fitHeight="121.0" fitWidth="128.0" layoutX="32.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/logoforinterplanetary.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="profil" layoutX="-2.0" layoutY="220.0" mnemonicParsing="false" onAction="#open_profil" prefHeight="26.0" prefWidth="187.0" text="Profil" textFill="WHITE" />
+      <Button fx:id="abonnement" layoutX="-1.0" layoutY="309.0" mnemonicParsing="false" onAction="#open_abonnement" prefHeight="26.0" prefWidth="187.0" text="Abonnement" textFill="WHITE" />
+      <Button layoutX="-1.0" layoutY="339.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="187.0" text="Button" textFill="WHITE" />
+      <Button fx:id="reclamation" layoutX="-1.0" layoutY="279.0" mnemonicParsing="false" onAction="#open_reclamation" prefHeight="26.0" prefWidth="187.0" text="Reclamation" textFill="WHITE" />
+   </children>
+</AnchorPane>
